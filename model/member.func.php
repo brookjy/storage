@@ -30,7 +30,7 @@ class Member{
     }
     
     public function phone_validation(){
-            return preg_match("/^[\+0-9\-\(\)\s]*$/", $this->phone);
+        return preg_match("/_/", $this->phone);
     }
 
 	public function genSalt($length = 6){
@@ -82,7 +82,6 @@ class Member{
                 if($this->email_validation() == TRUE && $this->phone_validation() == FALSE){
                     $time_now = time();
                     $format_time = date("Y-m-d",$time_now);
-                    echo "<script type=\"text/javascript\">alert('$format_time');window.location.replace(\"$this->currentpage\");</script>";
                     $salt = $this->genSalt();
                     $password = $this->password_encrypt($salt);
                     $new_member_query = "INSERT INTO users (username, phone, email, password, weChat, timeDeliver, create_time, role, salt) VALUES ('$this->username', '$this->phone', '$this->email', '$password', '$this->weChat', '$this->timeDeliver', '$format_time', 1,'$salt')";

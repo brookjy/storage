@@ -97,7 +97,7 @@
     <footer class="footer" style="color:white;">
         <div class="container">
         <div class="text-center">
-            <small>Copyright © 领世海外孕产 2018</small>
+            <small>Copyright © 领婴海外孕产 2018</small>
         </div>
         </div>
     </footer>
