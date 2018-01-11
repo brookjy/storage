@@ -91,7 +91,7 @@ class Member{
                         echo "<script type=\"text/javascript\">alert('欢迎，您已注册成功!');window.location.replace(\"$this->currentpage\");</script>";
                     }else{
                         printf("Registration failure: %s\n", $mysqli->error);
-                           exit();
+                        exit();
                     }
                 }else{
                     echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');window.history.back();</script>";

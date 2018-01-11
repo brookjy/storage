@@ -71,20 +71,20 @@
                 <button class="tablinks btn btn-info" onclick="openType(event, 'apt')">公寓</button>
             
 
-            <div id="house" class="tabcontent" style="width:100%;">
-                <form>
+            <div id="house" class="tabcontent" style="width:100%;border-top:1px solid #ccc;">
+                <form action="./service_function.php" method="post">
+                    <input type="hidden" name="property" value="house">
                     <div class="form-group"  style="width:250px;">
                         <br/>
                         <label>选择您的住址：</label>
-                        <select class="form-control" onchange="run()" name="address" id="origin_address">
+                        <select class="form-control" onchange="run()" name="origin_address" id="origin_address">
                             <option value= "1" >1 - 7706</option>
                             <option value= "2" >2</option>
                             <option value= "3">3</option>
                             <option value= 4 >其他(自己填写)</option>
                         </select>
                         <br/>
-                        <input type="hidden" class="form-control" id="option_address" name="option_address" placeholder="201-6151 Westminster Hwy, Richmond">
-                        
+                        <input type="hidden" class="form-control" id="option_address" name="option_address" placeholder="201-6151 Westminster Hwy, Richmond">  
                     </div>
                     <div class="container">
                         <div class="row">
@@ -92,9 +92,88 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">新鲜大土豆 $5/个</h5>
-                                        <div>
-                                            <p>价格：</p>
-                                            <select class="form-control" onchange="run()" name="address" id="origin_address" style="display:inline">
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="potato" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                                <option value= 4 >4</option>
+                                                <option value= 5 >5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">新鲜大番茄 $5/个</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="tomato" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                                <option value= 4 >4</option>
+                                                <option value= 5 >5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">新鲜大米 $5/袋</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control"  name="rice" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                                <option value= 4 >4</option>
+                                                <option value= 5 >5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="purchase_service">提交申请</button>
+                    </div>
+                    
+                </form>
+            </div>
+
+            <div id="apt" class="tabcontent" style="width:100%;">
+                <form action="./service_function.php" method="post">
+                    <input type="hidden" name="property" value="apartment">
+                    <div class="form-group"  style="width:250px;">
+                        <br/>
+                        <label>选择您的住址：</label>
+                        <select class="form-control" onchange="run()" name="origin_address" id="origin_address">
+                            <option value= "1" >1 - 7706</option>
+                            <option value= "2" >2</option>
+                            <option value= "3">3</option>
+                            <option value= 4 >其他(自己填写)</option>
+                        </select>
+                        <br/>
+                        <input type="hidden" class="form-control" id="option_address" name="option_address" placeholder="201-6151 Westminster Hwy, Richmond">  
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">新鲜大土豆 $5/个</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="potato" style="display:inline;width:60%;">
                                                 <option value= 1 >0</option>
                                                 <option value= 1 >1</option>
                                                 <option value= 2 >2</option>
@@ -108,35 +187,45 @@
                             </div>
                             <div class="col-md-4" style="padding-top:20px;">
                                 <div class="card">
-                                    <img class="card-img-top" src="img/patato.jpg" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <h5 class="card-title">新鲜大番茄 $5/个</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="tomato" style="display:inline;width:60%;">
+                                                <option value= 1 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                                <option value= 4 >4</option>
+                                                <option value= 5 >5</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>    
                             </div>
                             <div class="col-md-4" style="padding-top:20px;">
                                 <div class="card">
-                                    <img class="card-img-top" src="img/patato.jpg" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <h5 class="card-title">新鲜大米 $5/袋</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control"  name="rice" style="display:inline;width:60%;">
+                                                <option value= 1 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                                <option value= 4 >4</option>
+                                                <option value= 5 >5</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>    
                             </div>
                         </div>
                         <br/>
-                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">提交申请</button>
-                    </div>
-                    
+                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="purchase_service">提交申请</button>
+                    </div>  
                 </form>
-            </div>
-
-            <div id="apt" class="tabcontent" style="width:100%;">
-                <h3>Paris</h3>
-                <p>Paris is the capital of France.</p> 
             </div>
             <br/>
         </div>
