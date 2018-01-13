@@ -65,7 +65,7 @@
                     </div>
                     <div class="mr-5">服务记录</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="#">
+                    <a class="card-footer text-white clearfix small z-1" href="history.php">
                     <span class="float-left">点击查看</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>

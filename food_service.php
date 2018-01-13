@@ -10,20 +10,7 @@
     }
 ?>
 <head>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
-    <script>
-        var tomorrow = new Date();
-        tomorrow.setHours(tomorrow.getHours() + 5);
-        $(function() {
-            $( "#datepicker" ).datepicker({
-                showButtonPanel: true,
-                minDate: tomorrow
-            });
-        });
-    </script>    
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -59,9 +46,9 @@
                         <div class="form-group"  style="width:250px;">
                             <label>选择种类：</label>
                             <select class="form-control" name="dateToDeliver">
-                                <option value="morning">早</option>
-                                <option value="noon">中</option>
-                                <option value="night">晚</option>
+                                <option value="早">早</option>
+                                <option value="中">中</option>
+                                <option value="晚">晚</option>
                             </select>
                         </div>
                         <fieldset>
@@ -97,6 +84,26 @@
             <i class="fa fa-angle-up"></i>
         </a>
         
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
+        <script>
+            var tomorrow = new Date();
+            tomorrow.setHours(tomorrow.getHours() + 5);
+            $(function() {
+                $( "#datepicker" ).datepicker({
+                    showButtonPanel: true,
+                    minDate: tomorrow
+                });
+            });
+        </script>   
     </div>
 </body>
 </html>
