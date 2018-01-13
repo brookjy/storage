@@ -14,8 +14,7 @@ class Medical_Service{
 	public function medical_service(){
 		echo "<script type=\"text/javascript\">alert('$this->serviceType, $this->time, $this->additional');</script>";
         global $mysqli;
-        if(true){
-            echo $this->serviceType;
+        if($this->check_dateToDelivery()){
             $medical_service_query = "INSERT INTO medical_service (serviceType, time, additional) VALUES ('$this->serviceType', '$this->time', '$this->additional')";
             $medical_service_retrieve = $mysqli->query($medical_service_query);
         }else{
@@ -23,11 +22,14 @@ class Medical_Service{
         }
     }
     
-    // public function check_dateToDelivery(){
-    //     $date = $this->time;
-    //     $d = new DateTime();
-    //     $current = $d->format('Y/m/d');
-    //     return true;
-    // }
+    public function check_dateToDelivery() {
+        $date = $this->time;
+        $d = new DateTime();
+        $current = $d->format('Y-m-d');
+        if ($date > $current){
+            return true;
+        }
+        else return false;
+    }
 }
 ?>
