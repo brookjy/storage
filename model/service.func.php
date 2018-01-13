@@ -6,13 +6,15 @@ class Service{
     private $dateToDeliver;
     private $service1;
     private $service2;
+    private $additional;
 
 	public function __construct() {
         $this->serviceType = isset($_POST['serviceType']) ? $_POST['serviceType'] : null;
 		$this->time = isset($_POST['time']) ? $_POST['time'] : null;
 		$this->dateToDeliver = isset($_POST['dateToDeliver']) ? $_POST['dateToDeliver'] : null;
 		$this->service1 = isset($_POST['service1']) ? $_POST['service1'] : 0;
-		$this->service2 = isset($_POST['service2']) ? $_POST['service2'] : 0;
+        $this->service2 = isset($_POST['service2']) ? $_POST['service2'] : 0;
+        $this->additional = isset($_POST['additional']) ? $_POST['additional'] : null;
 	}
 
 	public function food_service(){
@@ -23,6 +25,17 @@ class Service{
             $food_service_retrieve = $mysqli->query($food_service_query);
         }else{
             echo "<script type=\"text/javascript\">alert('请提前5个小时预定套餐! ');window.history.back();</script>";
+        }
+    }
+
+    public function medical_service(){
+		echo "<script type=\"text/javascript\">alert('$this->serviceType, $this->time, $this->addtional');</script>";
+        global $mysqli;
+        if($this->check_medical_date()){
+            $medical_service_query = "INSERT INTO medical_service (serviceType, time,additional) VALUES ('$this->serviceType', '$this->time', '$this->additional')";
+            $medical_service_retrieve = $mysqli->query($medical_service_query);
+        }else{
+            echo "<script type=\"text/javascript\">alert('请至少提前1天预定! ');window.history.back();</script>";
         }
     }
     
@@ -40,6 +53,11 @@ class Service{
                 return false;
             }
         }
+        return true;
+    }
+
+    public function check_medical_date(){
+        
         return true;
     }
 

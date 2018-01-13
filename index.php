@@ -128,8 +128,11 @@
                 <input type="email" class="form-control" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" name="password" placeholder="密码">
+                <label for="exampleInputPassword1">密码</label>        
+                <div style="display:flex">    
+                    <input type="password" class="form-control" name="password_register" placeholder="密码"style="display:inline-block"> 
+                    <button onclick="show_hide_pw()" class="btn btn-primary" type= "button">显示/隐藏</button> 
+                </div>                   
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">微信</label>
@@ -179,6 +182,12 @@
       </div>
     </div>
 
+    <script>
+        function show_hide_pw() {
+            var pw_type = document.getElementsByName("password_register")[0];
+            pw_type.type=="password" ? pw_type.type="text":pw_type.type="password";
+        }
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->

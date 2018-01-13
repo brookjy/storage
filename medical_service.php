@@ -28,7 +28,7 @@
             <h2><b>医疗接送申请</b></h2>
             <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
 
-            <form>
+            <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
                         <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
@@ -39,18 +39,18 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group"  style="width:250px;">
-                        <label>选择医生：</label>
-                        <select class="form-control" id="DocSelect">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <fieldset class="form-group">
-                        <label>选择医疗服务：</label>
+                            <label>选择医疗服务：</label>
+                            <select class="form-control" name="dateToDeliver">
+                                <option value="morning">早</option>
+                                <option value="noon">中</option>
+                                <option value="night">晚</option>
+                            </select>
+                        </div>
+
+
+                    <label name="serviceType">选择医疗服务：</label>
                         <table class="table table-striped">
                         <tr>
                         </tr>

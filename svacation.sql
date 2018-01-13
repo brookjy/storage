@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 11, 2018 at 07:26 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Host: 127.0.0.1
+-- Generation Time: Jan 13, 2018 at 04:48 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,7 +50,21 @@ INSERT INTO `food_service` (`sid`, `serviceType`, `time`, `service1`, `service2`
 (7, '订餐服务', '2018-01-10', 1, 0, 'morning'),
 (8, '订餐服务', '2018-01-09', 1, 0, 'night'),
 (9, '订餐服务', '2018-01-10', 1, 0, 'noon'),
-(10, '订餐服务', '2018-01-10', 1, 0, 'night');
+(10, '订餐服务', '2018-01-10', 1, 0, 'night'),
+(11, '订餐服务', '2018-01-12', 0, 0, 'morning');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_service`
+--
+
+CREATE TABLE `medical_service` (
+  `sid` int(10) NOT NULL,
+  `serviceType` varchar(10) NOT NULL,
+  `time` date NOT NULL,
+  `addtional` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -101,7 +115,8 @@ INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, 
 (11, '123', 123, '123@gmail.com', '446781f77401a0e74650b6515352ad11cd76e20dcd6b5d061566d3e3421b6b5c', '123', '123', '0000-00-00', '1', '7gHfIm', NULL),
 (12, '1234', 1234, '1234@gmail.com', 'f0c411f690af6ec854b6037b0acdbad482f220430cc465bcf88bfe717fa4d604', '1234', '1234', '0000-00-00', '1', 'TKmrjj', NULL),
 (13, '12345', 123456, '123456@gmail.com', '5093b20eea0b161e1649c5ebe3e95d5733d0a916e84a493a47805c436f56c73b', '12345', '12345', '0000-00-00', '1', '2mfe0a', 'sampleaddress'),
-(14, '123456', 123456, '123456@gmail.com', '6315b3bdecf91090dd5f7f28e3aa9f956a4538c7f2f4e21c591214b2a71ca037', '123456', '123456', '2018-01-08', '1', 'i6hLHV', '???');
+(14, '123456', 123456, '123456@gmail.com', '6315b3bdecf91090dd5f7f28e3aa9f956a4538c7f2f4e21c591214b2a71ca037', '123456', '123456', '2018-01-08', '1', 'i6hLHV', '???'),
+(15, 'han', 123, '123@12.com', '2c7e8a74d9a48a94c1773e994899ac371bf94c3c12c2f1ccb600a2d4ea8ccd95', '123', '123', '2018-01-11', '1', 'pMTA3B', NULL);
 
 --
 -- Indexes for dumped tables
@@ -112,6 +127,12 @@ INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, 
 --
 ALTER TABLE `food_service`
   ADD PRIMARY KEY (`sid`);
+
+--
+-- Indexes for table `medical_service`
+--
+ALTER TABLE `medical_service`
+  ADD UNIQUE KEY `sid` (`sid`);
 
 --
 -- Indexes for table `services`
@@ -133,7 +154,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -145,7 +166,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
