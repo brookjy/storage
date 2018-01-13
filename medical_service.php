@@ -34,7 +34,7 @@
                         <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
                         <div class="col-xs-5 date">
                             <div class="input-group input-append date" id="datePicker">
-                                <input type="date" class="form-control" name="date" />
+                                <input type="date" class="form-control" name="time" />
                                 <span class="input-group-addon add-on"><span class="fa fa-calendar"></span></span>
                             </div>
                         </div>
@@ -42,80 +42,23 @@
 
                     <div class="form-group"  style="width:250px;">
                             <label>选择医疗服务：</label>
-                            <select class="form-control" name="dateToDeliver">
-                                <option value="morning">早</option>
-                                <option value="noon">中</option>
-                                <option value="night">晚</option>
+                            <select class="form-control" name="serviceType">
+                                <option value="看医生">看医生</option>
+                                <option value="住院">住院</option>
+                                <option value="化验">化验</option>
+                                <option value="出院">出院</option>
+                                <option value="B超">B超</option>
+                                <option value="其他">其他</option>
                             </select>
                         </div>
-
-
-                    <label name="serviceType">选择医疗服务：</label>
-                        <table class="table table-striped">
-                        <tr>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check uncheck">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        看医生
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        住院
-                                    </label>
-                                </div>
-                            </td> 
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        化验
-                                    </label>
-                                </div>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        出院
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        B超
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        其他
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                        </table>  
-                    </fieldset>
                     <div class="form-group">
                         <label for="exampleTextarea">备注信息：</label>
-                        <textarea class="form-control" name="additionalNote" rows="3"></textarea>
+                        <textarea class="form-control" name="additional" rows="3"></textarea>
                     </div>
-                <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">提交申请</button>
+                    <br/>  
+                <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="medical_service">提交申请</button>
                 <br/>
-                </fieldset>
+            </fieldset>
             </form>
             <br/>
         </div>
