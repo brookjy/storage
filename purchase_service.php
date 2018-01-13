@@ -74,6 +74,7 @@
             <div id="house" class="tabcontent" style="width:100%;border-top:1px solid #ccc;">
                 <form action="./service_function.php" method="post">
                     <input type="hidden" name="property" value="house">
+                    <input type="hidden" name="serviceType" value="采购服务">
                     <div class="form-group"  style="width:250px;">
                         <br/>
                         <label>选择您的住址：</label>
@@ -150,9 +151,10 @@
                 </form>
             </div>
 
-            <div id="apt" class="tabcontent" style="width:100%;">
+            <div id="apt" class="tabcontent" style="width:100%;border-top:1px solid #ccc;">
                 <form action="./service_function.php" method="post">
                     <input type="hidden" name="property" value="apartment">
+                    <input type="hidden" name="serviceType" value="采购服务">
                     <div class="form-group"  style="width:250px;">
                         <br/>
                         <label>选择您的住址：</label>

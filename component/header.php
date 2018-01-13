@@ -21,4 +21,6 @@
     <link href="css/sb-admin.css" rel="stylesheet">
     <!-- Custom styles-->
     <link href="css/custom.css" rel="stylesheet">
+    <!-- date-picker styles-->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
