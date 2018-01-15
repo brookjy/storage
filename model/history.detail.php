@@ -67,6 +67,29 @@ Class DetailHistory{
             }else{
                 echo "您要的信息不存在！";
             }
+        }elseif($type == "医疗接送"){
+            $detail_query="SELECT * FROM medical_service WHERE serviceToken = '$serviceToken'";
+            $detail_retrieve = $mysqli->query($detail_query);
+            if($detail_retrieve->num_rows > 0) {
+                $detail_result = $detail_retrieve->fetch_assoc();
+                echo sprintf("<table class=\"table table-hover table-info\">
+                        <tr>
+                            <td>时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>医疗服务</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>备注信息</td>
+                            <td>%s</td>
+                        </tr>
+                    </table>
+                ", $detail_result['time'], $detail_result['medicalServiceType'], $detail_result['additional']);
+            }else{
+                echo "您要的信息不存在！";
+            }
         }
     }
 }

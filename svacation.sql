@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 14, 2018 at 06:36 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Host: 127.0.0.1
+-- Generation Time: Jan 15, 2018 at 03:44 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `svacation`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `aid` int(5) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `permission` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`aid`, `username`, `password`, `permission`) VALUES
+(1, 'food_service', 'food_service', 'food_service');
 
 -- --------------------------------------------------------
 
@@ -69,7 +89,9 @@ INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `time`, `service1`, `
 (50, '2mfe0a', '8305 ', '2018-01-12', 1, 0, '早', 0),
 (51, '2mfe0a', '19767 ', '2018-01-12', 1, 0, '早', 0),
 (52, '2mfe0a', '43855 ', '2018-01-13', 1, 1, '晚', 0),
-(53, '2mfe0a', '63082 ', '2018-01-13', 1, 1, '晚', 0);
+(53, '2mfe0a', '63082 ', '2018-01-13', 1, 1, '晚', 0),
+(54, 'eQez4m', '81457 ', '2018-01-17', 1, 0, '早', 0),
+(55, 'eQez4m', '28300 ', '2018-01-18', 0, 1, '晚', 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +144,36 @@ INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activa
 (29, '19767', '订餐服务', '2mfe0a', '2018-01-12', 0),
 (30, '43855', '订餐服务', '2mfe0a', '2018-01-12', 0),
 (31, '63082', '订餐服务', '2mfe0a', '2018-01-12', 0),
-(32, '76568', '采购服务', '2mfe0a', '2018-01-12', 0);
+(32, '76568', '采购服务', '2mfe0a', '2018-01-12', 0),
+(33, '81457', '订餐服务', 'eQez4m', '2018-01-14', 0),
+(34, '59803', '采购服务', 'eQez4m', '2018-01-14', 0),
+(35, '90950', '医疗接送', 'eQez4m', '2018-01-14', 0),
+(36, '28300', '订餐服务', 'eQez4m', '2018-01-14', 0),
+(37, '73160', '医疗接送', 'eQez4m', '2018-01-14', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_service`
+--
+
+CREATE TABLE `medical_service` (
+  `sid` int(100) NOT NULL,
+  `user` varchar(10) NOT NULL,
+  `serviceToken` varchar(10) NOT NULL,
+  `medicalServiceType` text NOT NULL,
+  `time` date NOT NULL,
+  `additional` text NOT NULL,
+  `finish` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `medical_service`
+--
+
+INSERT INTO `medical_service` (`sid`, `user`, `serviceToken`, `medicalServiceType`, `time`, `additional`, `finish`) VALUES
+(14, 'eQez4m', '90950 ', '出院', '2018-01-15', '', 0),
+(15, 'eQez4m', '73160 ', 'B超', '2018-01-24', '中文', 0);
 
 -- --------------------------------------------------------
 
@@ -161,7 +212,8 @@ INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date
 (10, '2mfe0a', '51876', 'house', '2018-01-12 00:00:00', '1', '', 3, 2, 2, 0),
 (11, '2mfe0a', '82481', 'house', '2018-01-12 00:00:00', '4', '123123dada', 2, 1, 3, 0),
 (12, '2mfe0a', '99801', 'house', '2018-01-12 00:00:00', '3', '', 1, 2, 3, 0),
-(13, '2mfe0a', '76568', 'house', '2018-01-12 00:00:00', '1', '', 5, 1, 2, 0);
+(13, '2mfe0a', '76568', 'house', '2018-01-12 00:00:00', '1', '', 5, 1, 2, 0),
+(14, 'eQez4m', '59803', 'house', '2018-01-14 00:00:00', '1', '', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -219,6 +271,12 @@ INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, 
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`aid`);
+
+--
 -- Indexes for table `food_service`
 --
 ALTER TABLE `food_service`
@@ -229,6 +287,13 @@ ALTER TABLE `food_service`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`hid`);
+
+--
+-- Indexes for table `medical_service`
+--
+ALTER TABLE `medical_service`
+  ADD PRIMARY KEY (`sid`),
+  ADD UNIQUE KEY `serviceToken` (`serviceToken`);
 
 --
 -- Indexes for table `purchase_service`
@@ -253,22 +318,34 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `aid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `medical_service`
+--
+ALTER TABLE `medical_service`
+  MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `purchase_service`
 --
 ALTER TABLE `purchase_service`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `services`

@@ -12,6 +12,7 @@
             <div style="float:right;">
                 <a style="padding-right:10px;font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" data-toggle="modal" data-target="#loginModal">登录</a>
                 <a style="font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" data-toggle="modal" data-target="#signupModal">注册</a>
+                <a style="font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" href="admin/admin_login.php">admin登录</a>
             </div> 
         <?php }else{ ?>
             <div style="float:right; margin-right:20px; color:white;">

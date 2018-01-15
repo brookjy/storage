@@ -19,18 +19,18 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">后台管理员注册</div>
+      <div class="card-header">后台管理员登陆</div>
       <div class="card-body">
-        <form>
+        <form action="../form_function.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">用户名</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="输入用户名">
+            <input type="text" class="form-control" name="username" placeholder="用户名">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">密码</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="密码">
+            <input type="password" class="form-control" name="password" placeholder="密码">
           </div>
-          <a class="btn btn-primary btn-block" href="index.html">注册</a>
+          <button type="submit" class="btn btn-primary" name="admin_login">登录</button>
         </form>
       </div>
     </div>

@@ -190,13 +190,6 @@ class Member{
 		}else{
 			echo "<script type=\"text/javascript\">alert('您不是管理账户. ');window.history.back();</script>";
 		}
-	}
-
-	public function admin_login(){
-		global $mysqli;
-		$check_user = $this->validation();
-		$check_permission = $this->permission($check_user);
-	}
-
+	}  
 }
 ?>

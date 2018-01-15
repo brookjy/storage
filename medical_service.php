@@ -30,6 +30,7 @@
 
             <form action="./service_function.php" method="post">
                 <fieldset>
+                <input type="hidden" name="serviceType" value="医疗接送">
                     <div class="form-group" style="width:250px;">
                         <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
                         <div class="col-xs-5 date">
@@ -42,7 +43,7 @@
 
                     <div class="form-group"  style="width:250px;">
                             <label>选择医疗服务：</label>
-                            <select class="form-control" name="serviceType">
+                            <select class="form-control" name="medicalServiceType">
                                 <option value="看医生">看医生</option>
                                 <option value="住院">住院</option>
                                 <option value="化验">化验</option>
