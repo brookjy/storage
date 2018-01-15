@@ -90,6 +90,78 @@ Class DetailHistory{
             }else{
                 echo "您要的信息不存在！";
             }
+        }elseif($type == "住房维修"){
+            $detail_query="SELECT * FROM repair_service WHERE serviceToken = '$serviceToken'";
+            $detail_retrieve = $mysqli->query($detail_query);
+            if($detail_retrieve->num_rows > 0) {
+                $detail_result = $detail_retrieve->fetch_assoc();
+                $services="";
+                if ($detail_result['water']  == 1){
+                    $services .= " 水, ";
+                }
+                if($detail_result['gas']  == 1){
+                    $services .= " 煤气, ";
+                }
+                if($detail_result['electric']  == 1){
+                    $services .= " 电, ";
+                }
+                if($detail_result['other']  == 1){
+                    $services .= " 其他 ";
+                }
+                echo sprintf("<table class=\"table table-hover table-info\">
+                        <tr>
+                            <td>时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>服务事项</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>备注信息</td>
+                            <td>%s</td>
+                        </tr>
+                    </table>
+                ", $detail_result['time'], $services, $detail_result['additionalNote']);
+            }else{
+                echo "您要的信息不存在！";
+            }
+        }elseif($type == "孕产服务"){
+            $detail_query="SELECT * FROM housekeeping_service WHERE serviceToken = '$serviceToken'";
+            $detail_retrieve = $mysqli->query($detail_query);
+            if($detail_retrieve->num_rows > 0) {
+                $detail_result = $detail_retrieve->fetch_assoc();
+                $services="";
+                if ($detail_result['accompany']  == 1){
+                    $services .= " 陪产, ";
+                }
+                if($detail_result['lactagogue']  == 1){
+                    $services .= " 催乳, ";
+                }
+                if($detail_result['maid']  == 1){
+                    $services .= " 月嫂, ";
+                }
+                if($detail_result['placenta']  == 1){
+                    $services .= " 胎盘, ";
+                }
+                echo sprintf("<table class=\"table table-hover table-info\">
+                        <tr>
+                            <td>时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>服务事项</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>备注信息</td>
+                            <td>%s</td>
+                        </tr>
+                    </table>
+                ", $detail_result['time'], $services, $detail_result['additionalNote']);
+            }else{
+                echo "您要的信息不存在！";
+            }
         }
     }
 }

@@ -9,6 +9,9 @@
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
 ?>
+<head>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+</head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     
@@ -25,44 +28,108 @@
         </ol>
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <h2><b>月嫂服务申请</b></h2>
+            <h2><b>孕产服务申请</b></h2>
             <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
 
-            <form>
+            <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
-                        <label>选择时间：<span style="color:red;">*预约时间请提前30天</span></label>
+                        <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
                         <div class="col-xs-5 date">
-                            <div class="input-group input-append date" id="datePicker">
-                                <input type="date" class="form-control" name="date" />
+                            <div class="input-group input-append date" >
+                                <input type="text" id="datepicker" name="time"/>
                                 <span class="input-group-addon add-on"><span class="fa fa-calendar"></span></span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group"  style="width:300px;">
-                        <label>选择大概价位/天(实际会有些许的差别)</label>
-                        <select class="form-control" id="DocSelect">
-                            <option>50加币</option>
-                            <option>100</option>
-                            <option>150</option>
-                            <option>200</option>
-                            <option>250</option>
-                            <option>其他</option>
-                        </select>
+                    <br/>
+                    <div class="form-group">
+                        <label>选择孕产服务：</label>
+                        <table class="table table-striped">
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check uncheck">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="accompany" type="checkbox" value="1">
+                                        陪产
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="lactagogue" type="checkbox" value="1">
+                                        催乳
+                                    </label>
+                                </div>
+                            </td> 
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="maid" type="checkbox" value="1">
+                                        月嫂
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="placenta" type="checkbox" value="1">
+                                        胎盘
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        </table>  
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea">备注信息：</label>
                         <textarea class="form-control" name="additionalNote" rows="3"></textarea>
                     </div>
-                <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">提交申请</button>
-                <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="housekeeping_service" >提交申请</button>
+                    <br/>
                 </fieldset>
             </form>
             <br/>
         </div>
         </div>
         <!-- /.container-fluid-->
-        <?php include_once "./component/footer.php"; ?>
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            <small>Copyright © 领世海外孕产 2018</small>
+            </div>
+        </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
+        <script>
+            var tomorrow = new Date();
+            tomorrow.setHours(tomorrow.getHours() + 5);
+            $(function() {
+                $( "#datepicker" ).datepicker({
+                    showButtonPanel: true,
+                    minDate: tomorrow
+                });
+            });
+        </script>   
     </div>
 </body>
 </html>
