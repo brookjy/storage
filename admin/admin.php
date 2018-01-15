@@ -26,12 +26,12 @@
             <?php 
             if ($_COOKIE['admin'] == "food_service"){?>
                 <form action="./adminService.func.php" method="post">
-                    <label style="display: inline-block;display:inline;color:white;">查看今天的订单：</label>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="breakfast">今天早餐</button>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="lunch">今天午餐</button>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="dinner">今天晚餐</button>
+                    <h2 style="color:white;">查看今天的订单: </h2>                    
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="breakfast">今天早餐</button>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="lunch">今天午餐</button>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="dinner">今天晚餐</button>
                 </form>
-                <h2 style="display:inline;color:white;">订餐服务汇总：</h2>
+                <h2 style="color:white;">订餐服务汇总：</h2>
             <?php
                 $foodSummary->foodSummaryListing();
             }
