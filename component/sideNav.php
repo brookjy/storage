@@ -46,7 +46,7 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="housekeeping_service.php">
             <i class="fa fa-fw fa-group"></i>
-            <span class="nav-link-text">找月嫂</span>
+            <span class="nav-link-text">孕产服务</span>
           </a>
         </li>
       </ul>

@@ -7,7 +7,7 @@ Class History{
         global $mysqli;
 
         $user_id =  $_COOKIE['uid'];
-        $histories_query="SELECT * FROM history WHERE user_id = '$user_id'";
+        $histories_query="SELECT * FROM history WHERE user_id = '$user_id' ORDER BY hid DESC";
         $result = mysqli_fetch_all($mysqli->query($histories_query), MYSQLI_ASSOC);
 		if(sizeof($result) > 0){
             echo "
