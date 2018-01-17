@@ -1,3 +1,4 @@
+
 <?php if(!defined('In_System')) exit("Access Denied");
  
 class Paginator {
@@ -17,13 +18,17 @@ class Paginator {
 
     public function getData( $limit = 5, $page = 1 ) {
         $this->_limit   = $limit;
-        $this->_page    = $page;
+        $last = ceil( $this->_total / $this->_limit );
+        if ($page == "0") $page = "1";
+        if ($page == $last+1) $page = $last;
+        $this->_page = $page;
         if ( $this->_limit == 'all' ) {
             $query = $this->_query;
         } else {
             $query = $this->_query . " LIMIT " . ( ( $this->_page - 1 ) * $this->_limit ) . ", $this->_limit";
         }
         $rs = $this->_conn->query( $query );
+        
         while ( $row = $rs->fetch_assoc() ) {
             $results[]  = $row;
         }
@@ -63,11 +68,7 @@ class Paginator {
         $class = ( $this->_page == $last ) ? "disabled" : "";
         $html .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">&raquo;</a></li>';
         $html .= '</ul>';
-        $html .= '<style>
-                    .pagination {
-                        display: inline-block;
-                    }
-                    
+        $html .= '<style>                
                     .pagination a {
                         color: black;
                         float: left;

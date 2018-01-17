@@ -1,19 +1,19 @@
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <?php if(!defined('In_System')) exit("Access Denied");
 
-include_once "paginator.php";
+include_once "./admin_paginator.php";
 
 Class FoodSummary{
 
     public function foodSummaryListing(){
         global $mysqli;
-        $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
+        $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 5;
         $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
-        $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
+        $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 3;
         $query="SELECT users.uid,users.username,users.phone,users.address,food_service.time,food_service.dateToDeliver,food_service.service1,food_service.service2 FROM food_service INNER JOIN users ON users.salt=food_service.user";
         $Paginator  = new Paginator( $mysqli, $query );
         $result    = $Paginator->getData( $limit, $page);
-        //$result = mysqli_fetch_all($mysqli->query($query), MYSQLI_ASSOC);
 		if(sizeof($result->data) > 0){
             echo "
             <table class=\"table table-hover table-info\">
@@ -56,7 +56,7 @@ Class FoodSummary{
                 </table>
             ";
         }
-        echo $Paginator->createLinks( $links, 'pagination' );
+        echo $Paginator->createLinks( $links, 'pagination pagination-sm' );
     }
 }
 

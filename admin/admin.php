@@ -3,6 +3,10 @@
     include_once "../component/header.php";
     include_once "../model/common.php";
     include_once "../model/member.func.php";
+    include_once "../model/common.php";
+    include_once "./admin_foodSummary.php";
+
+    $foodSummary = new foodSummary();
     
     //Check if the admin is login
     if (!isset($_COOKIE['isAdminLogin'])) {
@@ -12,16 +16,9 @@
 <body class="bg-dark">
     <br/>
         <div style="float:right">
-            <a href="./" style="padding-right:10px;font-size:180%;padding-bottom:10px;">返回-></a>
+            <a href="./admin_panel.php" style="padding-right:10px;font-size:180%;padding-bottom:10px;">返回-></a>
         </div> 
-        <br/>
-        <?php 
-            include_once "../model/common.php";
-            include_once "../model/admin/foodSummary.func.php";
 
-            $foodSummary = new foodSummary();
-             ?>
-        <br/>
         <div class="container" style="color:black;">
             <?php 
             if ($_COOKIE['admin'] == "food_service"){?>
@@ -48,9 +45,6 @@
             </div>
         </div>
     </footer>
-
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
   </div>
 </body>
 

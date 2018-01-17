@@ -1,7 +1,7 @@
 <?php
     include_once "./model/common.php";
 	include_once "./model/member.func.php";
-	include_once "./model/admin/admin.func.php";
+	include_once "./model/admin/admin_login.func.php";
 
 	$member = new Member();
 	$admin = new Admin();
