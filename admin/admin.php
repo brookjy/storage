@@ -3,6 +3,10 @@
     include_once "../component/header.php";
     include_once "../model/common.php";
     include_once "../model/member.func.php";
+    include_once "../model/common.php";
+    include_once "./admin_foodSummary.php";
+
+    $foodSummary = new foodSummary();
     
     //Check if the admin is login
     if (!isset($_COOKIE['isAdminLogin'])) {
@@ -12,26 +16,19 @@
 <body class="bg-dark">
     <br/>
         <div style="float:right">
-            <a href="./" style="padding-right:10px;font-size:180%;padding-bottom:10px;">返回-></a>
+            <a href="./admin_panel.php" style="padding-right:10px;font-size:180%;padding-bottom:10px;">返回-></a>
         </div> 
-        <br/>
-        <?php 
-            include_once "../model/common.php";
-            include_once "../model/admin/foodSummary.func.php";
 
-            $foodSummary = new foodSummary();
-             ?>
-        <br/>
         <div class="container" style="color:black;">
             <?php 
             if ($_COOKIE['admin'] == "food_service"){?>
                 <form action="./adminService.func.php" method="post">
-                    <label style="display: inline-block;display:inline;color:white;">查看今天的订单：</label>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="breakfast">今天早餐</button>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="lunch">今天午餐</button>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="dinner">今天晚餐</button>
+                    <h2 style="color:white;">查看今天的订单: </h2>                    
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="breakfast">今天早餐</button>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="lunch">今天午餐</button>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;font-size:2rem;" name="dinner">今天晚餐</button>
                 </form>
-                <h2 style="display:inline;color:white;">订餐服务汇总：</h2>
+                <h2 style="color:white;">订餐服务汇总：</h2>
             <?php
                 $foodSummary->foodSummaryListing();
             }
@@ -48,9 +45,6 @@
             </div>
         </div>
     </footer>
-
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
   </div>
 </body>
 
