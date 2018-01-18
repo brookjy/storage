@@ -35,7 +35,12 @@ class Profile{
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">地址: </label>
-                        <input tyle=\"text\" name=\"address\" value=%s>
+                        <select name=\"address\">
+                            <option value=\"volvo\">Volvo</option>
+                            <option value=\"saab\">Saab</option>
+                            <option value=\"opel\">Opel</option>
+                            <option value=\"audi\">Audi</option>
+                        </select>
                         </div>
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
@@ -46,6 +51,20 @@ class Profile{
 			return 0;
 		}
         $profile_exist->free();
+    }
+
+    public function generateAddress(){
+        GLOBAL $mysqli;
+        $salt =  $_COOKIE['uid'];
+
+        $profile_query = "SELECT * FROM users WHERE salt = '$salt'";
+        $profile_exist = $mysqli->query($profile_query);
+        if($profile_exist->num_rows > 0){
+            $profile_retrieve = $profile_exist->fetch_assoc();
+            echo sprintf("
+                <input type=\"hidden\" name=\"origin_address\" value=\"%s\">
+            ", $profile_retrieve['address']);
+        }
     }
 
 }

@@ -75,18 +75,14 @@
                 <form action="./service_function.php" method="post">
                     <input type="hidden" name="property" value="house">
                     <input type="hidden" name="serviceType" value="采购服务">
-                    <div class="form-group"  style="width:250px;">
-                        <br/>
-                        <label>选择您的住址：</label>
-                        <select class="form-control" onchange="run()" name="origin_address" id="origin_address">
-                            <option value= "1" >1 - 7706</option>
-                            <option value= "2" >2</option>
-                            <option value= "3">3</option>
-                            <option value= 4 >其他(自己填写)</option>
-                        </select>
-                        <br/>
-                        <input type="hidden" class="form-control" id="option_address" name="option_address" placeholder="201-6151 Westminster Hwy, Richmond">  
-                    </div>
+                    <p>别墅：</p>
+                    <?php 
+                        include_once "./model/common.php";
+                        include_once "./model/user.info.php";
+
+                        $profiles = new Profile(); 
+                        $profiles->generateAddress();
+                    ?>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4" style="padding-top:20px;">
@@ -155,18 +151,14 @@
                 <form action="./service_function.php" method="post">
                     <input type="hidden" name="property" value="apartment">
                     <input type="hidden" name="serviceType" value="采购服务">
-                    <div class="form-group"  style="width:250px;">
-                        <br/>
-                        <label>选择您的住址：</label>
-                        <select class="form-control" onchange="run()" name="origin_address" id="origin_address">
-                            <option value= "1" >1 - 7706</option>
-                            <option value= "2" >2</option>
-                            <option value= "3">3</option>
-                            <option value= 4 >其他(自己填写)</option>
-                        </select>
-                        <br/>
-                        <input type="hidden" class="form-control" id="option_address" name="option_address" placeholder="201-6151 Westminster Hwy, Richmond">  
-                    </div>
+                    <p>公寓： </p>
+                    <?php 
+                        include_once "./model/common.php";
+                        include_once "./model/user.info.php";
+
+                        $profiles = new Profile(); 
+                        $profiles->generateAddress();
+                    ?>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4" style="padding-top:20px;">
@@ -248,13 +240,6 @@
             evt.currentTarget.className += " active";
         }
 
-        function run() {
-            if(document.getElementById("origin_address").value == 4){
-                document.getElementById("option_address").type = 'text';
-            }else{
-                document.getElementById("option_address").type = 'hidden';
-            }
-        }
         </script>
         <!-- /.container-fluid-->
         <?php include_once "./component/footer.php"; ?>

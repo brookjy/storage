@@ -32,7 +32,7 @@ class Housekeeping_Service{
                 $housekeeping_service_query = "INSERT INTO housekeeping_service (user, serviceToken, time, accompany, lactagogue, maid, placenta, additionalNote) 
                 VALUES ('$user_id', '$serviceToken ', '$this->time', '$this->accompany', '$this->lactagogue', '$this->maid', '$this->placenta', '$this->additionalNote')";
                 if($mysqli->query($housekeeping_service_query)){
-                    echo "<script type=\"text/javascript\">alert('您已成功预定了孕产服务, 谢谢.');window.history.back();</script>";
+                    echo "<script type=\"text/javascript\">alert('您已成功预定了孕产服务, 谢谢.');window.location.href = 'panel.php' ;</script>";
                 }else{
                     printf("Registration failure: %s\n", $mysqli->error);
                     exit();
@@ -46,16 +46,15 @@ class Housekeeping_Service{
                     exit();
                 }
             }else{
-                echo "<script type=\"text/javascript\">alert('请提前一天预定孕产服务! ');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('请提前一个月预定孕产服务! ');window.history.back();</script>";
             }
         }
     }
     
     public function check_dateToDelivery() {
         $date = $this->time;
-        $d = new DateTime();
-        $current = $d->format('Y-m-d');
-        if ($date > $current){
+        $dateNow = date('Y/m/d', strtotime('+1 month'));
+        if ($date > $dateNow){
             return true;
         }
         else return false;

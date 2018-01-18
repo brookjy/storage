@@ -22,5 +22,9 @@
 		$repair_service->repair_service();
 	} else if(isset($_POST['housekeeping_service'])){
 		$housekeeping_service->housekeeping_service();
+	} else if(isset($_POST['food_delete'])){
+		$food_service->food_delete();
+	}else if(isset($_POST['foodcpy_service'])){
+		$food_service->foodcpy_service();
 	}
 ?>

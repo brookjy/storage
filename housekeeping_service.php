@@ -57,14 +57,7 @@
                                     </label>
                                 </div>
                             </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="lactagogue" type="checkbox" value="1">
-                                        催乳
-                                    </label>
-                                </div>
-                            </td> 
+                            
                             <td>
                                 <div class="form-check">
                                     <label class="form-check-label">
@@ -73,14 +66,7 @@
                                     </label>
                                 </div>
                             </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="placenta" type="checkbox" value="1">
-                                        胎盘
-                                    </label>
-                                </div>
-                            </td>
+                            
                         </tr>
                         </table>  
                     </div>

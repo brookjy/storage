@@ -37,7 +37,7 @@ class Repair_Service{
                 $medical_service_query = "INSERT INTO repair_service (user, serviceToken, time, water, gas, electric, other, additionalNote) 
                 VALUES ('$user_id', '$serviceToken', '$this->time', '$this->water', '$this->gas', '$this->electric', '$this->other', '$this->additionalNote')";
                 if($mysqli->query($medical_service_query)){
-                    echo "<script type=\"text/javascript\">alert('您已成功预定了住房维修。谢谢.');window.history.back();</script>";
+                    echo "<script type=\"text/javascript\">alert('您已成功预定了住房维修。谢谢.');window.location.href = 'panel.php';</script>";
                 }else{
                     printf("Registration failure: %s\n", $mysqli->error);
                     exit();
@@ -58,12 +58,12 @@ class Repair_Service{
     
     public function check_dateToDelivery() {
         $date = $this->time;
-        $d = new DateTime();
-        $current = $d->format('Y-m-d');
-        if ($date > $current){
+        $d = new DateTime('tomorrow');
+        $current = $d->format('Y/m/d');
+        if ($date >= $current){
             return true;
         }
-        else return false;
+        return false;
     }
 }
 ?>

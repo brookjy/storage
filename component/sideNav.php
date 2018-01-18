@@ -22,7 +22,13 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="food_service.php">
             <i class="fa fa-fw fa-coffee"></i>
-            <span class="nav-link-text">订餐服务</span>
+            <span class="nav-link-text">产妇订餐</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="foodcpy_service.php">
+            <i class="fa fa-fw fa-coffee"></i>
+            <span class="nav-link-text">家属订餐</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">

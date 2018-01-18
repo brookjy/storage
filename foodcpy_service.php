@@ -30,20 +30,23 @@
             <div style="padding-left:20px;padding-right:20px;">
                 <?php 
                     include_once "./model/common.php";
-                    include_once "./model/check.foods.php";
+                    include_once "./model/check.foodcpy.php";
 
-                    $check_foods = new Check_Foods();
-                    if($check_foods->check_food()){
+                    $check_foodcpys = new Check_Foodcpy();
+                    if($check_foodcpys->check_foodcpys()){
                 ?>
-                <h2><b>孕产订餐申请</b></h2>
+                <h2><b>家属订餐申请</b></h2>
                 <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
                 <form action="./service_function.php" method="post">
                     <div class="container">
                         <div class="form-group">
-                            <label>选择服务类型：</label>
-                            <select name="serviceType">
-                                <option value="宝妈月子餐">月子餐</option>
-                                <option value="宝妈待产餐">待产餐</option>
+                            <label>选择人数：</label>
+                            <select name="ppl">
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
                             </select>
                         </div>
                         <div class="row">
@@ -97,7 +100,7 @@
                             </select>
                         </div>
                         <br/>
-                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">提交申请</button>
+                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="foodcpy_service">提交申请</button>
                     </div><!-- /.container -->
                 </form>
 

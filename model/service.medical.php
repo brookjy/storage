@@ -5,12 +5,14 @@ class Medical_Service{
     private $medicalServiceType;
     private $time;
     private $additional;
+    private $timepicker;
 
 	public function __construct() {
         $this->serviceType = isset($_POST['serviceType']) ? $_POST['serviceType'] : null;
         $this->medicalServiceType = isset($_POST['medicalServiceType']) ? $_POST['medicalServiceType'] : null;
 		$this->time = isset($_POST['time']) ? $_POST['time'] : null;
-		$this->additional = isset($_POST['additional']) ? $_POST['additional'] : null;
+        $this->additional = isset($_POST['additional']) ? $_POST['additional'] : null;
+        $this->timepicker = isset($_POST['timepicker']) ? $_POST['timepicker'] : null;
 	}
 
 	public function medical_service(){
@@ -20,6 +22,15 @@ class Medical_Service{
         $time_now = time();
         $format_time = date("Y-m-d",$time_now);
         
+        list($hour,$minute) = split('[ : ]', $this->timepicker);
+        $hour = str_replace(' ', '', $hour);
+        $minute = str_replace(' ', '', $minute);
+        $datetime = $this->time ." ". $hour . ":" . $minute;
+        echo "<script type=\"text/javascript\">alert('$datetime');</script>"; 
+        if(empty($hour) || empty($minute)){
+            echo "<script type=\"text/javascript\">alert('请选择时间! ');window.history.back();</script>"; 
+            exit();
+        }
         if(empty($this->serviceType)){
             echo "<script type=\"text/javascript\">alert('请选择您想要的服务类型! ');window.history.back();</script>"; 
             exit();
@@ -30,9 +41,9 @@ class Medical_Service{
         } else{
             if($this->check_dateToDelivery()){
                 $medical_service_query = "INSERT INTO medical_service (user, serviceToken, medicalServiceType, time, additional) 
-                VALUES ('$user_id', '$serviceToken ', '$this->medicalServiceType', '$this->time', '$this->additional')";
+                VALUES ('$user_id', '$serviceToken ', '$this->medicalServiceType', '$datetime', '$this->additional')";
                 if($mysqli->query($medical_service_query)){
-                    echo "<script type=\"text/javascript\">alert('您已成功预定了医疗接送, 谢谢.');window.history.back();</script>";
+                    echo "<script type=\"text/javascript\">alert('您已成功预定了医疗接送, 谢谢.');window.location.href = 'panel.php' ;</script>";
                 }else{
                     printf("Registration failure: %s\n", $mysqli->error);
                     exit();
@@ -45,6 +56,13 @@ class Medical_Service{
                     printf("Registration failure: %s\n", $mysqli->error);
                     exit();
                 }
+
+                $update_medical_query = "UPDATE users SET medicals = medicals -1 WHERE salt = '$user_id'";
+                if($mysqli->query($update_medical_query)){
+                }else{
+                    printf("Registration failure: %s\n", $mysqli->error);
+                    exit();
+                }
             }else{
                 echo "<script type=\"text/javascript\">alert('请提前一天预定医疗接送服务! ');window.history.back();</script>";
             }
@@ -53,12 +71,12 @@ class Medical_Service{
     
     public function check_dateToDelivery() {
         $date = $this->time;
-        $d = new DateTime();
-        $current = $d->format('Y-m-d');
-        if ($date > $current){
+        $d = new DateTime('tomorrow');
+        $current = $d->format('Y/m/d');
+        if ($date >= $current){
             return true;
         }
-        else return false;
+        return false;
     }
 }
 ?>

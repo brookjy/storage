@@ -30,10 +30,10 @@
             <div style="padding-left:20px;padding-right:20px;">
                 <?php 
                     include_once "./model/common.php";
-                    include_once "./model/check.foods.php";
+                    include_once "./model/check.food.php";
 
-                    $check_foods = new Check_Foods();
-                    if($check_foods->check_food()){
+                    $check_foods = new Check_Food();
+                    $check_foods->check_food();
                 ?>
                 <h2><b>孕产订餐申请</b></h2>
                 <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
@@ -100,13 +100,10 @@
                         <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">提交申请</button>
                     </div><!-- /.container -->
                 </form>
-
-                <?php }else{?> <!-- second condition start -->
-
-                    <br/>
+                <br/>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">更换地点</button>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">更换套餐</button>
                 
-                <?php }?>
-
             </div><!-- /.container -->
         </div>
         <!-- /.container-fluid-->

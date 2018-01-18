@@ -80,7 +80,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-book"></i>
                     </div>
-                    <div class="mr-5">联系我们</div>
+                    <div class="mr-5">注意事项</div>
                     </div>
                     <a class="card-footer text-white clearfix small z-1" href="./contact.php">
                     <span class="float-left">点击查看</span>
