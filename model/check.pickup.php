@@ -1,9 +1,9 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 
-class Check_Activate{
+class Check_Pickup{
 
-    public function check_activate(){
+    public function check_pickup(){
         global $mysqli;
 
         $user_id =  $_COOKIE['uid'];
@@ -12,13 +12,17 @@ class Check_Activate{
         
         if ($result->num_rows > 0){
             $check_retrieve = $result->fetch_assoc();
+            if($check_retrieve['pickup'] <= 0){
+                echo "<script type=\"text/javascript\">alert('您的接送服务次数不够，请联系管理员！ ');window.history.back();</script>"; 
+                exit();
+            }
             if($check_retrieve['isActive'] == 0){
                 echo "<script type=\"text/javascript\">alert('您的账户没有激活，请联系管理员！ ');window.history.back();</script>"; 
                 exit();
             }
 
 		}else{
-			printf("Registration failure: %s\n", $mysqli->error);
+			echo "<script type=\"text/javascript\">alert('亲，没有您的账户信息！ ');window.history.back();</script>"; 
             exit();
 		}
     }

@@ -1,7 +1,7 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 
-Class Check_Medical{
+class Check_Medical{
 
     public function check_medical(){
         global $mysqli;

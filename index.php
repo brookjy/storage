@@ -12,7 +12,6 @@
             <div style="float:right;">
                 <a style="padding-right:10px;font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" data-toggle="modal" data-target="#loginModal">登录</a>
                 <a style="font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" data-toggle="modal" data-target="#signupModal">注册</a>
-                <a style="font-size:180%;padding-bottom:10px;color:#007bff;cursor: pointer;" href="admin/admin_login.php">admin登录</a>
             </div> 
         <?php }else{ ?>
             <div style="float:right; margin-right:20px; color:white;">
@@ -131,7 +130,7 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">密码</label>        
                 <div style="display:flex">    
-                    <input type="password" class="form-control" name="password_register" placeholder="密码"style="display:inline-block"> 
+                    <input type="password" class="form-control" id="password_register" name="password" placeholder="密码" style="display:inline-block"> 
                     <button onclick="show_hide_pw()" class="btn btn-primary" type= "button">显示/隐藏</button> 
                 </div>                   
             </div>
@@ -185,7 +184,7 @@
 
     <script>
         function show_hide_pw() {
-            var pw_type = document.getElementsByName("password_register")[0];
+            var pw_type = document.getElementById("password_register");
             pw_type.type=="password" ? pw_type.type="text":pw_type.type="password";
         }
     </script>

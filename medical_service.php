@@ -37,7 +37,6 @@
             <form action="./service_function.php" method="post">
                 <fieldset>
                 <p>(<span style="color:red;">*除婴儿以外最多可以接3个人</span>)</p>
-                <input type="hidden" name="serviceType" value="医疗接送">
                     <div class="form-group" style="width:250px;">
                         <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
                         <div class="col-xs-5 date">

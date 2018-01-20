@@ -1,11 +1,10 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 
-Class DetailHistory{
+class DetailHistory{
 
     public function historyDetail($type, $serviceToken){
         global $mysqli;
-        echo "<script type=\"text/javascript\">alert('$type, $serviceToken');</script>";
         $user_id =  $_COOKIE['uid'];
         if($serviceToken == ""){
             echo "<script type=\"text/javascript\">alert('您选择的详细信息不存在! ');window.history.back();</script>"; 
@@ -15,11 +14,8 @@ Class DetailHistory{
             $detail_retrieve = $mysqli->query($detail_query);
             if($detail_retrieve->num_rows > 0){
                 $detail_result = $detail_retrieve->fetch_assoc();
-                if($detail_result['origin_address'] == 4){
-                    $address = $detail_result['option_address'];
-                }else{
-                    $address = $detail_result['origin_address'];
-                }
+                $address = $detail_result['origin_address'];
+
                 echo sprintf("<table class=\"table table-hover table-info\">
                         <tr>
                             <td>公寓类型</td>
@@ -44,26 +40,31 @@ Class DetailHistory{
                     </table>
                 ", $detail_result['property'], $address, $detail_result['potato'], $detail_result['tomato'], $detail_result['rice'] );
             }
-        }elseif($type == "订餐服务"){
+        }elseif($type == "宝妈月子餐" || $type == "宝妈待产餐" || $type == "待产餐"){
             $detail_query="SELECT * FROM food_service WHERE serviceToken = '$serviceToken'";
             $detail_retrieve = $mysqli->query($detail_query);
             if($detail_retrieve->num_rows > 0){
                 $detail_result = $detail_retrieve->fetch_assoc();
+
                 echo sprintf("<table class=\"table table-hover table-info\">
                         <tr>
-                            <td>时间</td>
+                            <td>服务名称</td>
                             <td>%s</td>
                         </tr>
                         <tr>
-                            <td>月子餐</td>
-                            <td>%d</td>
+                            <td>开始时间</td>
+                            <td>%s</td>
                         </tr>
                         <tr>
-                            <td>代产餐</td>
+                            <td>结束时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>人数</td>
                             <td>%d</td>
                         </tr>
                     </table>
-                ", $detail_result['time'] . " " .$detail_result['dateToDeliver'], $detail_result['service1'], $detail_result['service2'] );
+                ", $detail_result['serviceType'], $detail_result['startDate'] . $detail_result['startTime'], $detail_result['endDate'] . $detail_result['endTime'], $detail_result['num_ppl'] );
             }else{
                 echo "您要的信息不存在！";
             }
@@ -135,14 +136,8 @@ Class DetailHistory{
                 if ($detail_result['accompany']  == 1){
                     $services .= " 陪产, ";
                 }
-                if($detail_result['lactagogue']  == 1){
-                    $services .= " 催乳, ";
-                }
                 if($detail_result['maid']  == 1){
                     $services .= " 月嫂, ";
-                }
-                if($detail_result['placenta']  == 1){
-                    $services .= " 胎盘, ";
                 }
                 echo sprintf("<table class=\"table table-hover table-info\">
                         <tr>
@@ -159,6 +154,37 @@ Class DetailHistory{
                         </tr>
                     </table>
                 ", $detail_result['time'], $services, $detail_result['additionalNote']);
+            }else{
+                echo "您要的信息不存在！";
+            }
+        }elseif($type == "接送服务"){
+            $detail_query="SELECT * FROM pickup_service WHERE serviceToken = '$serviceToken'";
+            $detail_retrieve = $mysqli->query($detail_query);
+            if($detail_retrieve->num_rows > 0) {
+                $detail_result = $detail_retrieve->fetch_assoc();
+                echo sprintf("<table class=\"table table-hover table-info\">
+                        <tr>
+                            <td>时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>出发地</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>目的地</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>人数</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>备注信息</td>
+                            <td>%s</td>
+                        </tr>
+                    </table>
+                ", $detail_result['date'] . " " . $detail_result['time'], $detail_result['departure'], $detail_result['destination'], $detail_result['num_ppl'], $detail_result['additional']);
             }else{
                 echo "您要的信息不存在！";
             }

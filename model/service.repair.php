@@ -51,7 +51,7 @@ class Repair_Service{
                     exit();
                 }
             }else{
-                echo "<script type=\"text/javascript\">alert('请提前一天预定医疗接送服务! ');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('请提前一天预定维修服务! ');window.history.back();</script>";
             }
         }
     }

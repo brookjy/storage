@@ -1,6 +1,13 @@
 <?php DEFINE('Template_Call', TRUE); 
 
-    include_once "./component/header.php"
+    include_once "./component/header.php";
+
+
+    //Check if the user is logins
+    if (!isset($_COOKIE['islogin'])) {
+        echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
+    }
+
 ?>
 
 <body class="bg-dark">
