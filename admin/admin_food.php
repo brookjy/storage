@@ -4,7 +4,6 @@
     include_once "../model/common.php";
     include_once "../model/member.func.php";
     include_once "../model/common.php";
-    include_once "./admin_foodSummary.php";
     include_once "./admin_paginator.php";
     
     if(!defined('In_System')) exit("Access Denied");
@@ -67,7 +66,7 @@ button:active {
 <script>
 function changePageType(pageType) {
     document.cookie = "pageType="+ pageType;
-    window.location.replace("./admin_foodSummary.php");
+    window.location.replace("./admin_food.php");
 }
 </script>
 </html>
@@ -75,6 +74,7 @@ function changePageType(pageType) {
 
 <?php 
 Class Food{
+    public $time = "";
 
     public function foodSummaryListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user GROUP BY users.uid";
@@ -85,36 +85,42 @@ Class Food{
     public function thisBreakfastListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()) AND food_service.startTime='早') GROUP BY users.uid";
         $query2="SELECT users.uid, food_service.serviceType, food_service.address, food_service.num_ppl FROM food_service INNER JOIN users ON users.salt = food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()) AND food_service.startTime='早')";
+        $this->time = "今天早上";
         $this->showResult($query1, $query2);
     }
 
     public function thisLunchListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()) AND DATE(CURDATE()) < DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()) AND (food_service.startTime='早' OR food_service.startTime='中')) OR( DATE(food_service.endDate) = DATE(CURDATE()) AND (food_service.endTime='中' OR food_service.endTime='晚')) GROUP BY users.uid";
         $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user  WHERE ( DATE(food_service.startDate) < DATE(CURDATE()) AND DATE(CURDATE()) < DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()) AND (food_service.startTime='早' OR food_service.startTime='中')) OR( DATE(food_service.endDate) = DATE(CURDATE()) AND (food_service.endTime='中' OR food_service.endTime='晚'))";
+        $this->time = "今天中午";
         $this->showResult($query1,$query2);
     }
 
     public function thisDinnerListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) < DATE(food_service.endDate)) OR( DATE(food_service.endDate) = DATE(CURDATE()) AND (food_service.endTime='晚')) GROUP BY users.uid";
         $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user  WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) < DATE(food_service.endDate)) OR( DATE(food_service.endDate) = DATE(CURDATE()) AND (food_service.endTime='晚'))";
+        $this->time = "今天晚上";
         $this->showResult($query1,$query2);
     }
 
     public function nextBreakfastListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) <= DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND food_service.startTime='早') GROUP BY users.uid";
         $query2="SELECT users.uid, food_service.serviceType, food_service.address, food_service.num_ppl FROM food_service INNER JOIN users ON users.salt = food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) <= DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND food_service.startTime='早')";
+        $this->time = "明天早上";
         $this->showResult($query1, $query2);
     }
 
     public function nextLunchListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) < DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) < DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.startTime='早' OR food_service.startTime='中')) OR( DATE(food_service.endDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.endTime='中' OR food_service.endTime='晚')) GROUP BY users.uid";
         $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user  WHERE ( DATE(food_service.startDate) < DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) < DATE(food_service.endDate)) OR( DATE(food_service.startDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.startTime='早' OR food_service.startTime='中')) OR( DATE(food_service.endDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.endTime='中' OR food_service.endTime='晚'))";
+        $this->time = "明天中午";
         $this->showResult($query1,$query2);
     }
 
     public function nextDinnerListing(){
         $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) < DATE(food_service.endDate)) OR( DATE(food_service.endDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.endTime='晚')) GROUP BY users.uid";
         $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user  WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()+ INTERVAL 1 DAY) AND DATE(CURDATE()+ INTERVAL 1 DAY) < DATE(food_service.endDate)) OR( DATE(food_service.endDate) = DATE(CURDATE()+ INTERVAL 1 DAY) AND (food_service.endTime='晚'))";
+        $this->time = "明天晚上";
         $this->showResult($query1,$query2);
     }
 
@@ -179,7 +185,7 @@ Class Food{
                 </table>
 
              ";
-             echo sprintf( "<h2 style='color:white;'>今天早上一共%s份月子餐，%s份待产+陪产餐</h2>", $type1Total,$type2Total);
+             echo sprintf( "<h2 style='color:white;'>%s一共%d份月子餐，%d份待产+陪产餐</h2>",$this->time, $type1Total,$type2Total);
 		}else{
             echo "
                 <table class=\"table table-hover table-info\">

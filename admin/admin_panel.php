@@ -42,7 +42,7 @@
                             <div class="service-content">
                                 <h3 class="title">订餐服务</h3>
                                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                                <a href="admin_foodSummary.php" class="read-more fa fa-plus" data-toggle="tooltip" title="Read More"></a>
+                                <a href="admin_food.php" class="read-more fa fa-plus" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
