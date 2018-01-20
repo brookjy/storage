@@ -29,8 +29,8 @@ class Housekeeping_Service{
         } else{
             if($this->check_dateToDelivery()){
                 // echo "<script type=\"text/javascript\">alert('$this->time, $this->accompany, $this->lactagogue, $this->maid, $this->placenta, $this->additionalNote');window.history.back();</script>";
-                $housekeeping_service_query = "INSERT INTO housekeeping_service (user, serviceToken, time, accompany, lactagogue, maid, placenta, additionalNote) 
-                VALUES ('$user_id', '$serviceToken ', '$this->time', '$this->accompany', '$this->lactagogue', '$this->maid', '$this->placenta', '$this->additionalNote')";
+                $housekeeping_service_query = "INSERT INTO housekeeping_service (user, serviceToken, time, accompany, maid, additionalNote) 
+                VALUES ('$user_id', '$serviceToken ', '$this->time', '$this->accompany', '$this->maid', '$this->additionalNote')";
                 if($mysqli->query($housekeeping_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了孕产服务, 谢谢.');window.location.href = 'panel.php' ;</script>";
                 }else{

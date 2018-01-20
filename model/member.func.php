@@ -23,14 +23,13 @@ class Member{
 
 	public function email_validation(){
 		if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-			echo "<script type=\"text/javascript\">alert('Email格式不正确.');window.history.back();</script>";
 			return FALSE;
 		}
 		return TRUE;
     }
     
     public function phone_validation(){
-        return preg_match("/_/", $this->phone);
+        return is_numeric($this->phone);
     }
 
 	public function genSalt($length = 6){
@@ -71,15 +70,15 @@ class Member{
 
 	public function register(){
         global $mysqli;
-
+        echo "<script type=\"text/javascript\">alert('$this->email, $this->password, ！！$this->phone, $this->username, $this->weChat, $this->timeDeliver ');</script>";
         /* Check if the user exist */
 		if(empty($this->email) || empty($this->password) || empty($this->username) || empty($this->phone) || empty($this->weChat) || empty($this->timeDeliver)){
-			echo "<script type=\"text/javascript\">alert('信息不全!');window.location.replace(\"$this->currentpage\");</script>";
+			echo "<script type=\"text/javascript\">alert('信息不全无法注册!');</script>";
 		}else{
             // Check for duplicate users
             if(!$this->check_duplicate()){
                 // Validate email and phone format
-                if($this->email_validation() == TRUE && $this->phone_validation() == FALSE){
+                if($this->email_validation() == true && $this->phone_validation() == true){
                     $time_now = time();
                     $format_time = date("Y-m-d",$time_now);
                     $salt = $this->genSalt();
@@ -94,7 +93,7 @@ class Member{
                         exit();
                     }
                 }else{
-                    echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');window.history.back();</script>";
+                    echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');</script>";
                 }
             }else{
                 echo "<script type=\"text/javascript\">alert('用户已存在！');;window.history.back();</script>";

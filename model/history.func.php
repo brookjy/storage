@@ -1,13 +1,13 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 
-Class History{
+class History{
 
     public function historyListing(){
         global $mysqli;
 
         $user_id =  $_COOKIE['uid'];
-        $histories_query="SELECT * FROM history WHERE user_id = '$user_id' ORDER BY hid DESC";
+        $histories_query="SELECT * FROM history WHERE user_id = '$user_id' ORDER BY hid DESC LIMIT 20";
         $result = mysqli_fetch_all($mysqli->query($histories_query), MYSQLI_ASSOC);
 		if(sizeof($result) > 0){
             echo "

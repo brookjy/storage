@@ -1,14 +1,12 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 class Medical_Service{
-    private $serviceType;
     private $medicalServiceType;
     private $time;
     private $additional;
     private $timepicker;
 
 	public function __construct() {
-        $this->serviceType = isset($_POST['serviceType']) ? $_POST['serviceType'] : null;
         $this->medicalServiceType = isset($_POST['medicalServiceType']) ? $_POST['medicalServiceType'] : null;
 		$this->time = isset($_POST['time']) ? $_POST['time'] : null;
         $this->additional = isset($_POST['additional']) ? $_POST['additional'] : null;
@@ -26,13 +24,9 @@ class Medical_Service{
         $hour = str_replace(' ', '', $hour);
         $minute = str_replace(' ', '', $minute);
         $datetime = $this->time ." ". $hour . ":" . $minute;
-        echo "<script type=\"text/javascript\">alert('$datetime');</script>"; 
+        
         if(empty($hour) || empty($minute)){
             echo "<script type=\"text/javascript\">alert('请选择时间! ');window.history.back();</script>"; 
-            exit();
-        }
-        if(empty($this->serviceType)){
-            echo "<script type=\"text/javascript\">alert('请选择您想要的服务类型! ');window.history.back();</script>"; 
             exit();
         }
 
@@ -50,7 +44,7 @@ class Medical_Service{
                 }
 
                 $history_query="INSERT INTO history (token, serviceType, user_id, time) 
-                VALUES ('$serviceToken', '$this->serviceType', '$user_id', '$format_time')";
+                VALUES ('$serviceToken', '医疗接送', '$user_id', '$format_time')";
                 if($mysqli->query($history_query)){
                 }else{
                     printf("Registration failure: %s\n", $mysqli->error);

@@ -3,11 +3,15 @@
     include_once "./component/header.php";
     include_once "./model/common.php";
     include_once "./model/member.func.php";
+    include_once "./model/check.activate.php";
     
     //Check if the user is login
     if (!isset($_COOKIE['islogin'])) {
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
+
+    $checked_activate = new Check_Activate;
+    $checked_activate -> check_activate();
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
@@ -34,7 +38,7 @@
             <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
-                        <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
+                        <label>选择时间：<span style="color:red;">*预约请提前一个月</span></label>
                         <div class="col-xs-5 date">
                             <div class="input-group input-append date" >
                                 <input type="text" id="datepicker" name="time"/>

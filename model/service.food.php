@@ -18,7 +18,7 @@ class Food_Service{
         $this->endTime = isset($_POST['endTime']) ? $_POST['endTime'] : null;
 		$this->address = isset($_POST['address']) ? $_POST['address'] : null;
         $this->token = isset($_POST['token']) ? $_POST['token'] : null;
-        $this->ppl = isset($_POST['ppl']) ? $_POST['ppl'] : null;
+        $this->ppl = isset($_POST['ppl']) ? $_POST['ppl'] : 1;
 	}
 
 	public function food_service(){
@@ -54,10 +54,11 @@ class Food_Service{
     }
     
     public function check_dateToDelivery(){
-        $date = $this->startDate;
+        $sDate = $this->startDate;
+        $eDate = $this->endDate;
         $d = new DateTime();
         $current = date("Y/m/d");
-        if($date == $current){
+        if($sDate == $current){
             // Check which type of order customer can get
             if(date('H')+5 >= 8 && $this->startTime == '早'){
                 return false;
@@ -66,6 +67,10 @@ class Food_Service{
             }else if(date('H')+5 >= 18 && $this->startTime == '晚'){
                 return false;
             }
+        }
+        if($eDate < $sDate){
+            echo "<script type=\"text/javascript\">alert('开始时间，结束时间不对。');window.history.back();</script>";
+            exit();
         }
         return true;
     }

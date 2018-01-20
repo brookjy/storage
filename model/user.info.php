@@ -67,5 +67,24 @@ class Profile{
         }
     }
 
+    public function checkLocker(){
+        GLOBAL $mysqli;
+        $salt =  $_COOKIE['uid'];
+
+        $profile_query = "SELECT * FROM users WHERE salt = '$salt'";
+        $profile_exist = $mysqli->query($profile_query);
+        if($profile_exist->num_rows > 0){
+            $profile_retrieve = $profile_exist->fetch_assoc();
+            $address = $profile_retrieve['address'];
+            $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address'";
+            $purchase_exist = $mysqli->query($purchase_query);
+            if($purchase_exist->num_rows > 0){
+                echo "<script type=\"text/javascript\">alert('您的房屋已经预定了.任何问题请联系管理员！');window.history.back();</script>";
+            }
+        }else{
+            echo "<script type=\"text/javascript\">alert('您需要一个地址以便下单.');window.history.back();</script>";
+        }
+    }
+
 }
 ?>

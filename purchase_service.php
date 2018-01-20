@@ -3,11 +3,15 @@
     include_once "./component/header.php";
     include_once "./model/common.php";
     include_once "./model/member.func.php";
+    include_once "./model/check.activate.php";
     
     //Check if the user is login
     if (!isset($_COOKIE['islogin'])) {
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
+
+    $checked_activate = new Check_Activate;
+    $checked_activate -> check_activate();
 ?>
 <style>
 /* Style the tab */
@@ -49,7 +53,13 @@
 </style>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     
-    <?php include_once "./component/sideNav.php"; ?>
+    <?php 
+        include_once "./component/sideNav.php"; 
+        include_once "./model/user.info.php";
+
+        $profiles = new Profile();
+        $profiles->checkLocker(); 
+    ?>
 
     <div class="content-wrapper">
         <div class="container">
