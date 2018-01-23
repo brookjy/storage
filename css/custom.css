@@ -34,3 +34,15 @@
 .serviceBox.green:hover .read-more{border: 1px solid #008b8b;color: #008b8b;}
 .serviceBox.blue:hover .read-more{border: 1px solid #3498db;color: #3498db;}
 .serviceBox.orange:hover .read-more{border: 1px solid #e67e22;color: #e67e22;}
+
+
+.admin-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width:100%;
+    height: 56px;
+    background-color: #e9ecef;
+    line-height: 55px;
+}

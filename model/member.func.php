@@ -1,6 +1,7 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
 class Member{
+    private $salt;
     private $username;
     private $phone;
     private $email;
@@ -11,6 +12,7 @@ class Member{
     private $address;
 
 	public function __construct() {
+        $this->salt = isset($_POST['salt']) ? $_POST['salt'] : null;
         $this->username = isset($_POST['username']) ? $_POST['username'] : null;
 		$this->phone = isset($_POST['phone']) ? $_POST['phone'] : null;
 		$this->email = isset($_POST['email']) ? $_POST['email'] : null;
@@ -70,7 +72,7 @@ class Member{
 
 	public function register(){
         global $mysqli;
-        echo "<script type=\"text/javascript\">alert('$this->email, $this->password, ！！$this->phone, $this->username, $this->weChat, $this->timeDeliver ');</script>";
+        echo "<script type=\"text/javascript\">alert('$this->email, $this->password, 电话：$this->phone, $this->username, $this->weChat, $this->timeDeliver ');</script>";
         /* Check if the user exist */
 		if(empty($this->email) || empty($this->password) || empty($this->username) || empty($this->phone) || empty($this->weChat) || empty($this->timeDeliver)){
 			echo "<script type=\"text/javascript\">alert('信息不全无法注册!');</script>";
@@ -105,7 +107,7 @@ class Member{
         global $mysqli;
         
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address' WHERE username = '$this->username' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address' WHERE username = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace(\"./\");</script>";
         }else{

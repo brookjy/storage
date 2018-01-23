@@ -44,7 +44,7 @@ class Profile{
                         </div>
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
-                </form>", $profile_retrieve['username'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address']);
+                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{

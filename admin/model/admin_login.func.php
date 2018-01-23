@@ -10,15 +10,15 @@ class Admin{
 		$this->password = isset($_POST['password']) ? $_POST['password'] : null;
 	}
 
-    public function admin_login(){
+    public function admin_login(){ 
 		$check_user = $this->validateAdmin();
 		if($check_user){
-			echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"../admin/admin_panel.php\");</script>";
+			echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"../admin/admin_access.php\");</script>";
 			setcookie("admin", $this->permission, time()+86400);
 			setcookie("isAdminLogin", $this->username, time()+604800);
 			/*Set the time to 1 day and check valid in admin.php.*/
 		}else{
-			echo "<script type=\"text/javascript\">alert('您不是管理账户. ');window.history.back();</script>";
+			echo "<script type=\"text/javascript\">alert('您输入的信息有误. ');window.history.back();</script>";
 		}
     }
 
