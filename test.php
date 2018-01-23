@@ -17,6 +17,8 @@
 <body>
  
 <p>Date: <input type="text" id="datepicker"></p>
+
+<p>Date2: <input type="date" ></p>
  
  
 </body>
