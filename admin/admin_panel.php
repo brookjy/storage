@@ -3,9 +3,7 @@
     include_once "../component/header.php";
     include_once "../model/common.php";
     include_once "./admin_sideNav.php";
-    include_once "../component/footer.php";
-    include_once "./admin_foodSummary.php";
-    
+    include_once "../component/footer.php";    
     
     //Check if the user is login
     if (!isset($_COOKIE['isAdminLogin'])) {
@@ -15,6 +13,7 @@
     $drive_admin = $_COOKIE['admin'] == "drive_service" ? true:false;
     $repair_admin = $_COOKIE['admin'] == "repair_service" ? true:false;
     $housekeeping_admin = $_COOKIE['admin'] == "housekeeping_service" ? true:false;
+    setcookie("pageType", "summary");
 ?>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -43,7 +42,7 @@
                             <div class="service-content">
                                 <h3 class="title">订餐服务</h3>
                                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                                <a href="admin.php" class="read-more fa fa-plus" data-toggle="tooltip" title="Read More"></a>
+                                <a href="admin_food.php" class="read-more fa fa-plus" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
