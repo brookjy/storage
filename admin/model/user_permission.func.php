@@ -59,7 +59,7 @@ class User_Permission{
                             <tr>
                                 <th scope=row><input type=\"hidden\" name= \"salt\" value= %s>%d</th> 
                                 <td>%s</td> 
-                                <td>%d</td> 
+                                <td><a href=\"tel:%d\">%d</a></td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
@@ -69,7 +69,7 @@ class User_Permission{
                                 <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"user_modify\">修改</button></td> 
                             </tr> 
                             </form>
-                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['email'], $result['weChat'], $result['timeDeliver'], $result['pickup'], $result['medicals'], $result['isActive']);
+                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['email'], $result['weChat'], $result['timeDeliver'], $result['pickup'], $result['medicals'], $result['isActive']);
             }
             echo sprintf(" 
                     </tbody> 
