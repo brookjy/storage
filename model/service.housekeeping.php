@@ -53,7 +53,7 @@ class Housekeeping_Service{
     
     public function check_dateToDelivery() {
         $date = $this->time;
-        $dateNow = date('Y/m/d', strtotime('+1 month'));
+        $dateNow = date('Y-m-d', strtotime('+1 month'));
         if ($date > $dateNow){
             return true;
         }

@@ -131,10 +131,14 @@ class User_Permission{
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">激活: </label>
-                        <input tyle=\"text\" name=\"isActive\" value=%d>
+                        <select name=\"isActive\">
+                        <option value = 1>是</option>
+                        <option value = 0>否</option>
+                        </select>
                         </div>
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
+                        <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
                 </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['pickup'], $profile_retrieve['medicals'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
@@ -150,6 +154,20 @@ class User_Permission{
         /* UPdate DB if the user change the user info data */
         $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', pickup ='$this->pickup', medicals='$this->medicals', isActive='$this->isActive' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
+            echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
+        }else{
+            printf("Registration failure: %s\n", $mysqli->error);
+            exit();
+        }
+
+    }
+
+    public function delete_user(){
+        GLOBAL $mysqli;
+        echo "<script type=\"text/javascript\">alert('dadwd');</script>";
+        /* Delete DB if the user change or junk*/
+        $Delete_query = "DELETE FROM users WHERE salt = '$this->salt' ";
+        if($mysqli->query($Delete_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
         }else{
             printf("Registration failure: %s\n", $mysqli->error);

@@ -27,7 +27,11 @@
 
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+<<<<<<< HEAD
     <a class="navbar-brand" href="./admin_access.php">领婴海外孕产后台</a>
+=======
+    <a class="navbar-brand" href="index.php">领婴海外孕产后台</a>
+>>>>>>> 855f3dbf1982a7400f687dc99908c8c29e95661a
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,10 +53,17 @@
                 <i class="fa fa-fw fa-sign-out"></i>返回菜单</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php" >
+                <a class="nav-link" onclick="signOut()">
                 <i class="fa fa-fw fa-sign-out"></i>登出</a>
             </li>
         </ul>
     </div>
 </nav>
 <br/><br/><br/>
+
+<script>
+function signOut() {
+    document.cookie = "isAdminLogin" + '=; Max-Age=-99999999;';
+    window.location.href = '/admin/' ;
+}
+</script>

@@ -40,9 +40,9 @@
                     <div class="form-group" style="width:250px;">
                         <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
                         <div class="col-xs-5 date">
-                            <div class="input-group input-append date" >
-                                <input type="text" id="datepicker" name="time"/>
-                                <span class="input-group-addon add-on"><span class="fa fa-calendar"></span></span>
+                            <div class="form-group" >
+                                <label>日期: </label>
+                                <input type="date" name="time">
                             </div>
                         </div>
                     </div>
@@ -123,6 +123,10 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
         <script>
+
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementsByName("time")[0].setAttribute('min', today);
+
             var tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 5);
             $(function() {

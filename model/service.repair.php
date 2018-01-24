@@ -59,7 +59,7 @@ class Repair_Service{
     public function check_dateToDelivery() {
         $date = $this->time;
         $d = new DateTime('tomorrow');
-        $current = $d->format('Y/m/d');
+        $current = $d->format('Y-m-d');
         if ($date >= $current){
             return true;
         }

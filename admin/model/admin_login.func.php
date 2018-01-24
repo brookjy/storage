@@ -13,9 +13,10 @@ class Admin{
     public function admin_login(){ 
 		$check_user = $this->validateAdmin();
 		if($check_user){
-			echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"../admin/admin_access.php\");</script>";
-			setcookie("admin", $this->permission, time()+86400);
-			setcookie("isAdminLogin", $this->username, time()+604800);
+            echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"../admin/admin_access.php\");</script>";
+
+            $isAdminLogin = hash('sha256', $this->password);
+			setcookie("isAdminLogin", $isAdminLogin, time()+604800);
 			/*Set the time to 1 day and check valid in admin.php.*/
 		}else{
 			echo "<script type=\"text/javascript\">alert('您输入的信息有误. ');window.history.back();</script>";
@@ -23,22 +24,37 @@ class Admin{
     }
 
     public function validateAdmin(){
-		global $mysqli;
-		$admin_matching_query = "SELECT permission FROM admin WHERE username = '$this->username' AND password = '$this->username'";
+        global $mysqli;
+
+        $password = hash('sha256', $this->password);
+
+		$admin_matching_query = "SELECT permission FROM admin WHERE username = '$this->username' AND password = '$password'";
 		$admin_matching = $mysqli->query($admin_matching_query);
 		if($admin_matching->num_rows > 0){
-			$this->permission = $admin_matching->fetch_assoc()["permission"];
 			return true;
 		}else{
 			return false;
 		}
-	}
+    }
+    
+    public function check_admin(){
+        global $mysqli;
 
+        $isAdminLogin =  $_COOKIE['isAdminLogin'];
+        $check_query="SELECT * FROM admin WHERE password = '$isAdminLogin'";
+        $result = $mysqli->query($check_query);
+        
+        if ($result->num_rows > 0){
+            $check_retrieve = $result->fetch_assoc();
+            if($check_retrieve['isActive'] == 0){
+                echo "<script type=\"text/javascript\">alert('您的账户没有激活，请联系管理员！ ');window.history.back();</script>"; 
+                exit();
+            }
 
-
-
-
-
+		}else{
+			echo "<script type=\"text/javascript\">alert('您的账户有问题，请联系管理员！ ');window.history.back();</script>";
+		}
+    }
 
 
 }
