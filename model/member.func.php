@@ -177,20 +177,7 @@ class Member{
 		}else{
 			return 0;
 		}
-	}
-	
-	public function permission($check_user){
-		global $mysqli;
-		GLOBAL $settings;
-		$member_matching_querys = "SELECT uid FROM `member_permission` WHERE `uid` = '$check_user' AND `allow_access_admin_page` = '1'";
-		$member_matchings = $mysqli->query($member_matching_querys);
-		if($member_matchings->num_rows > 0){
-			echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"./admin.php\");</script>";
-			setcookie("admin", $settings['true_value'], time()+86400);
-			/*Set the time to 1 day and check valid in admin.php.*/
-		}else{
-			echo "<script type=\"text/javascript\">alert('您不是管理账户. ');window.history.back();</script>";
-		}
-	}  
+    }
+    
 }
 ?>

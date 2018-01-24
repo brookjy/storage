@@ -29,13 +29,20 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">选择查看服务类型</div>
         <div class="card-body" style="text-align:center">
-            <a class="btn" href="./user_permission.php">用户管理</a><br/>
+            <?php 
+                include_once "./model/common.php";
+                include_once "./model/access.func.php";
+
+                $accessAdmin = new Access;
+                $accessAdmin-> accessAdmin();
+            ?>
+            <!-- <a class="btn" href="./user_permission.php">用户管理</a><br/>
             <a class="btn" href="/">医疗接送</a><br/>
             <a class="btn" href="/">订餐服务</a><br/>
             <a class="btn" href="/">采购服务</a><br/>
             <a class="btn" href="/">住房维修</a><br/>
             <a class="btn" href="/">出行接送</a><br/>
-            <a class="btn disabled" href="/" disable>孕产服务</a><br/>
+            <a class="btn disabled" href="/" disable>孕产服务</a><br/> -->
         </div>
     </div>
   </div>

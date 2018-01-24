@@ -21,7 +21,7 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">后台管理员登陆</div>
       <div class="card-body">
-        <form action="../form_function.php" method="post">
+        <form action="./admin_function.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">用户名</label>
             <input type="text" class="form-control" name="username" placeholder="用户名">
