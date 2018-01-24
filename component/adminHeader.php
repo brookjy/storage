@@ -27,7 +27,7 @@
 
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">领婴海外孕产后台</a>
+    <a class="navbar-brand" href="./admin_access.php">领婴海外孕产后台</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,7 +49,7 @@
                 <i class="fa fa-fw fa-sign-out"></i>返回菜单</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <a class="nav-link" href="index.php" >
                 <i class="fa fa-fw fa-sign-out"></i>登出</a>
             </li>
         </ul>
