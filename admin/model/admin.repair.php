@@ -1,6 +1,8 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 Class Repair{
     public $time = "";
+    public $date;
+    
     public function todayListing(){
         $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE())";
         $this->time = "今天";
@@ -15,25 +17,29 @@ Class Repair{
 
     public function twoDaysLater(){
         $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 2 DAY)";
-        $this->time = "今天中午";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+2 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function threeDaysLater(){
         $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 3 DAY)";
-        $this->time = "今天晚上";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+3 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function fourDaysLater(){
         $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 4 DAY)";
-        $this->time = "明天早上";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+4 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function fiveDaysLater(){
         $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 5 DAY)";
-        $this->time = "明天中午";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+5 day')->format('m-d');
         $this->showResult($query);
     }
 
@@ -73,7 +79,7 @@ Class Repair{
                     <tr>
                         <td>".$Summary['uid']."</td>
                         <td>".$Summary['username']."</td>
-                        <td><a href=\"tel:".$Summary['phone']."\"></a></td> 
+                        <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td> 
                         <td>".$Summary['water']."</td> 
                         <td>".$Summary['gas']."</td> 
                         <td>".$Summary['electric']."</td> 

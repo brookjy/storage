@@ -27,11 +27,7 @@
 
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-<<<<<<< HEAD
     <a class="navbar-brand" href="./admin_access.php">领婴海外孕产后台</a>
-=======
-    <a class="navbar-brand" href="index.php">领婴海外孕产后台</a>
->>>>>>> 855f3dbf1982a7400f687dc99908c8c29e95661a
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>

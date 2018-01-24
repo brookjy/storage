@@ -3,7 +3,7 @@
     include_once "../component/adminHeader.php";
     include_once "./model/common.php";
     include_once "./admin_paginator.php";
-    include_once "./model/admin.repair.php";
+    include_once "./model/admin.pickup.php";
     
     if(!defined('In_System')) exit("Access Denied");
 
@@ -18,13 +18,10 @@
 ?>
 <body>
         <div>
-        <div style="display:flex">  
+        <div>  
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=today'" >今天</button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=tomorrow'">明天</button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoDaysLater'"><?php $date->modify('+2 day'); echo $date->format('m-d')?></button>
-        </div>  
-        <div>
-        <div style="display:flex">
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=threeDaysLater'"><?php $date->modify('+1 day'); echo $date->format('m-d')?></button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=fourDaysLater'"><?php $date->modify('+1 day'); echo $date->format('m-d')?></button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=fiveDaysLater'"><?php $date->modify('+1 day'); echo $date->format('m-d')?></button>

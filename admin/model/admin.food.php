@@ -107,7 +107,7 @@ Class Food{
                     <tr>
                         <td>".$Summary['uid']."</td>
                         <td>".$Summary['username']."</td>
-                        <td><a href=\"tel:".$Summary['phone']."\"></a></td> 
+                        <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td> 
                         <td>".$address1."</td> 
                         <td>".$address2."</td> 
                         <td>".$type1."</td> 

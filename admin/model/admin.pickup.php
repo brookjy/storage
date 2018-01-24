@@ -1,39 +1,44 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 Class Pickup{
     public $time = "";
+    public $date;
     public function todayListing(){
-        $query="SELECT users.uid,users.username,users.phone,pickup_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE())";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE())";
         $this->time = "今天";
         $this->showResult($query);
     }
 
     public function tomorrowListing(){
-        $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 1 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE()+ INTERVAL 1 DAY)";
         $this->time = "明天";
         $this->showResult($query);
     }
 
     public function twoDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 2 DAY)";
-        $this->time = "今天中午";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE()+ INTERVAL 2 DAY)";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+2 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function threeDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 3 DAY)";
-        $this->time = "今天晚上";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE()+ INTERVAL 3 DAY)";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+3 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function fourDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 4 DAY)";
-        $this->time = "明天早上";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE()+ INTERVAL 4 DAY)";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+4 day')->format('m-d');
         $this->showResult($query);
     }
 
     public function fiveDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,repair_service.water,repair_service.gas,repair_service.electric,repair_service.other,repair_service.additionalNote FROM repair_service INNER JOIN users ON users.salt=repair_service.user WHERE DATE(repair_service.time) = DATE(CURDATE()+ INTERVAL 5 DAY)";
-        $this->time = "明天中午";
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE()+ INTERVAL 5 DAY)";
+        $this->date = new DateTime('today');
+        $this->time = $this->date->modify('+5 day')->format('m-d');
         $this->showResult($query);
     }
 
@@ -47,10 +52,10 @@ Class Pickup{
             <th>UID</th>
             <th>客户名</th>
             <th>电话</th>
-            <th>水</th>
-            <th>气</th>
-            <th>电</th>
-            <th>其他</th>
+            <th>时间</th>
+            <th>出发地</th>
+            <th>目的地</th>
+            <th>人数</th>
             <th>备注</th>
         </tr>
         </thead> 
@@ -64,35 +69,29 @@ Class Pickup{
         $Paginator  = new Paginator( $mysqli, $query);
         $result    = $Paginator->getData( $limit, $page);
 		if(sizeof($result->data) > 0){
-            $water=0;
-            $gas=0;
-            $electric=0;
-            $other=0;
+            $total=0;
             foreach($result->data as $Summary){
                 $row = "
                     <tr>
                         <td>".$Summary['uid']."</td>
                         <td>".$Summary['username']."</td>
-                        <td><a href=\"tel:".$Summary['phone']."\"></a></td> 
-                        <td>".$Summary['water']."</td> 
-                        <td>".$Summary['gas']."</td> 
-                        <td>".$Summary['electric']."</td> 
-                        <td>".$Summary['other']."</td> 
-                        <td>".$Summary['additionalNote']."</td> 
+                        <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td> 
+                        <td>".$Summary['time']."</td> 
+                        <td>".$Summary['departure']."</td> 
+                        <td>".$Summary['destination']."</td> 
+                        <td>".$Summary['num_ppl']."</td> 
+                        <td>".$Summary['additional']."</td> 
                     </tr>
             ";
             $tableString=$tableString.$row;
-            $water+=$Summary['water'];
-            $gas+=$Summary['gas'];
-            $electric+=$Summary['electric'];
-            $other+=$Summary['other'];
+            $total++;
             }
             $tableString=$tableString.
             "</tbody>
             </table>
             </div>";
             $pageType = $_GET['pageType'];
-             echo sprintf( "<h5>%s一共%d项水、%d项气、%d项电、%d项其他维修</h5>",$this->time, $water,$gas,$electric,$other);
+             echo sprintf( "<h5>%s一共%d项接送服务</h5>",$this->time, $total);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";
