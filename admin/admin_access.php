@@ -36,13 +36,14 @@
                 $accessAdmin = new Access;
                 $accessAdmin-> accessAdmin();
             ?>
-            <!-- <a class="btn" href="./user_permission.php">用户管理</a><br/>
+            <a class="btn" href="./user_permission.php">用户管理</a><br/>
             <a class="btn" href="/">医疗接送</a><br/>
-            <a class="btn" href="/">订餐服务</a><br/>
+            <a class="btn" href="./admin_food.php?pageType=summary">订餐服务</a><br/>
             <a class="btn" href="/">采购服务</a><br/>
-            <a class="btn" href="/">住房维修</a><br/>
-            <a class="btn" href="/">出行接送</a><br/>
-            <a class="btn disabled" href="/" disable>孕产服务</a><br/> -->
+            <a class="btn" href="./admin_repair.php?pageType=today">住房维修</a><br/>
+            <a class="btn" href="./admin_pickup.php?pageType=today">出行接送</a><br/>
+            <a class="btn" href="./admin_housekeeping.php?pageType=thisMonth">孕产服务</a><br/>
+
         </div>
     </div>
   </div>
