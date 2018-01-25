@@ -1,7 +1,7 @@
 <?php
 
 
-class Access{
+class AccessAd{
 
     public function accessAdmin(){
         global $mysqli;

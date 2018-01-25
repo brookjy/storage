@@ -30,6 +30,7 @@
             <p>我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX 微信有时无法及时回复。</p>
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xsx-6">
+                    <a href="medical_service.php">
                         <div class="serviceBox green">
                             <div class="service-icon">
                                 <span><i class="fa fa-ambulance"></i></span>
@@ -40,6 +41,7 @@
                                 <a href="medical_service.php" class="read-more fa fa-plus" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
+                    </a>
                     </div>
             
                     <div class="col-md-3 col-sm-6 col-xsx-6">

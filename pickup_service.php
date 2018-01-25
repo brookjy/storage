@@ -118,6 +118,7 @@
 
             var today = new Date().toISOString().split('T')[0];
             document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].value=today;
 
             var tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 5);

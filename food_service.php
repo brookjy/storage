@@ -142,6 +142,9 @@
             var today = new Date().toISOString().split('T')[0];
             document.getElementsByName("startDate")[0].setAttribute('min', today);
             document.getElementsByName("endDate")[0].setAttribute('min', today);
+            
+            document.getElementsByName("startDate")[0].value=today;
+            document.getElementsByName("endDate")[0].value=today;
 
             var tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 5);
