@@ -53,18 +53,18 @@ Class Food{
 
     public function showResult($query1,$query2) {
 
-        $tableString ="
+        $tableString ="<br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
         <tr>
-            <th>UID</th>
+            <th>#</th>
             <th>客户名</th>
             <th>电话</th>
             <th>孕妇地址</th>
             <th>家属地址</th>
             <th>月子餐数</th>
-            <th>待产+陪产餐数</th>
+            <th>待产餐数(含孕妈)</th>
         </tr>
         </thead> 
         <tbody> 
@@ -120,7 +120,7 @@ Class Food{
             "</tbody>
             </table>
             </div>";
-             echo sprintf( "<h5>%s一共%d份月子餐，%d份待产+陪产餐</h5>",$this->time, $type1Total,$type2Total);
+             echo sprintf( "<br/><h5>%s一共%d份月子餐，%d份待产+陪产餐</h5>",$this->time, $type1Total,$type2Total);
 		}else{
             $tableString=$tableString."</table></div>";
         }

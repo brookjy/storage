@@ -44,7 +44,7 @@ Class Pickup{
 
     public function showResult($query) {
         $pageString="";
-        $tableString ="
+        $tableString ="<br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
@@ -91,7 +91,7 @@ Class Pickup{
             </table>
             </div>";
             $pageType = $_GET['pageType'];
-             echo sprintf( "<h5>%s一共%d项接送服务</h5>",$this->time, $total);
+             echo sprintf( "<br/><h5>%s一共%d项接送服务</h5>",$this->time, $total);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";

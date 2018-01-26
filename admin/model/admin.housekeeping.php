@@ -4,13 +4,13 @@ Class Housekeeping{
     public $date;
     public function thisMonthListing(){
         $query="SELECT users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote FROM housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user WHERE MONTH(housekeeping_service.time) = MONTH(CURDATE())";
-        $this->time = "这个月";
+        $this->time = "本月";
         $this->showResult($query);
     }
 
     public function nextMonthListing(){
         $query="SELECT users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote FROM housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user WHERE MONTH(housekeeping_service.time) = MONTH(CURDATE()+ INTERVAL 1 MONTH)";
-        $this->time = "下个月";
+        $this->time = "下月";
         $this->showResult($query);
     }
 
@@ -23,12 +23,12 @@ Class Housekeeping{
 
     public function showResult($query) {
         $pageString="";
-        $tableString ="
+        $tableString ="<br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
         <tr>
-            <th>UID</th>
+            <th>#</th>
             <th>客户名</th>
             <th>电话</th>
             <th>时间</th>
@@ -70,7 +70,7 @@ Class Housekeeping{
             </table>
             </div>";
             $pageType = $_GET['pageType'];
-             echo sprintf( "<h5>%s一共%d项陪产，%d项月嫂服务</h5>",$this->time, $totalAccompany,$totalMaid);
+             echo sprintf( "<br/><h5>%s一共%d项陪产，%d项月嫂服务</h5>",$this->time, $totalAccompany,$totalMaid);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";

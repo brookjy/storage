@@ -16,14 +16,39 @@
 
 ?>
 <body>
-        <div>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px; margin-bottom:8px" onclick="location.href='?pageType=thisBreakfast'" >今天早餐</button>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px; margin-bottom:8px" onclick="location.href='?pageType=thisLunch'">今天午餐</button>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=thisDinner'">今天晚餐</button>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=nextBreakfast'">明天早餐</button>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=nextLunch'">明天午餐</button>
-        <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=nextDinner'">明天晚餐</button>
-
+    <div class="container-fluid">
+        <h3>--订餐服务后台--</h3>
+       
+        <div class="row">
+            
+            <div class="col-xs-6 col-sm-4" style="padding-top:10px;">
+                <div style="width:50%;display:inline-block;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=thisBreakfast'" style="margin:auto">今天早餐</button>
+                </div>
+                <div style="width:50%;display:inline;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=thisLunch'">今天午餐</button>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4" style="padding-top:10px;">
+                <div style="width:50%;display:inline-block;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=thisDinner'">今天晚餐</button>
+                </div>
+                <div style="width:50%;display:inline;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=nextBreakfast'">明天早餐</button>
+                </div>
+            </div>
+            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4" style="padding-top:10px;">
+                <div style="width:50%;display:inline-block;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=nextLunch'">明天午餐</button>
+                </div>
+                <div style="width:50%;display:inline;">
+                    <button type="button" class="btn btn-info"  onclick="location.href='?pageType=nextDinner'">明天晚餐</button>
+                </div>
+            </div>
+        </div>
+        <br/>
         <?php if ($_GET['pageType'] == "summary") {
             $foodPage->foodSummaryListing(); 
         } elseif ($_GET['pageType'] == "thisBreakfast") {
@@ -39,10 +64,8 @@
         }elseif ($_GET['pageType'] == "nextDinner") {
             $foodPage->nextDinnerListing();  
         }?>
-        </div>
-        
-    <br/><br/>
-  </div>
+            
+    </div>
 </body>
 <style>
 button:active {

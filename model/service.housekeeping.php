@@ -26,7 +26,9 @@ class Housekeeping_Service{
 
         if(empty($this->time)){
             echo "<script type=\"text/javascript\">alert('请选择您想要的服务时间! ');window.history.back();</script>"; 
-        } else{
+        }elseif(empty($this->accompany) || empty($this->maid)) {
+            echo "<script type=\"text/javascript\">alert('请选择您想要的服务! ');window.history.back();</script>"; 
+        }else{
             if($this->check_dateToDelivery()){
                 // echo "<script type=\"text/javascript\">alert('$this->time, $this->accompany, $this->lactagogue, $this->maid, $this->placenta, $this->additionalNote');window.history.back();</script>";
                 $housekeeping_service_query = "INSERT INTO housekeeping_service (user, serviceToken, time, accompany, maid, additionalNote) 

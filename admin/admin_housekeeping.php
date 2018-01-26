@@ -17,12 +17,21 @@
 
 ?>
 <body>
-        <div>
-        <div>  
-        <button type="button" class="btn btn-info" onclick="location.href='?pageType=thisMonth'" >今个月</button>
-        <button type="button" class="btn btn-info" onclick="location.href='?pageType=nextMonth'">下个月</button>
-        <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoMonthLater'"><?php $date->modify('+2 month'); echo $date->format('m-Y')?></button>
+    <div class="container-fluid">
+        <h3>--孕产服务后台--</h3>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+                <button type="button" class="btn btn-info" onclick="location.href='?pageType=thisMonth'" >本月</button>
+            </div>
+            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+                <button type="button" class="btn btn-info" onclick="location.href='?pageType=nextMonth'">下月</button>
+            </div>
+            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+                <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoMonthLater'"><?php $date->modify('+2 month'); echo $date->format('Y年m月')?></button>
+            </div>
         </div>
+        <br/>
         <?php if ($_GET['pageType'] == "thisMonth") {
             $housekeepingPage->thisMonthListing(); 
         } elseif ($_GET['pageType'] == "nextMonth") {
@@ -30,10 +39,8 @@
         } elseif ($_GET['pageType'] == "twoMonthLater") {
             $housekeepingPage->twoMonthLater();  
         }?>
-        </div>
-        
-    <br/><br/>
-  </div>
+        <br/><br/>
+    </div>
 </body>
 <style>
 button:active {

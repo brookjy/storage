@@ -45,7 +45,7 @@ Class Repair{
 
     public function showResult($query) {
         $pageString="";
-        $tableString ="
+        $tableString ="<br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
@@ -98,7 +98,7 @@ Class Repair{
             </table>
             </div>";
             $pageType = $_GET['pageType'];
-             echo sprintf( "<h5>%s一共%d项水、%d项气、%d项电、%d项其他维修</h5>",$this->time, $water,$gas,$electric,$other);
+             echo sprintf( "<br/><h5>%s一共%d项水、%d项气、%d项电、%d项其他维修</h5>",$this->time, $water,$gas,$electric,$other);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";

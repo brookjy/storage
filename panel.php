@@ -63,7 +63,7 @@
                         <a href="foodcpy_service.php">
                             <div class="serviceBox orange">
                                 <div class="service-icon">
-                                    <span><i class="fa fa-edit"></i></span>
+                                    <span><i class="fa fa-coffee"></i></span>
                                 </div>
                                 <div class="service-content">
                                     <h3 class="title">家属订餐</h3>

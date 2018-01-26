@@ -33,10 +33,9 @@
                 include_once "./model/common.php";
                 include_once "./model/access.func.php";
 
-                $accessAdmin = new AccessAd;
+                $accessAdmin = new AccessAD;
                 $accessAdmin-> accessAdmin();
             ?>
-
         </div>
     </div>
   </div>
