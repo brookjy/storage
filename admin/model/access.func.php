@@ -1,7 +1,7 @@
 <?php
 
 
-class Access{
+class AccessAd{
 
     public function accessAdmin(){
         global $mysqli;
@@ -28,32 +28,32 @@ class Access{
                 }
                 if($permission === "2"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">医疗接送</a><br/>  
+                        <a class=\"btn\" href=\"./\">医疗接送</a><br/>  
                     ");
                 }
                 if($permission === "3"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">订餐服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_food.php?pageType=summary\">订餐服务</a><br/>   
                     ");
                 }
                 if($permission === "4"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">采购服务</a><br/>   
+                        <a class=\"btn\" href=\"./\">采购服务</a><br/>   
                     ");
                 }
                 if($permission === "5"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">住房维修</a><br/>   
+                        <a class=\"btn\" href=\"./admin_repair.php?pageType=today\">住房维修</a><br/>   
                     ");
                 }
                 if($permission === "6"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">出行服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_pickup.php?pageType=today\">出行服务</a><br/>   
                     ");
                 }
                 if($permission === "7"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./user_permission.php\">孕产服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_housekeeping.php?pageType=thisMonth\">孕产服务</a><br/>   
                     ");
                 }
             }

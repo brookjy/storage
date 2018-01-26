@@ -11,7 +11,9 @@ class User_Permission{
     private $timeDeliver;
     private $address;
     private $pickup;
+    private $pickupTotal;
     private $medicals;
+    private $medicalsTotal;
     private $isActive;
 
     public function __construct() {
@@ -24,7 +26,9 @@ class User_Permission{
 		$this->timeDeliver = isset($_POST['timeDeliver']) ? $_POST['timeDeliver'] : null;
         $this->address = isset($_POST['address']) ? $_POST['address'] : null;
         $this->pickup = isset($_POST['pickup']) ? $_POST['pickup'] : null;
+        $this->pickupTotal = isset($_POST['pickupTotal']) ? $_POST['pickupTotal'] : null;
         $this->medicals = isset($_POST['medicals']) ? $_POST['medicals'] : null;
+        $this->medicalsTotal = isset($_POST['medicalsTotal']) ? $_POST['medicalsTotal'] : null;
         $this->isActive = isset($_POST['isActive']) ? $_POST['isActive'] : null;
     }
     
@@ -42,11 +46,14 @@ class User_Permission{
                         <th>#</th> 
                         <th>姓名</th> 
                         <th>电话</th> 
+                        <th>地址</th>
+                        <th>预产期</th> 
                         <th>Email</th> 
                         <th>微信</th> 
-                        <th>预产期</th> 
-                        <th>出行接送</th> 
-                        <th>医疗接送</th> 
+                        <th>剩余出行</th> 
+                        <th>出行总数</th>
+                        <th>剩余医疗</th> 
+                        <th>医疗总数</th>
                         <th>激活</th>
                         <th>修改</th>
                     </tr> 
@@ -63,13 +70,16 @@ class User_Permission{
                                 <td>%s</td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
+                                <td>%s</td> 
+                                <td>%d</td>
                                 <td>%d</td> 
+                                <td>%d</td>
                                 <td>%d</td> 
                                 <td>%d</td> 
                                 <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"user_modify\">修改</button></td> 
                             </tr> 
                             </form>
-                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['email'], $result['weChat'], $result['timeDeliver'], $result['pickup'], $result['medicals'], $result['isActive']);
+                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'],  $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'], $result['isActive']);
             }
             echo sprintf(" 
                     </tbody> 
@@ -85,7 +95,6 @@ class User_Permission{
     public function user_modify(){
         GLOBAL $mysqli;
 
-        echo "<script type=\"text/javascript\">alert('$this->salt, haha');</script>";
         $profile_query = "SELECT * FROM users WHERE salt = '$this->salt'";
 		$profile_exist = $mysqli->query($profile_query);
 		if($profile_exist->num_rows > 0){
@@ -122,12 +131,20 @@ class User_Permission{
                         </select>
                         </div>
                         <div class=\"form-group\">
-                        <label style=\"width:80px;\">出行接送: </label>
+                        <label style=\"width:80px;\">剩余出行: </label>
                         <input tyle=\"text\" name=\"pickup\" value=%d>
                         </div>
                         <div class=\"form-group\">
-                        <label style=\"width:80px;\">医疗接送: </label>
+                        <label style=\"width:80px;\">出行总数: </label>
+                        <input tyle=\"text\" name=\"pickupTotal\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
+                        <label style=\"width:80px;\">剩余医疗: </label>
                         <input tyle=\"text\" name=\"medicals\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
+                        <label style=\"width:80px;\">出行总数: </label>
+                        <input tyle=\"text\" name=\"medicalsTotal\" value=%d>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">激活: </label>
@@ -139,7 +156,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['pickup'], $profile_retrieve['medicals'], $profile_retrieve['isActive']);
+                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{
@@ -152,7 +169,7 @@ class User_Permission{
         GLOBAL $mysqli;
 
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', pickup ='$this->pickup', medicals='$this->medicals', isActive='$this->isActive' WHERE salt = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal', isActive='$this->isActive' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
         }else{
@@ -164,7 +181,7 @@ class User_Permission{
 
     public function delete_user(){
         GLOBAL $mysqli;
-        echo "<script type=\"text/javascript\">alert('dadwd');</script>";
+        
         /* Delete DB if the user change or junk*/
         $Delete_query = "DELETE FROM users WHERE salt = '$this->salt' ";
         if($mysqli->query($Delete_query)){

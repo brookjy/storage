@@ -10,13 +10,13 @@ Class Housekeeping{
     }
     public function thisMonthListing(){
         $query="SELECT ". $this->stats." from ".$this->table. " where ".$this->condition."(CURDATE())";
-        $this->time = "这个月";    
+        $this->time = "本月";    
         $this->showResult($query, $this -> totalQuery("CURDATE()"));
     }
 
     public function nextMonthListing(){
         $query="SELECT ". $this->stats." FROM ".$this->table. " WHERE ".$this->condition."(CURDATE()+ INTERVAL 1 MONTH)";
-        $this->time = "下个月";
+        $this->time = "下月";
         $this->showResult($query, $this -> totalQuery("CURDATE()+INTERVAL 1 MONTH"));
     }
 
@@ -29,13 +29,13 @@ Class Housekeeping{
 
     public function showResult($query,$totalQuery) {
         $pageString="";
-        $tableString ="
+        $tableString ="<br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
         <tr>
             <th>#</th>
-            <th>姓名</th>
+            <th>客户名</th>
             <th>电话</th>
             <th>时间</th>
             <th>陪产</th>
@@ -80,7 +80,7 @@ Class Housekeeping{
                 printf("undefined pageType");
                 exit();
             }
-             echo sprintf( "<h5>%s一共%d项陪产，%d项月嫂服务</h5>",$this->time, $totalAccompany,$totalMaid);
+             echo sprintf( "<br/><h5>%s一共%d项陪产，%d项月嫂服务</h5>",$this->time, $totalAccompany,$totalMaid);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";

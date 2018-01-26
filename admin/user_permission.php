@@ -8,7 +8,8 @@
     }
 
 ?>
-
+ <h3>--用户管理后台--</h3>
+ <br/>
 <?php 
     include_once "./model/common.php";
     include_once "./model/user_permission.func.php";

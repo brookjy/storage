@@ -42,7 +42,7 @@
                         <div class="col-xs-5 date">
                             <div class="form-group" >
                                 <label>日期: </label>
-                                <input type="date" name="time">
+                                <input type="date" name="time" >
                             </div>
                         </div>
                         <div class="col-xs-5 date">
@@ -107,6 +107,7 @@
         <script>
             var today = new Date().toISOString().split('T')[0];
             document.getElementsByName("time")[0].setAttribute('min', today);
+            document.getElementsByName("time")[0].value=today;
 
             var tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 5);
