@@ -2,34 +2,40 @@
 Class Housekeeping{
     public $time = "";
     public $date;
+    public $table = "housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user";
+    public $condition = "MONTH(housekeeping_service.time) = MONTH";
+    public $stats = "users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote";
+    public function totalQuery($time) {
+        return "select sum(accompany), sum(maid) from ".$this->table. " where ".$this->condition."(".$time.")";
+    }
     public function thisMonthListing(){
-        $query="SELECT users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote FROM housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user WHERE MONTH(housekeeping_service.time) = MONTH(CURDATE())";
-        $this->time = "这个月";
-        $this->showResult($query);
+        $query="SELECT ". $this->stats." from ".$this->table. " where ".$this->condition."(CURDATE())";
+        $this->time = "这个月";    
+        $this->showResult($query, $this -> totalQuery("CURDATE()"));
     }
 
     public function nextMonthListing(){
-        $query="SELECT users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote FROM housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user WHERE MONTH(housekeeping_service.time) = MONTH(CURDATE()+ INTERVAL 1 MONTH)";
+        $query="SELECT ". $this->stats." FROM ".$this->table. " WHERE ".$this->condition."(CURDATE()+ INTERVAL 1 MONTH)";
         $this->time = "下个月";
-        $this->showResult($query);
+        $this->showResult($query, $this -> totalQuery("CURDATE()+INTERVAL 1 MONTH"));
     }
 
     public function twoMonthLater(){
-        $query="SELECT users.uid,users.username,users.phone,housekeeping_service.time,housekeeping_service.accompany,housekeeping_service.maid,housekeeping_service.additionalNote FROM housekeeping_service INNER JOIN users ON users.salt=housekeeping_service.user WHERE MONTH(housekeeping_service.time) = MONTH(CURDATE()+ INTERVAL 2 MONTH)";
+        $query="SELECT ". $this->stats." FROM ".$this->table. " WHERE ".$this->condition."(CURDATE()+ INTERVAL 2 MONTH)";
         $this->date = new DateTime('today');
-        $this->time = $this->date->modify('+2 month')->format('m-Y');
-        $this->showResult($query);
+        $this->time = $this->date->modify('+2 month')->format('m')."月";
+        $this->showResult($query, $this -> totalQuery("CURDATE()+INTERVAL 2 MONTH"));
     }
 
-    public function showResult($query) {
+    public function showResult($query,$totalQuery) {
         $pageString="";
         $tableString ="
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
         <tr>
-            <th>UID</th>
-            <th>客户名</th>
+            <th>#</th>
+            <th>姓名</th>
             <th>电话</th>
             <th>时间</th>
             <th>陪产</th>
@@ -46,9 +52,11 @@ Class Housekeeping{
         $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 3;
         $Paginator  = new Paginator( $mysqli, $query);
         $result    = $Paginator->getData( $limit, $page);
+        $rs = $mysqli->query( $totalQuery );
+        $row = $rs->fetch_assoc();
+        $totalAccompany=$row['sum(accompany)'];
+        $totalMaid=$row['sum(maid)'];
 		if(sizeof($result->data) > 0){
-            $totalAccompany=0;
-            $totalMaid=0;
             foreach($result->data as $Summary){
                 $row = "
                     <tr>
@@ -62,14 +70,16 @@ Class Housekeeping{
                     </tr>
             ";
             $tableString=$tableString.$row;
-            $totalAccompany+=$Summary['accompany'];
-            $totalMaid+=$Summary['maid'];
             }
             $tableString=$tableString.
             "</tbody>
             </table>
             </div>";
             $pageType = $_GET['pageType'];
+            if (!isset($pageType)) {
+                printf("undefined pageType");
+                exit();
+            }
              echo sprintf( "<h5>%s一共%d项陪产，%d项月嫂服务</h5>",$this->time, $totalAccompany,$totalMaid);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{

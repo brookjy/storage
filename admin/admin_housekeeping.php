@@ -2,7 +2,7 @@
 
     include_once "../component/adminHeader.php";
     include_once "./model/common.php";
-    include_once "./admin_paginator.php";
+    include_once "./model/admin_paginator.php";
     include_once "./model/admin.housekeeping.php";
     
     if(!defined('In_System')) exit("Access Denied");
@@ -21,9 +21,13 @@
         <div>  
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=thisMonth'" >今个月</button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=nextMonth'">下个月</button>
-        <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoMonthLater'"><?php $date->modify('+2 month'); echo $date->format('m-Y')?></button>
+        <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoMonthLater'"><?php $date->modify('+2 month'); echo $date->format('m')?>月</button>
         </div>
-        <?php if ($_GET['pageType'] == "thisMonth") {
+        <?php if (!isset($_GET['pageType'])) {
+            printf("undefined pageType");
+            exit();
+        }
+        if ($_GET['pageType'] == "thisMonth") {
             $housekeepingPage->thisMonthListing(); 
         } elseif ($_GET['pageType'] == "nextMonth") {
             $housekeepingPage->nextMonthListing();  

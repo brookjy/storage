@@ -2,7 +2,7 @@
 
     include_once "../component/adminHeader.php";
     include_once "./model/common.php";
-    include_once "./admin_paginator.php";
+    include_once "./model/admin_paginator.php";
     include_once "./model/admin.food.php";
     
     if(!defined('In_System')) exit("Access Denied");
@@ -24,7 +24,12 @@
         <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=nextLunch'">明天午餐</button>
         <button type="button" class="btn btn-info" style="margin-right:15px;margin-left:15px;margin-bottom:8px" onclick="location.href='?pageType=nextDinner'">明天晚餐</button>
 
-        <?php if ($_GET['pageType'] == "summary") {
+        <?php 
+        if (!isset($_GET['pageType'])) {
+            printf("undefined pageType");
+            exit();
+        }
+        if ($_GET['pageType'] == "summary") {
             $foodPage->foodSummaryListing(); 
         } elseif ($_GET['pageType'] == "thisBreakfast") {
             $foodPage->thisBreakfastListing();  

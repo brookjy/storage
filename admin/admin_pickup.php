@@ -2,7 +2,7 @@
 
     include_once "../component/adminHeader.php";
     include_once "./model/common.php";
-    include_once "./admin_paginator.php";
+    include_once "./model/admin_paginator.php";
     include_once "./model/admin.pickup.php";
     
     if(!defined('In_System')) exit("Access Denied");
@@ -26,7 +26,12 @@
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=fourDaysLater'"><?php $date->modify('+1 day'); echo $date->format('m-d')?></button>
         <button type="button" class="btn btn-info" onclick="location.href='?pageType=fiveDaysLater'"><?php $date->modify('+1 day'); echo $date->format('m-d')?></button>
         </div>
-        <?php if ($_GET['pageType'] == "today") {
+        <?php 
+        if (!isset($_GET['pageType'])) {
+            printf("undefined pageType");
+            exit();
+        }
+        if ($_GET['pageType'] == "today") {
             $pickupPage->todayListing(); 
         } elseif ($_GET['pageType'] == "tomorrow") {
             $pickupPage->tomorrowListing();  
