@@ -28,7 +28,7 @@ class AccessAd{
                 }
                 if($permission === "2"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./\">医疗接送</a><br/>  
+                        <a class=\"btn\" href=\"./admin_medical.php?pageType=today\">医疗接送</a><br/>  
                     ");
                 }
                 if($permission === "3"){
@@ -38,7 +38,7 @@ class AccessAd{
                 }
                 if($permission === "4"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./\">采购服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_purchase.php?pageType=thisWeek\">采购服务</a><br/>   
                     ");
                 }
                 if($permission === "5"){
