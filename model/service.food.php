@@ -107,7 +107,6 @@ class Food_Service{
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                echo "<script type=\"text/javascript\">alert('$this->ppl! ');</script>"; 
                 $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, address, num_ppl) VALUES ('$user_id', '$serviceToken ', '待产餐', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->address', '$this->ppl' )";
                 if($mysqli->query($food_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
