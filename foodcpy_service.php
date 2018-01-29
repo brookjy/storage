@@ -43,6 +43,7 @@
                 <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
                 <form action="./service_function.php" method="post">
                     <div class="container">
+                        <input type="hidden" name="serviceType" value="待产餐">
                         <div class="form-group">
                             <label>选择人数：</label>
                             <select name="ppl">

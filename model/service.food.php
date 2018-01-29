@@ -57,7 +57,7 @@ class Food_Service{
         $sDate = $this->startDate;
         $eDate = $this->endDate;
         $d = new DateTime();
-        $current = date("Y/m/d");
+        $current = date("Y-m-d");
         if($sDate == $current){
             // Check which type of order customer can get
             if(date('H')+5 >= 8 && $this->startTime == '早'){
@@ -68,7 +68,7 @@ class Food_Service{
                 return false;
             }
         }
-        if($eDate < $sDate){
+        if($eDate <= $sDate){
             echo "<script type=\"text/javascript\">alert('开始时间，结束时间不对。');window.history.back();</script>";
             exit();
         }
@@ -80,14 +80,14 @@ class Food_Service{
         $user_id = $_COOKIE['uid'];
         $delete_query = "DELETE FROM food_service WHERE serviceToken = '$this->token'";
         if($mysqli->query($delete_query)){
-            echo "<script type=\"text/javascript\">alert('您已经成功修改, 谢谢.');window.location.replace(\"./panel.php\");</script>";
         }else{
             printf("Registration failure: %s\n", $mysqli->error);
             exit();
         }
-
+        
         $history_delete_query = "DELETE FROM history WHERE token = '$this->token'";
-        if($mysqli->query($delete_query)){
+        if($mysqli->query($history_delete_query)){
+            echo "<script type=\"text/javascript\">alert('您已经成功修改, 谢谢.');window.location.replace(\"./panel.php\");</script>";
         }else{
             printf("Registration failure: %s\n", $mysqli->error);
             exit();

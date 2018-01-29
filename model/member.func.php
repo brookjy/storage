@@ -72,10 +72,10 @@ class Member{
 
 	public function register(){
         global $mysqli;
-        echo "<script type=\"text/javascript\">alert('$this->email, $this->password, 电话：$this->phone, $this->username, $this->weChat, $this->timeDeliver ');</script>";
+        
         /* Check if the user exist */
 		if(empty($this->email) || empty($this->password) || empty($this->username) || empty($this->phone) || empty($this->weChat) || empty($this->timeDeliver)){
-			echo "<script type=\"text/javascript\">alert('信息不全无法注册!');</script>";
+			echo "<script type=\"text/javascript\">alert('信息不全无法注册!');;window.history.back();</script>";
 		}else{
             // Check for duplicate users
             if(!$this->check_duplicate()){
@@ -95,7 +95,7 @@ class Member{
                         exit();
                     }
                 }else{
-                    echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');</script>";
+                    echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');window.history.back();</script>";
                 }
             }else{
                 echo "<script type=\"text/javascript\">alert('用户已存在！');;window.history.back();</script>";
