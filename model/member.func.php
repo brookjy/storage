@@ -98,7 +98,7 @@ class Member{
                     echo "<script type=\"text/javascript\">alert('您的Email或是电话格式不正确!');window.history.back();</script>";
                 }
             }else{
-                echo "<script type=\"text/javascript\">alert('用户已存在！');;window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('用户已存在！');window.history.back();</script>";
             }
 		}
     }
@@ -107,9 +107,9 @@ class Member{
         global $mysqli;
         
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address' WHERE username = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
-            echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace(\"./\");</script>";
+            echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.history.back();</script>";
         }else{
             printf("Registration failure: %s\n", $mysqli->error);
             exit();

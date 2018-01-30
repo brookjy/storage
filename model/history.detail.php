@@ -15,7 +15,7 @@ class DetailHistory{
             if($detail_retrieve->num_rows > 0){
                 $detail_result = $detail_retrieve->fetch_assoc();
                 $address = $detail_result['origin_address'];
-
+                
                 echo sprintf("<table class=\"table table-hover table-info\">
                         <tr>
                             <td>公寓类型</td>
