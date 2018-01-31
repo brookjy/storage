@@ -17,11 +17,11 @@
     <meta name="author" content="">
     <title>领婴后台管理</title>
     <!-- Bootstrap core CSS-->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.css" rel="stylesheet">
     <style>
         #map {
             height: 600px;
@@ -42,21 +42,30 @@
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
   <script>
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var richmond = {lat: 49.16319, lng: -123.13775};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
+          zoom: 13,
+          center: richmond
         });
+
+        <?php 
+            include_once "../model/common.php";
+            include_once "../model/access.func.php";
+
+            $makerfunc = new AccessAd;
+            $makerfunc-> generateMarker();
+        ?>
         var marker = new google.maps.Marker({
-          position: uluru,
+          position: richmond,
           map: map
         });
+        
       }
     </script>
     <script async defer

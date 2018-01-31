@@ -62,6 +62,38 @@ class AccessAd{
 			echo "<script type=\"text/javascript\">alert('您的账户有问题，请联系管理员！ '); ;</script>";
 		}
     }
+
+    public function generateMarker(){
+        global $mysqli;
+
+        $address_query = "SELECT * FROM address";
+        $address_result = $mysqli->query($address_query);
+        $results = mysqli_fetch_all ($address_result, MYSQLI_ASSOC);
+        foreach ($results as $result){
+            $address_format = "{lat: " .$result['lat']. ", lng: ".$result['lng']. "}";
+            echo sprintf("
+
+                var contentString%d = '<div id=\"content\">'+
+                '<div id=\"siteNotice\">'+
+                '</div>'+
+                '<h5 id=\"firstHeading\" class=\"firstHeading\">%s</h5>'+
+                '</div></div></div>';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString%d
+                });
+                var marker%d = new google.maps.Marker({
+                    position: %s,
+                    map: map,
+                    title: \"dadd\"
+                }); 
+                
+                marker%d.addListener('click', function() {
+                    infowindow.open(map, marker%d);
+                });
+            ", $result['aid'],$result['address'], $result['aid'], $result['aid'], $address_format, $result['aid'], $result['aid']);
+        }
+    }
 }
 
 ?>
