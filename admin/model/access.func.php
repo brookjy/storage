@@ -79,7 +79,7 @@ class AccessAd{
                 '<h5 id=\"firstHeading\" class=\"firstHeading\">%s</h5>'+
                 '</div></div></div>';
 
-                var infowindow = new google.maps.InfoWindow({
+                var infowindow%d = new google.maps.InfoWindow({
                     content: contentString%d
                 });
                 var marker%d = new google.maps.Marker({
@@ -89,9 +89,9 @@ class AccessAd{
                 }); 
                 
                 marker%d.addListener('click', function() {
-                    infowindow.open(map, marker%d);
+                    infowindow%d.open(map, marker%d);
                 });
-            ", $result['aid'],$result['address'], $result['aid'], $result['aid'], $address_format, $result['aid'], $result['aid']);
+            ", $result['aid'],$result['address'],$result['aid'], $result['aid'], $result['aid'], $address_format, $result['aid'],$result['aid'],  $result['aid']);
         }
     }
 }
