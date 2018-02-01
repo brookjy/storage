@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2018 at 07:12 PM
+-- Generation Time: Feb 02, 2018 at 12:58 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -43,7 +43,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`aid`, `address`, `type`, `lat`, `lng`, `update_at`) VALUES
 (1, 'RIVA 517-7008 River Rd', 'apt', 49.1705, -123.157, '2018-01-30'),
-(2, 'Mandarin 767-6288 No.3 Rd', 'apt', 0, 0, '2018-01-30');
+(2, 'Mandarin 767-6288 No.3 Rd', 'apt', 49.22, -123.222, '2018-01-30');
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,13 @@ INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activa
 (164, '48597', '采购服务', '2mfe0a', '2018-01-30', 0),
 (165, '43970', '采购服务', '2mfe0a', '2018-01-30', 0),
 (166, '19411', '采购服务', '2mfe0a', '2018-01-30', 0),
-(167, '72585', '采购服务', '2mfe0a', '2018-01-30', 0);
+(167, '72585', '采购服务', '2mfe0a', '2018-01-30', 0),
+(168, '46650', '采购服务', '2mfe0a', '2018-02-01', 0),
+(169, '4415', '采购服务', '2mfe0a', '2018-02-01', 0),
+(170, '78232', '采购服务', '2mfe0a', '2018-02-01', 0),
+(171, '70911', '采购服务', '2mfe0a', '2018-02-01', 0),
+(172, '62358', '采购服务', '2mfe0a', '2018-02-01', 0),
+(173, '55801', '采购服务', '2mfe0a', '2018-02-01', 0);
 
 -- --------------------------------------------------------
 
@@ -272,41 +278,79 @@ CREATE TABLE `purchase_service` (
   `property` varchar(10) COLLATE utf8_bin NOT NULL,
   `date` datetime NOT NULL,
   `origin_address` varchar(100) COLLATE utf8_bin NOT NULL,
-  `potato` int(5) DEFAULT NULL,
-  `tomato` int(5) DEFAULT NULL,
-  `rice` int(5) DEFAULT NULL,
-  `locker` int(2) NOT NULL,
-  `finish` int(2) NOT NULL
+  `doujiang` int(5) DEFAULT NULL,
+  `tiandoujiang` int(5) DEFAULT NULL,
+  `niunai` int(5) DEFAULT NULL,
+  `guozhi` int(5) DEFAULT NULL,
+  `furu` int(5) DEFAULT NULL,
+  `zhacai` int(5) DEFAULT NULL,
+  `laoganma` int(5) DEFAULT NULL,
+  `ganlancai` int(5) DEFAULT NULL,
+  `xianyadan` int(5) DEFAULT NULL,
+  `huashengjiang` int(5) DEFAULT NULL,
+  `caomeijiang` int(5) DEFAULT NULL,
+  `shengjidan` int(5) DEFAULT NULL,
+  `maipian` int(5) DEFAULT NULL,
+  `culiangmianbao` int(5) DEFAULT NULL,
+  `doushabao` int(5) DEFAULT NULL,
+  `xiaomantou` int(5) DEFAULT NULL,
+  `shouzhuabing` int(5) DEFAULT NULL,
+  `jiaozi` int(5) DEFAULT NULL,
+  `miantiao` int(5) DEFAULT NULL,
+  `dami` int(5) DEFAULT NULL,
+  `xiaomi` int(5) DEFAULT NULL,
+  `hongdou` int(5) DEFAULT NULL,
+  `lvdou` int(5) DEFAULT NULL,
+  `pingguo` int(5) DEFAULT NULL,
+  `xiangjiao` int(5) DEFAULT NULL,
+  `chengzi` int(5) DEFAULT NULL,
+  `guoli` int(5) DEFAULT NULL,
+  `juzi` int(5) DEFAULT NULL,
+  `xihongshi` int(5) DEFAULT NULL,
+  `bocai` int(5) DEFAULT NULL,
+  `digua` int(5) DEFAULT NULL,
+  `huanggua` int(5) DEFAULT NULL,
+  `tudou` int(5) DEFAULT NULL,
+  `you` int(5) DEFAULT NULL,
+  `yan` int(5) DEFAULT NULL,
+  `jiang` int(5) DEFAULT NULL,
+  `cu` int(5) DEFAULT NULL,
+  `tang` int(5) DEFAULT NULL,
+  `locker` int(2) DEFAULT NULL,
+  `finish` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `purchase_service`
 --
 
-INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date`, `origin_address`, `potato`, `tomato`, `rice`, `locker`, `finish`) VALUES
-(5, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '1', 1, 2, 2, 0, 0),
-(6, '2mfe0a', '', 'apartment', '2018-01-11 00:00:00', '3', 2, 2, 2, 0, 0),
-(7, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '1', 1, 1, 3, 0, 0),
-(8, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '1', 1, 1, 3, 0, 0),
-(9, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '2', 2, 2, 3, 0, 0),
-(10, '2mfe0a', '51876', 'house', '2018-01-12 00:00:00', '1', 3, 2, 2, 0, 0),
-(11, '2mfe0a', '82481', 'house', '2018-01-12 00:00:00', '4', 2, 1, 3, 0, 0),
-(12, '2mfe0a', '99801', 'house', '2018-01-12 00:00:00', '3', 1, 2, 3, 0, 0),
-(13, '2mfe0a', '76568', 'house', '2018-01-12 00:00:00', '1', 5, 1, 2, 0, 0),
-(14, 'eQez4m', '59803', 'house', '2018-01-14 00:00:00', '1', 1, 0, 0, 0, 0),
-(15, '2mfe0a', '21759', 'house', '2018-01-15 00:00:00', '1', 0, 0, 0, 0, 0),
-(16, '2mfe0a', '59248', 'house', '2018-01-15 00:00:00', '1', 0, 0, 0, 0, 0),
-(17, '2mfe0a', '99732', 'house', '2018-01-15 00:00:00', '1', 0, 0, 0, 0, 0),
-(18, '2mfe0a', '77541', 'house', '2018-01-15 00:00:00', '1', 0, 0, 0, 0, 0),
-(19, '2mfe0a', '45970', 'apartment', '2018-01-15 00:00:00', '1', 1, 1, 1, 0, 0),
-(20, '2mfe0a', '47782', 'house', '2018-01-17 14:58:26', '3', 3, 1, 3, 0, 0),
-(21, '2mfe0a', '29949', 'house', '2018-01-17 15:20:29', 'audis', 3, 3, 3, 0, 0),
-(23, '2mfe0a', '31412', 'house', '2018-01-23 14:59:51', 'audiss', 3, 3, 1, 0, 0),
-(24, '2mfe0a', '55139', 'house', '2018-01-29 11:39:59', 'audi', 4, 4, 2, 0, 0),
-(25, '2mfe0a', '48597', 'house', '2018-01-30 15:24:18', 'NULL', 2, 2, 1, 0, 0),
-(26, '2mfe0a', '43970', 'house', '2018-01-30 15:25:52', 'Mandarin 7', 2, 1, 2, 0, 0),
-(27, '2mfe0a', '19411', 'house', '2018-01-30 15:27:22', 'Ora 305-69', 2, 0, 0, 0, 0),
-(28, '2mfe0a', '72585', 'house', '2018-01-30 15:30:52', 'Ora 602-6200 River Rd', 3, 2, 1, 0, 0);
+INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date`, `origin_address`, `doujiang`, `tiandoujiang`, `niunai`, `guozhi`, `furu`, `zhacai`, `laoganma`, `ganlancai`, `xianyadan`, `huashengjiang`, `caomeijiang`, `shengjidan`, `maipian`, `culiangmianbao`, `doushabao`, `xiaomantou`, `shouzhuabing`, `jiaozi`, `miantiao`, `dami`, `xiaomi`, `hongdou`, `lvdou`, `pingguo`, `xiangjiao`, `chengzi`, `guoli`, `juzi`, `xihongshi`, `bocai`, `digua`, `huanggua`, `tudou`, `you`, `yan`, `jiang`, `cu`, `tang`, `locker`, `finish`) VALUES
+(5, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '1', 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(6, '2mfe0a', '', 'apartment', '2018-01-11 00:00:00', '2', 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(7, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(8, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(9, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(10, '2mfe0a', '51876', 'house', '2018-01-12 00:00:00', '', 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(11, '2mfe0a', '82481', 'house', '2018-01-12 00:00:00', '', 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(12, '2mfe0a', '99801', 'house', '2018-01-12 00:00:00', '', 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(13, '2mfe0a', '76568', 'house', '2018-01-12 00:00:00', '', 5, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(14, 'eQez4m', '59803', 'house', '2018-01-14 00:00:00', '', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(15, '2mfe0a', '21759', 'house', '2018-01-15 00:00:00', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(16, '2mfe0a', '59248', 'house', '2018-01-15 00:00:00', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(17, '2mfe0a', '99732', 'house', '2018-01-15 00:00:00', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(18, '2mfe0a', '77541', 'house', '2018-01-15 00:00:00', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(19, '2mfe0a', '45970', 'apartment', '2018-01-15 00:00:00', '', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(20, '2mfe0a', '47782', 'house', '2018-01-17 14:58:26', '', 3, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(21, '2mfe0a', '29949', 'house', '2018-01-17 15:20:29', '', 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(23, '2mfe0a', '31412', 'house', '2018-01-23 14:59:51', '', 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(24, '2mfe0a', '55139', 'house', '2018-01-29 11:39:59', '', 4, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(25, '2mfe0a', '48597', 'house', '2018-01-30 15:24:18', '', 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(26, '2mfe0a', '43970', 'house', '2018-01-30 15:25:52', '', 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(27, '2mfe0a', '19411', 'house', '2018-01-30 15:27:22', '', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(28, '2mfe0a', '72585', 'house', '2018-01-30 15:30:52', '', 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(31, '2mfe0a', '78232', 'house', '2018-02-01 14:28:51', '', 1, 1, 1, 1, 1, 0, 2, 1, 6, 2, 2, 24, 1, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 5, 5, 5, 5, 10, 5, 10, 10, 10, 10, 1, 1, 1, 1, 1, NULL, NULL),
+(33, '2mfe0a', '62358', 'apartment', '2018-02-01 14:38:50', '', 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
+(34, '2mfe0a', '55801', 'apartment', '2018-02-01 14:41:44', '', 2, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -382,7 +426,7 @@ INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, 
 (10, '123', 123, '123@gmail.com', '6ec9eac1929f9ec48ce48f9f73cf31ac701b7f644d4f45064edb95bbab6a8214', '123', '123', '0000-00-00', '1', 'eQez4m', NULL, 0, 0, 0, 0, 0),
 (11, '123', 123, '123@gmail.com', '446781f77401a0e74650b6515352ad11cd76e20dcd6b5d061566d3e3421b6b5c', '123', '123', '0000-00-00', '1', '7gHfIm', NULL, 0, 0, 0, 0, 0),
 (12, '1234', 1234, '1234@gmail.com', 'f0c411f690af6ec854b6037b0acdbad482f220430cc465bcf88bfe717fa4d604', '1234', '1234', '0000-00-00', '1', 'TKmrjj', NULL, 0, 0, 0, 0, 0),
-(13, '12345', 7788848, '123456@gmail.com', '5093b20eea0b161e1649c5ebe3e95d5733d0a916e84a493a47805c436f56c73b', '12345', '12345', '0000-00-00', '1', '2mfe0a', 'Ora 602-6200 River Rd', 1, 0, 1, 0, 1),
+(13, '12345', 7788848, '123456@gmail.com', '5093b20eea0b161e1649c5ebe3e95d5733d0a916e84a493a47805c436f56c73b', '12345', '12345', '0000-00-00', '1', '2mfe0a', 'Ora 1502-6971 Hollybridge Way', 1, 0, 1, 0, 1),
 (14, '123456', 123456, '123456@gmail.com', '6315b3bdecf91090dd5f7f28e3aa9f956a4538c7f2f4e21c591214b2a71ca037', '123456', '123456', '2018-01-08', '1', 'i6hLHV', '???', 0, 0, 0, 0, 0),
 (15, '1231234', 44123123, '123@gmail.com', 'c69f7f5612cac6a4b228ecccfb61c89e8bb253e7588b631c2dd9cee827766b20', '123123', '123123', '2018-01-19', '1', 'exs0rs', NULL, 0, 0, 0, 0, 0),
 (16, '123123@', 123123, '123@gmail.com', 'd9e20f9597556dee95208e98da24d433ee6aef91ba487f6e4223a1ac11798d6c', '123', '123123', '2018-01-19', '1', 'juRHOx', NULL, 0, 0, 0, 0, 0),
@@ -486,7 +530,7 @@ ALTER TABLE `food_service`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT for table `housekeeping_service`
@@ -510,7 +554,7 @@ ALTER TABLE `pickup_service`
 -- AUTO_INCREMENT for table `purchase_service`
 --
 ALTER TABLE `purchase_service`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `repair_service`
