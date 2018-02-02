@@ -56,6 +56,11 @@ class AccessAd{
                         <a class=\"btn\" href=\"./admin_housekeeping.php?pageType=thisMonth\">孕产服务</a><br/>   
                     ");
                 }
+                if($permission === "8"){
+                    echo sprintf("
+                        <a class=\"btn\" href=\"./map\">地址地图</a><br/>   
+                    ");
+                }
             }
 
         }else{

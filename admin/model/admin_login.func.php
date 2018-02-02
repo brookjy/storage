@@ -11,8 +11,22 @@ class Admin{
 	}
 
     public function admin_login(){ 
+        global $mysqli;
+
 		$check_user = $this->validateAdmin();
 		if($check_user){
+            $deadLine = strtotime("this Friday");
+            $sat_time = strtotime("this Saturday");
+            $deadLine_format = date('Y-m-d H:i:s', $deadLine);
+            $sat_format = date('Y-m-d H:i:s', $sat_time);
+    
+            $d = new DateTime();
+            $current = $d->format('Y-m-d H:i:s');
+            if ( $deadLine_format < $current && $sat_format > $current){
+                $update_address_query = "UPDATE purchase_service SET origin_address = ''";
+                $update_query = $mysqli->query($update_address_query);
+            }
+            
             echo "<script type=\"text/javascript\">alert('欢 迎 回 来!');window.location.replace(\"../admin/admin_access.php\");</script>";
 
             $isAdminLogin = hash('sha256', $this->password);
