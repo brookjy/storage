@@ -31,7 +31,9 @@
             </div>
         </div>
         <br/>
-        <?php if ($_GET['pageType'] == "thisWeek") {
+        <?php 
+        $purchasePage->generateState();
+        if ($_GET['pageType'] == "thisWeek") {
             $purchasePage->thisWeekListing(); 
         } elseif ($_GET['pageType'] == "nextWeek") {
             $purchasePage->nextWeekListing();  

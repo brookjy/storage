@@ -2,8 +2,18 @@
 Class Purchase{
     public $time = "";
     public $date;
+    public $itemList = ["doujiang","tiandoujiang"];
     public $table = "purchase_service INNER JOIN users ON users.salt=purchase_service.user";
-    public $stats = "users.uid,users.username,users.phone,purchase_service.date,purchase_service.property,purchase_service.origin_address,purchase_service.potato,purchase_service.tomato,purchase_service.rice";
+    public $rawStates = "users.uid,users.username,users.phone,purchase_service.date,purchase_service.property,purchase_service.origin_address";
+    public $completeStates = "";
+    public function generateState() {
+        $size = sizeof($this->itemList);
+        $this->completeStates . $this->rawStates;
+        while ($size>0){
+            $this->completeStates . ",purchase_service." . $this->itemList[$size];
+            $size--;
+        }
+    }
     public function totalQuery($condition) {
         return "select sum(potato), sum(tomato), sum(rice) from ".$this->table. " where ".$condition;
     }
