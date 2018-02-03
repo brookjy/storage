@@ -124,10 +124,39 @@ class User_Permission{
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">地址: </label>
                         <select name=\"address\">
-                            <option value=\"volvo\">Volvo</option>
-                            <option value=\"saab\">Saab</option>
-                            <option value=\"opel\">Opel</option>
-                            <option value=\"audi\">Audi</option>
+                            <option value=\"%s\">%s(selected)</option>
+                            <option value=\"RIVA 517-7008 River Rd\">RIVA 517-7008 River Rd</option>
+                            <option value=\"Mandarin 767-6288 No.3 Rd\">Mandarin 767-6288 No.3 Rd</option>
+                            <option value=\"Ora 1003-6200 River Rd\">Ora 1003-6200 River Rd</option>
+                            <option value=\"Ora 602-6200 River Rd\">Ora 602-6200 River Rd</option>
+                            <option value=\"Ora 910-6200 River Rd\">Ora 910-6200 River Rd</option>
+                            <option value=\"Ora 603-6971 River Rd\">Ora 603-6971 River Rd</option>
+                            <option value=\"Ora 305-6971 Hollybridge Way\">Ora 305-6971 Hollybridge Way</option>
+                            <option value=\"Ora 603-6971 Hollybridge Way\">Ora 603-6971 Hollybridge Way</option>
+                            <option value=\"Ora 1502-6971 Hollybridge Way\">Ora 1502-6971 Hollybridge Way</option>
+                            <option value=\"Ora 1503-6971 Hollybridge Way\">Ora 1503-6971 Hollybridge Way</option>
+                            <option value=\"Ora 703-6971 Hollybridge Way\">Ora 703-6971 Hollybridge Way</option>
+                            <option value=\"Ora 702-6951 Hollybridge Way\">Ora 702-6951 Hollybridge Way</option>
+                            <option value=\"Ora 703-6951 Hollybridge Way\">Ora 703-6951 Hollybridge Way</option>
+                            <option value=\"Ora 506-6951 Hollybridge Way\">Ora 506-6951 Hollybridge Way</option>
+                            <option value=\"Ora 1103-6951 Hollybridge Way\">Ora 1103-6951 Hollybridge Way</option>
+                            <option value=\"Ora 507-6951 Hollybridge Way\">Ora 507-6951 Hollybridge Way</option>
+                            <option value=\"Ora 1202-6951 Hollybridge Way\">Ora 1202-6951 Hollybridge Way</option>
+                            <option value=\"Ora 5007-5511 Hollybridge Way\">Ora 5007-5511 Hollybridge Way</option>
+                            <option value=\"River Pard 1310-5233 Gilbert Rd\">River Pard 1310-5233 Gilbert Rd</option>
+                            <option value=\"Quintet 1003-7788 Ackroyd Rd\">Quintet 1003-7788 Ackroyd Rd</option>
+                            <option value=\"Quintet 1201-7788 Ackroyd Rd\">Quintet 1201-7788 Ackroyd Rd</option>
+                            <option value=\"Quintet 1501-7788 Ackroyd Rd\">Quintet 1501-7788 Ackroyd Rd</option>
+                            <option value=\"Quintet 311-7988 Ackroyd Rd\">Quintet 311-7988 Ackroyd Rd</option>
+                            <option value=\"Quintet 712-7988 Ackroyd Rd\">Quintet 712-7988 Ackroyd Rd</option>
+                            <option value=\"Quintet 719-7988 Ackroyd Rd\">Quintet 719-7988 Ackroyd Rd</option>
+                            <option value=\"Quintet 1215-7988 Ackroyd Rd\">Quintet 1215-7988 Ackroyd Rd</option>
+                            <option value=\"Cadence 810-7468 Lansdowne Rd\">Cadence 810-7468 Lansdowne Rd</option>
+                            <option value=\"Cadence 1002-7488 Lansdowne Rd\">Cadence 1002-7488 Lansdowne Rd</option>
+                            <option value=\"9320 Gormond Rd Richmond V7E1N5\">9320 Gormond Rd Richmond V7E1N5</option>
+                            <option value=\"3400 Raymond Ave Richmond V7E1A9\">3400 Raymond Ave Richmond V7E1A9</option>
+                            <option value=\"3331 Bourmond Ave Richmond V7E1A1\">3331 Bourmond Ave Richmond V7E1A1</option>
+                            <option value=\"5620 Lancing Rd Richmond V7C3A6\">5620 Lancing Rd Richmond V7C3A6</option>
                         </select>
                         </div>
                         <div class=\"form-group\">
@@ -156,7 +185,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
+                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{

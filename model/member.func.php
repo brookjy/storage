@@ -107,7 +107,7 @@ class Member{
         global $mysqli;
         
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address' WHERE salt = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.history.back();</script>";
         }else{
