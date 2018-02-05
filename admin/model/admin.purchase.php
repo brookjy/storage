@@ -6,7 +6,7 @@ Class Purchase{
     //
     public $itemChineseList = ["豆浆","甜豆浆","牛奶","果汁","腐乳","榨菜","老干妈","橄榄菜","咸鸭蛋","花生酱","草莓酱","生鸡蛋","麦片","粗粮面包","豆沙包","小馒头","手抓饼","饺子","面条","大米","小米","红豆","绿豆","苹果","香蕉","橙子","果梨","橘子","西红柿","菠菜","地瓜","黄瓜","土豆","油","盐","酱","醋","糖"];
     public $table = "purchase_service INNER JOIN users ON users.salt=purchase_service.user";
-    public $rawStates = "users.uid,users.username,users.phone,purchase_service.date,purchase_service.property,purchase_service.origin_address";
+    public $rawStates = "users.uid,users.username,users.phone,users.address,purchase_service.date,purchase_service.property,purchase_service.origin_address";
     public $completeStates = "";
     public function generateState() {
         $size = sizeof($this->itemList);
@@ -50,14 +50,15 @@ Class Purchase{
     public function showResult($query,$totalQuery) {
         $pageString="";
         $size = sizeof($this->itemList);
-        $tableString ="<br/>
+        $tableString ="<br/><br/>
         <div class=\"table-responsive\">
         <table class=\"table table-bordered\">
         <thead> 
         <tr>
             <th>#</th>
             <th>客户名</th>
-            <th>电话</th>";
+            <th>电话</th>
+            <th>地址</th>";
             for ($i = 0; $i<$size; $i++) {
                 $tableString = $tableString . "<th>" . $this->itemChineseList[$i] ."<th>";
             }
@@ -79,7 +80,9 @@ Class Purchase{
                     <tr>
                         <td>".$Summary['uid']."</td>
                         <td>".$Summary['username']."</td>
-                        <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td>"; 
+                        <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td>
+                        <td>".$Summary['address']."</td>"; 
+
                 for ($i = 0; $i<$size; $i++) {
                     $row = $row . "<th>" . $Summary[$this->itemList[$i]] ."<th>";
                 }
@@ -102,7 +105,7 @@ Class Purchase{
              echo $printString;
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
-            $tableString=$tableString."</table></div>";
+            $tableString=$tableString."</table></div><br/>";
         }
         echo $tableString;
         echo $pageString;

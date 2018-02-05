@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 02, 2018 at 12:58 AM
+-- Generation Time: Feb 05, 2018 at 08:11 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -91,8 +91,8 @@ CREATE TABLE `food_service` (
 --
 
 INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `startDate`, `startTime`, `endDate`, `endTime`, `num_ppl`, `address`, `finish`) VALUES
-(92, '2mfe0a', '9969 ', '宝妈月子餐', '2018-01-29', '晚', '2018-01-31', '早', 0, '医院', 0),
-(95, '2mfe0a', '17309 ', '待产餐', '2018-01-30', '早', '2018-01-31', '早', 1, '医院', 0);
+(95, '2mfe0a', '17309 ', '待产餐', '2018-01-30', '早', '2018-01-31', '早', 1, '医院', 0),
+(96, '2mfe0a', '68619 ', '宝妈月子餐', '2018-02-02', '晚', '2018-02-28', '早', 0, '医院', 0);
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,6 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activate`) VALUES
-(157, '9969', '宝妈月子餐', '2mfe0a', '2018-01-29', 0),
 (160, '17309', '待产餐', '2mfe0a', '2018-01-29', 0),
 (161, '96627', '医疗接送', '2mfe0a', '2018-01-29', 0),
 (162, '55139', '采购服务', '2mfe0a', '2018-01-29', 0),
@@ -128,7 +127,10 @@ INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activa
 (170, '78232', '采购服务', '2mfe0a', '2018-02-01', 0),
 (171, '70911', '采购服务', '2mfe0a', '2018-02-01', 0),
 (172, '62358', '采购服务', '2mfe0a', '2018-02-01', 0),
-(173, '55801', '采购服务', '2mfe0a', '2018-02-01', 0);
+(173, '55801', '采购服务', '2mfe0a', '2018-02-01', 0),
+(174, '68619', '宝妈月子餐', '2mfe0a', '2018-02-02', 0),
+(175, '77650', '接送服务', '2mfe0a', '2018-02-02', 0),
+(176, '33942', '采购服务', '2mfe0a', '2018-02-05', 0);
 
 -- --------------------------------------------------------
 
@@ -263,7 +265,8 @@ INSERT INTO `pickup_service` (`pid`, `user`, `serviceToken`, `date`, `time`, `de
 (5, '2mfe0a', '14216 ', '2018-01-21', '10:00AM - 11:30AM', '3', '3', 12, '12123', 0),
 (6, '2mfe0a', '52266 ', '2018-01-25', '10:00AM - 11:30AM', '1', '1', 123, '13', 0),
 (7, '2mfe0a', '22183 ', '2018-01-26', '10:00AM - 11:30AM', '1', '1', 0, 'fef', 0),
-(8, '2mfe0a', '88376 ', '2018-01-30', '10:00AM - 11:30AM', '1', '1', 12, '31313', 0);
+(8, '2mfe0a', '88376 ', '2018-01-30', '10:00AM - 11:30AM', '1', '1', 12, '31313', 0),
+(9, '2mfe0a', '77650 ', '2018-02-03', '10:00AM - 11:30AM', '家', 'Super Store', 20, '哈哈', 0);
 
 -- --------------------------------------------------------
 
@@ -325,8 +328,8 @@ CREATE TABLE `purchase_service` (
 --
 
 INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date`, `origin_address`, `doujiang`, `tiandoujiang`, `niunai`, `guozhi`, `furu`, `zhacai`, `laoganma`, `ganlancai`, `xianyadan`, `huashengjiang`, `caomeijiang`, `shengjidan`, `maipian`, `culiangmianbao`, `doushabao`, `xiaomantou`, `shouzhuabing`, `jiaozi`, `miantiao`, `dami`, `xiaomi`, `hongdou`, `lvdou`, `pingguo`, `xiangjiao`, `chengzi`, `guoli`, `juzi`, `xihongshi`, `bocai`, `digua`, `huanggua`, `tudou`, `you`, `yan`, `jiang`, `cu`, `tang`, `locker`, `finish`) VALUES
-(5, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '1', 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
-(6, '2mfe0a', '', 'apartment', '2018-01-11 00:00:00', '2', 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(5, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(6, '2mfe0a', '', 'apartment', '2018-01-11 00:00:00', '', 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
 (7, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
 (8, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
 (9, '2mfe0a', '', 'house', '2018-01-11 00:00:00', '', 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
@@ -350,7 +353,8 @@ INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date
 (28, '2mfe0a', '72585', 'house', '2018-01-30 15:30:52', '', 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
 (31, '2mfe0a', '78232', 'house', '2018-02-01 14:28:51', '', 1, 1, 1, 1, 1, 0, 2, 1, 6, 2, 2, 24, 1, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 5, 5, 5, 5, 10, 5, 10, 10, 10, 10, 1, 1, 1, 1, 1, NULL, NULL),
 (33, '2mfe0a', '62358', 'apartment', '2018-02-01 14:38:50', '', 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
-(34, '2mfe0a', '55801', 'apartment', '2018-02-01 14:41:44', '', 2, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+(34, '2mfe0a', '55801', 'apartment', '2018-02-01 14:41:44', '', 2, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
+(35, '2mfe0a', '33942', 'house', '2018-02-05 10:55:25', 'Ora 1003-6200 River Rd', 1, 1, 2, 1, 1, 2, 1, 1, 12, 1, 1, 24, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 5, 15, 5, 5, 10, 15, 10, 15, 5, 5, 1, 1, 1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -405,13 +409,13 @@ CREATE TABLE `users` (
   `weChat` varchar(50) COLLATE utf8_bin NOT NULL,
   `timeDeliver` varchar(50) COLLATE utf8_bin NOT NULL,
   `create_time` date NOT NULL,
-  `role` varchar(10) COLLATE utf8_bin NOT NULL,
+  `role` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `salt` varchar(6) COLLATE utf8_bin NOT NULL,
   `address` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `pickup` int(5) DEFAULT NULL,
-  `pickupTotal` int(20) NOT NULL,
+  `pickupTotal` int(20) DEFAULT NULL,
   `medicals` int(5) DEFAULT NULL,
-  `medicalsTotal` int(20) NOT NULL,
+  `medicalsTotal` int(20) DEFAULT NULL,
   `isActive` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -420,13 +424,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, `timeDeliver`, `create_time`, `role`, `salt`, `address`, `pickup`, `pickupTotal`, `medicals`, `medicalsTotal`, `isActive`) VALUES
-(3, '123123', 12333, '123@gmail.com', '2b3f9ff145a3bd6d0b3d', '123', '123', '0000-00-00', '1', 'incH45', 'volvo', 1, 2, 3, 5, 1),
+(3, '123123', 12333, '123@gmail.com', '2b3f9ff145a3bd6d0b3d', '123', '123', '0000-00-00', '1', 'incH45', 'Ora 910-6200 River Rd', 1, 2, 3, 5, 1),
 (8, '123123', 2147483647, '123@gmail.com', '33655145f604b47685346e60c82e1939c80a1a0275294916541e1c5ad370dd60', '123123', '123123', '0000-00-00', '1', 'krNQ4q', 'volvo', 0, 0, 0, 0, 0),
 (9, '321', 321, '123@gmail.com', 'b8db38c2f09709b63c1fe830df03f38fe30b510c7b7c0d11c4f917c6d93010a0', '321', '123', '0000-00-00', '1', '1neVB5', NULL, 0, 0, 0, 0, 0),
 (10, '123', 123, '123@gmail.com', '6ec9eac1929f9ec48ce48f9f73cf31ac701b7f644d4f45064edb95bbab6a8214', '123', '123', '0000-00-00', '1', 'eQez4m', NULL, 0, 0, 0, 0, 0),
 (11, '123', 123, '123@gmail.com', '446781f77401a0e74650b6515352ad11cd76e20dcd6b5d061566d3e3421b6b5c', '123', '123', '0000-00-00', '1', '7gHfIm', NULL, 0, 0, 0, 0, 0),
 (12, '1234', 1234, '1234@gmail.com', 'f0c411f690af6ec854b6037b0acdbad482f220430cc465bcf88bfe717fa4d604', '1234', '1234', '0000-00-00', '1', 'TKmrjj', NULL, 0, 0, 0, 0, 0),
-(13, '12345', 7788848, '123456@gmail.com', '5093b20eea0b161e1649c5ebe3e95d5733d0a916e84a493a47805c436f56c73b', '12345', '12345', '0000-00-00', '1', '2mfe0a', 'Ora 1502-6971 Hollybridge Way', 1, 0, 1, 0, 1),
+(13, '12345', 77878848, '123456@gmail.com', '5093b20eea0b161e1649c5ebe3e95d5733d0a916e84a493a47805c436f56c73b', '12345', '12345', '0000-00-00', '1', '2mfe0a', 'Ora 1003-6200 River Rd', 5, 0, 1, 0, 1),
 (14, '123456', 123456, '123456@gmail.com', '6315b3bdecf91090dd5f7f28e3aa9f956a4538c7f2f4e21c591214b2a71ca037', '123456', '123456', '2018-01-08', '1', 'i6hLHV', '???', 0, 0, 0, 0, 0),
 (15, '1231234', 44123123, '123@gmail.com', 'c69f7f5612cac6a4b228ecccfb61c89e8bb253e7588b631c2dd9cee827766b20', '123123', '123123', '2018-01-19', '1', 'exs0rs', NULL, 0, 0, 0, 0, 0),
 (16, '123123@', 123123, '123@gmail.com', 'd9e20f9597556dee95208e98da24d433ee6aef91ba487f6e4223a1ac11798d6c', '123', '123123', '2018-01-19', '1', 'juRHOx', NULL, 0, 0, 0, 0, 0),
@@ -524,13 +528,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `housekeeping_service`
@@ -548,13 +552,13 @@ ALTER TABLE `medical_service`
 -- AUTO_INCREMENT for table `pickup_service`
 --
 ALTER TABLE `pickup_service`
-  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `purchase_service`
 --
 ALTER TABLE `purchase_service`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `repair_service`
