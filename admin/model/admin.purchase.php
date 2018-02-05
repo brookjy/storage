@@ -59,7 +59,7 @@ Class Purchase{
             <th>客户名</th>
             <th>电话</th>";
             for ($i = 0; $i<$size; $i++) {
-                $tableString = $tableString . "<th>" . $this->itemChineseList[$i] ."<th>";
+                $tableString = $tableString . "<th>" . $this->itemChineseList[$i] ."</th>";
             }
         $tableString= $tableString . "</tr>
                         </thead> 
@@ -81,7 +81,7 @@ Class Purchase{
                         <td>".$Summary['username']."</td>
                         <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td>"; 
                 for ($i = 0; $i<$size; $i++) {
-                    $row = $row . "<th>" . $Summary[$this->itemList[$i]] ."<th>";
+                    $row = $row . "<th>" . $Summary[$this->itemList[$i]] ."</th>";
                 }
                 $row = $row . "</tr>";
             $tableString=$tableString.$row;
