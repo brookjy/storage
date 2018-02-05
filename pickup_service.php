@@ -57,20 +57,17 @@
                         <label>出发地：</label>
                         <select class="form-control" name="departure">
                             <option value="家">家</option>
-                            <option value="沃尔玛">沃尔玛</option>
-                            <option value="Super Store">Super Store</option>
-                            <option value="大统华">大统华</option>
-                            <option value="奥特莱斯">奥特莱斯</option>
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">
                         <label>目的地：</label>
                         <select class="form-control" name="destination">
-                            <option value="家">家</option>
                             <option value="沃尔玛">沃尔玛</option>
                             <option value="Super Store">Super Store</option>
                             <option value="大统华">大统华</option>
                             <option value="奥特莱斯">奥特莱斯</option>
+                            <option value="其他">其他</option>
+
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">

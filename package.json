@@ -1,31 +1,25 @@
 {
-    "title": "SB Admin",
-    "name": "startbootstrap-sb-admin",
-    "version": "4.0.0-beta.2",
-    "description": "A one page app landing page HTML theme for Bootstrap.",
+    "title": "领婴服务",
+    "name": "svacation",
+    "version": "1.0",
+    "description": "A service aim to provide some user services",
     "keywords": [
         "css",
         "sass",
         "html",
         "responsive",
-        "theme",
-        "template",
         "admin",
         "app"
     ],
-    "homepage": "https://startbootstrap.com/template-overviews/sb-admin",
-    "bugs": {
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin/issues",
-        "email": "feedback@startbootstrap.com"
-    },
+    "homepage": "https://www.leaderbb.com",
     "license": "MIT",
-    "author": "Start Bootstrap",
+    "author": "Brook",
     "contributors": [
-        "David Miller (http://davidmiller.io/)"
+        "Simon Meng"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin.git"
+        "url": "https://github.com/brookjy/storage"
     },
     "dependencies": {
         "bootstrap": "^4.0.0-beta.2",

@@ -1,1 +1,1 @@
-The storage system
+The user service for vacation reservation.
