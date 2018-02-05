@@ -56,21 +56,21 @@
                     <div class="form-group"  style="width:250px;">
                         <label>出发地：</label>
                         <select class="form-control" name="departure">
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
+                            <option value="家">家</option>
+                            <option value="沃尔玛">沃尔玛</option>
+                            <option value="Super Store">Super Store</option>
+                            <option value="大统华">大统华</option>
+                            <option value="奥特莱斯">奥特莱斯</option>
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">
                         <label>目的地：</label>
                         <select class="form-control" name="destination">
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
+                            <option value="家">家</option>
+                            <option value="沃尔玛">沃尔玛</option>
+                            <option value="Super Store">Super Store</option>
+                            <option value="大统华">大统华</option>
+                            <option value="奥特莱斯">奥特莱斯</option>
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">

@@ -785,7 +785,7 @@
                                         <h5 class="card-title">豆浆(甜)</h5>
                                         <div style="display:inline">
                                             <p style="display:inline">数量：</p>
-                                            <select class="form-control" name="doujiang" style="display:inline;width:60%;">
+                                            <select class="form-control" name="tiandoujiang" style="display:inline;width:60%;">
                                                 <option value= 0 >0</option>
                                                 <option value= 1 >1</option>
                                                 <option value= 2 >2</option>
@@ -800,7 +800,7 @@
                                         <h5 class="card-title">豆浆(原味)</h5>
                                         <div style="display:inline">
                                             <p style="display:inline">数量：</p>
-                                            <select class="form-control" name="tiandoujiang" style="display:inline;width:60%;">
+                                            <select class="form-control" name="doujiang" style="display:inline;width:60%;">
                                                 <option value= 0 >0</option>
                                                 <option value= 1 >1</option>
                                                 <option value= 2 >2</option>
