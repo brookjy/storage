@@ -66,8 +66,12 @@
                             <option value="Super Store">Super Store</option>
                             <option value="大统华">大统华</option>
                             <option value="奥特莱斯">奥特莱斯</option>
-                            <option value="其他">其他</option>
-
+                            <option value="母婴店">母婴店</option>
+                            <option value="八佰伴">八佰伴</option>
+                            <option value="Landsdown">Landsdown</option>
+                            <option value="Richmond Centre">Richmond Centre</option>
+                            <option value="Aberdeen Centre">Aberdeen Centre</option>
+                            <option value="丰泰超市">丰泰超市</option>
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">
