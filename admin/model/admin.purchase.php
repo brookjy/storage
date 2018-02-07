@@ -84,7 +84,11 @@ Class Purchase{
                         <td>".$Summary['address']."</td>"; 
 
                 for ($i = 0; $i<$size; $i++) {
-                    $row = $row . "<th>" . $Summary[$this->itemList[$i]] ."</th>";
+                    if ($Summary[$this->itemList[$i]] == 0) {
+                        $row = $row . "<th></th>";
+
+                    }
+                    else $row = $row . "<th>" . $Summary[$this->itemList[$i]] ."</th>";
                 }
                 $row = $row . "</tr>";
             $tableString=$tableString.$row;
@@ -98,11 +102,27 @@ Class Purchase{
                 printf("undefined pageType");
                 exit();
             }
-            $printString = "<br/><h5>" . $this->time ."一共";
-            for ($i = 0; $i<$size; $i++) {
-                $printString = $printString . $row2['sum(' . $this->itemList[$i] . ')'] . $this->itemChineseList[$i] . " ";
+            
+        $sumString ="<br/><br/>
+        <div class=\"table-responsive\">
+        <table class=\"table table-bordered\">
+        <tbody>
+        <tr>";
+            for ($i = 0; $i<19; $i++) {
+                $sumString = $sumString . "<th style='min-width:8rem'>" . $this->itemChineseList[$i] ." : ". $row2['sum(' . $this->itemList[$i] . ')']."</th>";
             }
-             echo $printString;
+            $sumString = $sumString ."</tr><tr>";
+            for ($i = 19; $i<$size; $i++) {
+                $sumString = $sumString . "<th style='min-width:9rem'>" . $this->itemChineseList[$i] ." : ". $row2['sum(' . $this->itemList[$i] . ')']."</th>";
+            }
+            $sumString= $sumString . "</tr>
+
+                        </tbody>
+                        </table>
+                        </div>";
+            $printString = "<br/><h5>" . $this->time ."一共 :";
+            echo $printString;
+            echo $sumString;
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div><br/>";
