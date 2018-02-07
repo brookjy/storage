@@ -31,10 +31,9 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
+        <h2><b>出行接送申请</b></h2>
+        <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <h2><b>出行接送申请</b></h2>
-            <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
-
             <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:300px;">
@@ -76,13 +75,18 @@
                     </div>
                     <div class="form-group"  style="width:250px;">
                         <label>人数:</label>
-                        <input type="text" class="form-control" name="num_ppl" />
+                        <select class="form-control" name="num_ppl">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        </select>
                     </div>
 
                     </fieldset>
                     <div class="form-group">
                         <label for="notes">备注信息：</label>
-                        <textarea class="form-control" name="additional" rows="3"></textarea>
+                        <textarea class="form-control" name="additional" rows="3" placeholder="几个大人，几个小孩。"></textarea>
                     </div>
                 <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="pickup_service">提交申请</button>
                 <br/>

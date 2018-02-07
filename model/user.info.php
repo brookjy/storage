@@ -19,19 +19,19 @@ class Profile{
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">电话: </label>
-                        <input tyle=\"text\" name=\"phone\" value=%d>
+                        <input type=\"text\" name=\"phone\" value=%d>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">email: </label>
-                        <input tyle=\"text\" name=\"email\" value=%s>
+                        <input type=\"text\" name=\"email\" value=%s>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">微信: </label>
-                        <input tyle=\"text\" name=\"weChat\" value=%s>
+                        <input type=\"text\" name=\"weChat\" value=%s>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">预产期: </label>
-                        <input tyle=\"text\" name=\"timeDeliver\" value=%s>
+                        <input type=\"date\" name=\"timeDeliver\" value=%s>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\" for=\"exampleInputEmail\">地址: </label>
@@ -78,7 +78,7 @@ class Profile{
             $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address'";
             $purchase_exist = $mysqli->query($purchase_query);
             if($purchase_exist->num_rows > 0){
-                echo "<script type=\"text/javascript\">alert('您的房屋已经预定了.任何问题请联系管理员！');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('您已经预定了本周采购.任何问题请联系管理员！');window.history.back();</script>";
                 exit();
             }
         }else{

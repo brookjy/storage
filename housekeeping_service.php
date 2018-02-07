@@ -31,10 +31,10 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
+        <h2><b>孕产服务申请</b></h2>
+        <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <h2><b>孕产服务申请</b></h2>
-            <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
-
+            <!-- Form Start -->
             <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
@@ -46,32 +46,30 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
                     <div class="form-group">
-                        <label>选择孕产服务：</label>
+                        <label>选择孕产服务(价格面议)：</label>
                         <table class="table table-striped">
-                        <tr>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check uncheck">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="accompany" type="checkbox" value="1">
-                                        陪产
-                                    </label>
-                                </div>
-                            </td>
-                            
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="maid" type="checkbox" value="1">
-                                        月嫂
-                                    </label>
-                                </div>
-                            </td>
-                            
-                        </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check uncheck">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" name="accompany" type="checkbox" value="1">
+                                            陪产
+                                        </label>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" name="maid" type="checkbox" value="1">
+                                            月嫂
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>  
                     </div>
                     <div class="form-group">
@@ -83,6 +81,7 @@
                     <br/>
                 </fieldset>
             </form>
+            <!-- Form Ends-->
             <br/>
         </div>
         </div>
