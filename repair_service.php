@@ -31,10 +31,9 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
+        <h2><b>住房维修申请</b></h2>
+        <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <h2><b>住房维修申请</b></h2>
-            <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
-
             <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
@@ -46,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <fieldset class="form-group">
+                    <div class="form-group">
                         <label>选择维修服务：</label>
                         <table class="table table-striped">
                         <tr>
@@ -86,7 +85,7 @@
                             </td>
                         </tr>
                         </table>  
-                    </fieldset>
+                    </div>
                     <div class="form-group">
                         <label for="exampleTextarea">备注信息：</label>
                         <textarea class="form-control" name="additionalNote" rows="3"></textarea>

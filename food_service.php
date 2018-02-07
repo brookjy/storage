@@ -40,7 +40,7 @@
                     if($check_foods->check_food()){
                 ?>
                 <h2><b>孕产订餐申请</b></h2>
-                <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
+                <br/>
                 <form action="./service_function.php" method="post">
                     <div class="container">
                         <div class="form-group">

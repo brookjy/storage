@@ -116,11 +116,11 @@
           <form action="./form_function.php" method="post">
             <input type="hidden" name="currentpage" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
             <div class="form-group">
-                <label for="exampleInputEmail1">用户名</label>
+                <label for="exampleInputEmail1">用户名(真实姓名)</label>
                 <input type="text" class="form-control" name="username" placeholder="用户名">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">电话</label>
+                <label for="exampleInputPassword1">电话(加拿大电话，可以先留国内电话再更新)</label>
                 <input type="text" class="form-control" name="phone" placeholder="电话">
             </div>
             <div class="form-group">
@@ -140,9 +140,10 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">预产期</label>
-                <input type="text" class="form-control" name="timeDeliver" placeholder="2018-1-1 12:00">
+                <input type="date" class="form-control" name="timeDeliver">
             </div>
             </div>
+            <p><span style="font-size:14px;padding-left:4%;color:red;">*我们将会确保您的信息安全，并且请您耐心等管理员激活您的账户.</span></p>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
                 <button type="submit" class="btn btn-primary" name="register">创建账号</button>

@@ -31,9 +31,10 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
+        <h2><b>医疗接送申请</b></h2>
+        <br/>
+        <!-- Form start -->
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <h2><b>医疗接送申请</b></h2>
-            <p>(我们会在第一时间办理您申请的服务，如果有急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
             <form action="./service_function.php" method="post">
                 <fieldset>
                 <p>(<span style="color:red;">*除婴儿以外最多可以接3个人</span>)</p>
@@ -76,6 +77,7 @@
                 <br/>
             </fieldset>
             </form>
+            <!-- Form Ends -->
             <br/>
         </div>
         </div>

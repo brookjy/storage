@@ -89,7 +89,7 @@ class Member{
                     if($mysqli->query($new_member_query)){
                         setcookie("uid", $salt, time()+86400);
                         setcookie("islogin", $salt, time()+86400);
-                        echo "<script type=\"text/javascript\">alert('欢迎，您已注册成功!');window.location.replace(\"$this->currentpage\");</script>";
+                        echo "<script type=\"text/javascript\">alert('欢迎，您已注册成功!');window.location.replace(\"./contact.php\");</script>";
                     }else{
                         printf("Registration failure: %s\n", $mysqli->error);
                         exit();
