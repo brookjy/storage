@@ -31,7 +31,15 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
-        <h2><b>出行接送申请</b></h2>
+        <h2><b>出行接送申请
+        <?php
+            include_once "./model/common.php";
+            include_once "./model/check.pickup.php";
+
+            $checked_pickup = new Check_Pickup;
+            $checked_pickup -> remainNum(); 
+        ?>
+        </b></h2>
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
             <form action="./service_function.php" method="post">

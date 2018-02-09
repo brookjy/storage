@@ -31,7 +31,15 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
-        <h2><b>医疗接送申请</b></h2>
+        <h2><b>医疗接送申请
+        <?php
+            include_once "./model/common.php";
+            include_once "./model/check.medical.php";
+
+            $checked_medical = new Check_Medical;
+            $checked_medical -> remainNum();     
+        ?>
+        </b></h2>
         <br/>
         <!-- Form start -->
         <div class="row" style="padding-left:20px;padding-right:20px;">

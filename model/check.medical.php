@@ -26,6 +26,23 @@ class Check_Medical{
             exit();
 		}
     }
+
+    public function remainNum(){
+        global $mysqli;
+
+        $user_id =  $_COOKIE['uid'];
+        $check_query="SELECT * FROM users WHERE salt = '$user_id'";
+        $result = $mysqli->query($check_query);
+        
+        if ($result->num_rows > 0){
+            $check_retrieve = $result->fetch_assoc();
+            echo "<span style=\"font-size:20px;color:red;\">剩余：". $check_retrieve['medicals'] . " 次</span>";
+
+		}else{
+            return null;
+		}
+    }
+
 }
 
 ?>
