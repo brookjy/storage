@@ -19,18 +19,10 @@ class Medical_Service{
         $serviceToken = rand(10, 100000);
         $time_now = time();
         $format_time = date("Y-m-d",$time_now);
-        
-        list($hour,$minute) = split('[ : ]', $this->timepicker);
-        $hour = str_replace(' ', '', $hour);
-        $minute = str_replace(' ', '', $minute);
-        $datetime = $this->time ." ". $hour . ":" . $minute;
-        
-        if(empty($hour) || empty($minute)){
-            echo "<script type=\"text/javascript\">alert('请选择时间! ');window.history.back();</script>"; 
-            exit();
-        }
 
-        if(empty($this->time)){
+        $datetime = $this->time ." ". $this->timepicker;
+
+        if(empty($this->time) || empty($this->timepicker)){
             echo "<script type=\"text/javascript\">alert('请选择您想要的服务时间! ');window.history.back();</script>"; 
         } else{
             if($this->check_dateToDelivery()){
