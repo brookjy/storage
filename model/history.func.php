@@ -23,7 +23,7 @@ class History{
                     <tr>
                     <td>%s</td>
                     <td>%s</td> 
-                    <td><a href=\"./history-Detail.php?type=%s&token=%s\" class=\"btn btn-warning\" style=\"cursor:pointer;\">详细信息</a></td>
+                    <td><a href=\"./history-detail.php?type=%s&token=%s\" class=\"btn btn-warning\" style=\"cursor:pointer;\">详细信息</a></td>
                     </tr>
                 ", $history['serviceType'], $history['time'], $history['serviceType'], $history['token']     );
             }
