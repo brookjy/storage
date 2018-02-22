@@ -55,6 +55,12 @@
             <span class="nav-link-text">孕产服务</span>
           </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="flight_service.php">
+            <i class="fa fa-fw fa-fighter-jet"></i>
+            <span class="nav-link-text">接机送机</span>
+          </a>
+        </li>
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">

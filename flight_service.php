@@ -2,20 +2,21 @@
 
     include_once "./component/header.php";
     include_once "./model/common.php";
-    include_once "./model/check.pickup.php";
+    include_once "./model/member.func.php";
+    include_once "./model/check.flight.php";
     
     //Check if the user is login
     if (!isset($_COOKIE['islogin'])) {
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
 
-    $checked_pickups = new Check_Pickup;
-    $checked_pickups -> check_pickup();
+    $checked_activate = new Check_Flight;
+    $checked_activate -> check_flight();
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="css/wickedpicker.min.css" />
 </head>
-
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     
@@ -31,78 +32,55 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
-        <h2><b>出行接送申请
+        <h2><b>接机送机服务申请
         <?php
             include_once "./model/common.php";
-            include_once "./model/check.pickup.php";
+            include_once "./model/check.flight.php";
 
-            $checked_pickup = new Check_Pickup;
-            $checked_pickup -> remainNum(); 
+            $checked_flight = new Check_Flight;
+            $checked_flight -> remainNum();     
         ?>
         </b></h2>
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
+            <!-- Form Start -->
             <form action="./service_function.php" method="post">
+                <input type="hidden" name="serviceType" value="接机送机">
                 <fieldset>
-                    <div class="form-group" style="width:300px;">
-                        <label>选择出行日期：</label>
+                    <div class="form-group" style="width:250px;">
+                        <label>选择时间：<span style="color:red;">*预约请提前一天</span></label>
                         <div class="col-xs-5 date">
                             <div class="form-group" >
                                 <label>日期: </label>
-                                <input type="date" name="date">
-                                <div style="color:red;">*预约时间请提前一天</div>
-                                <div style="color:red;">*目前仅周一和周三提供一次出行接送服务</div>
+                                <input type="date" name="time">
                             </div>
                         </div>
-
+                        <div class="col-xs-5 date">
+                            <div class="form-group" >
+                                <label>时间: </label>
+                                <input type="text" name="timepicker" class="timepicker"/>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="form-group"  style="width:250px;">
-                        <label>选择时间：</label>
-                        <select class="form-control" name="time">
-                            <option value="10:00AM - 11:30AM">10:00AM - 11:30AM</option>
-                            <option value="1:00PM - 1:30PM">1:00PM - 2:30PM</option>
-                        </select>
-                    </div>
-                    <div class="form-group"  style="width:250px;">
-                        <label>出发地：</label>
-                        <select class="form-control" name="departure">
-                            <option value="家">家</option>
-                        </select>
-                    </div>
-                    <div class="form-group"  style="width:250px;">
-                        <label>目的地：</label>
-                        <select class="form-control" name="destination">
-                            <option value="沃尔玛">沃尔玛</option>
-                            <option value="Super Store">Super Store</option>
-                            <option value="大统华">大统华</option>
-                            <option value="奥特莱斯">奥特莱斯</option>
-                            <option value="母婴店">母婴店</option>
-                            <option value="八佰伴">八佰伴</option>
-                            <option value="Landsdown">Landsdown</option>
-                            <option value="Richmond Centre">Richmond Centre</option>
-                            <option value="Aberdeen Centre">Aberdeen Centre</option>
-                            <option value="丰泰超市">丰泰超市</option>
-                        </select>
-                    </div>
-                    <div class="form-group"  style="width:250px;">
-                        <label>人数:</label>
-                        <select class="form-control" name="num_ppl">
+                        <label>预定出车数量: </label>
+                        <select class="form-control" name="numCars">
                             <option value=1>1</option>
                             <option value=2>2</option>
                             <option value=3>3</option>
-                            <option value=4>4</option>
                         </select>
                     </div>
-
-                    </fieldset>
                     <div class="form-group">
-                        <label for="notes">备注信息：</label>
-                        <textarea class="form-control" name="additional" rows="3" placeholder="几个大人，几个小孩等。"></textarea>
+                        <label for="exampleTextarea">备注信息：</label>
+                        <textarea class="form-control" name="additionalNote" rows="3"></textarea>
                     </div>
-                <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="pickup_service">提交申请</button>
-                <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="flight_service" >提交申请</button>
+                    <br/>
                 </fieldset>
             </form>
+            <!-- Form Ends-->
             <br/>
         </div>
         </div>
@@ -130,11 +108,11 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
+        <script type="text/javascript" src="js/wickedpicker.min.js"></script>
         <script>
-
             var today = new Date().toISOString().split('T')[0];
-            document.getElementsByName("date")[0].setAttribute('min', today);
-            document.getElementsByName("date")[0].value=today;
+            document.getElementsByName("time")[0].setAttribute('min', today);
+            document.getElementsByName("time")[0].value=today;
 
             var tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 5);
@@ -144,6 +122,16 @@
                     minDate: tomorrow
                 });
             });
+
+            var current = new Date();
+            var time = current.getHours() + ":00";
+            var options = {
+                now: time,
+                twentyFour:true,
+                title: '选择时间',
+                timeSeparator: ':',
+            }
+            $('.timepicker').wickedpicker(options);
         </script>   
     </div>
 </body>
