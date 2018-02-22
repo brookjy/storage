@@ -76,12 +76,16 @@ Class Pickup{
         $total=$row['count(*)'];
 		if(sizeof($result->data) > 0){
             foreach($result->data as $Summary){
+
+                list($am, $pm,$third) = explode('AM', $Summary['time']);
+                list($nothing, $dash,$pm2) = explode(' ', $pm);
+
                 $row = "
                     <tr>
                         <td>".$Summary['uid']."</td>
                         <td>".$Summary['username']."</td>
                         <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td> 
-                        <td>".$Summary['time']."</td> 
+                        <td>".$Summary['date']." ".$am.$dash.$pm2."</td> 
                         <td>".$Summary['departure']."</td> 
                         <td>".$Summary['destination']."</td> 
                         <td>".$Summary['num_ppl']."</td> 

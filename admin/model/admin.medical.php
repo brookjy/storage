@@ -75,7 +75,7 @@ Class Pickup{
 		if(sizeof($result->data) > 0){
             foreach($result->data as $Summary){
                 $time = new DateTime($Summary['time']);
-                $time = $time->format('m-d G:i');
+                $time = $time->format('Y-m-d G:i');
                 $row = "
                     <tr>
                         <td>".$Summary['uid']."</td>
