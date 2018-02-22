@@ -134,6 +134,21 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-md-3 col-sm-6 col-xsx-6">
+                    <a href="flight_service.php">  
+                        <div class="serviceBox orange">
+                            <div class="service-icon">
+                                <span><i class="fa fa-fighter-jet"></i></span>
+                            </div>
+                            <div class="service-content">
+                                <h3 class="title">接机送机</h3>
+                                <p class="description">以人为本，服务至上, 品质第一</p>
+                                <a href="housekeeping_service.php" class="read-more fa fa-plus" data-toggle="tooltip" title="点击申请"></a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 
             </div><!--End row-->
         </div><!--End container-->

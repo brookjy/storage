@@ -127,7 +127,11 @@
                     minDate: tomorrow
                 });
             });
+
+            var current = new Date();
+            var time = current.getHours() + ":00";
             var options = {
+                now: time,
                 twentyFour:true,
                 title: '选择时间',
                 timeSeparator: ':',

@@ -10,6 +10,7 @@ class User_Permission{
     private $weChat;
     private $timeDeliver;
     private $address;
+    private $special_medical;
     private $pickup;
     private $pickupTotal;
     private $medicals;
@@ -25,6 +26,7 @@ class User_Permission{
 		$this->weChat = isset($_POST['weChat']) ? $_POST['weChat'] : null;
 		$this->timeDeliver = isset($_POST['timeDeliver']) ? $_POST['timeDeliver'] : null;
         $this->address = isset($_POST['address']) ? $_POST['address'] : null;
+        $this->special_medical = isset($_POST['special_medical']) ? $_POST['special_medical'] : null;
         $this->pickup = isset($_POST['pickup']) ? $_POST['pickup'] : null;
         $this->pickupTotal = isset($_POST['pickupTotal']) ? $_POST['pickupTotal'] : null;
         $this->medicals = isset($_POST['medicals']) ? $_POST['medicals'] : null;
@@ -50,6 +52,7 @@ class User_Permission{
                         <th>预产期</th> 
                         <th>Email</th> 
                         <th>微信</th> 
+                        <th>专科医生</th>
                         <th>剩余出行</th> 
                         <th>出行总数</th>
                         <th>剩余医疗</th> 
@@ -71,7 +74,8 @@ class User_Permission{
                                 <td>%s</td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
-                                <td>%d</td>
+                                <td>%s</td> 
+                                <td>%s</td>
                                 <td>%d</td> 
                                 <td>%d</td>
                                 <td>%d</td> 
@@ -79,7 +83,7 @@ class User_Permission{
                                 <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"user_modify\">修改</button></td> 
                             </tr> 
                             </form>
-                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'],  $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'], $result['isActive']);
+                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'], $result['special_medical'], $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'], $result['isActive']);
             }
             echo sprintf(" 
                     </tbody> 
@@ -160,6 +164,10 @@ class User_Permission{
                         </select>
                         </div>
                         <div class=\"form-group\">
+                        <label style=\"width:80px;\">专科医生: </label>
+                        <input tyle=\"text\" name=\"special_medical\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
                         <label style=\"width:80px;\">剩余出行: </label>
                         <input tyle=\"text\" name=\"pickup\" value=%d>
                         </div>
@@ -185,7 +193,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
+                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{
@@ -198,7 +206,7 @@ class User_Permission{
         GLOBAL $mysqli;
 
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal', isActive='$this->isActive' WHERE salt = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address',special_medical='$this->special_medical', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal', isActive='$this->isActive' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
         }else{
