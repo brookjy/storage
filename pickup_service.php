@@ -45,13 +45,16 @@
             <form action="./service_function.php" method="post">
                 <fieldset>
                     <div class="form-group" style="width:300px;">
-                        <label>选择出行日期：<span style="color:red;">*预约时间请提前一天</span></label>
+                        <label>选择出行日期：</label>
                         <div class="col-xs-5 date">
                             <div class="form-group" >
                                 <label>日期: </label>
                                 <input type="date" name="date">
+                                <div style="color:red;">*预约时间请提前一天</div>
+                                <div style="color:red;">*目前仅周一和周三提供一次出行接送服务</div>
                             </div>
                         </div>
+
                     </div>
                     <div class="form-group"  style="width:250px;">
                         <label>选择时间：</label>

@@ -75,7 +75,7 @@ Class Pickup{
 		if(sizeof($result->data) > 0){
             foreach($result->data as $Summary){
                 $time = new DateTime($Summary['time']);
-                $time = $time->format('G:i');
+                $time = $time->format('m-d G:i');
                 $row = "
                     <tr>
                         <td>".$Summary['uid']."</td>
@@ -97,7 +97,7 @@ Class Pickup{
                 printf("undefined pageType");
                 exit();
             }
-             echo sprintf( "<br/><h5>%s一共%d项接送服务</h5>",$this->time, $total);
+             echo sprintf( "<br/><h5>%s一共%d项医疗接送服务</h5>",$this->time, $total);
              $pageString=$Paginator->createLinks($pageType,$links, 'pagination pagination-sm');
             }else{
             $tableString=$tableString."</table></div>";

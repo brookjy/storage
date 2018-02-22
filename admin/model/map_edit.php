@@ -1,6 +1,6 @@
 <?php if(!defined('In_System')) exit("Access Denied");
 
-class User_Permission{
+class MapEdit{
     private $aid;
     private $address;
     private $type;
@@ -17,7 +17,7 @@ class User_Permission{
         $this->update_at = isset($_POST['update_at']) ? $_POST['update_at'] : null;
     }
     
-    public function generatePermission(){
+    public function mapEdit(){
         GLOBAL $mysqli;
 
         $map_query = "SELECT * FROM address";
@@ -40,101 +40,97 @@ class User_Permission{
             ");
             foreach( $results as $result){
                 echo sprintf(" 
-                            <form action=\"./edit.php\" method=\"post\">
+                            <form action=\"../map/edit.php\" method=\"post\">
                             <tr>
                             <th scope=row><input type=\"hidden\" name= \"aid\" value= %d>%d</th>
                                 <td>%s</td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
                                 <td>%s</td> 
-                                <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"map_delete\">删除</button></td> 
+                                <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"deleteAddress\">删除</button></td> 
                             </tr> 
                             </form>
                 ", $result['aid'],$result['aid'], $result['address'],  $result['type'], $result['lat'], $result['lng']);
             }
+            echo "<form action=\"../map/edit.php\" method=\"post\">
+                  <tr>
+                    <th>
+
+                    </th> 
+                    <th>
+                        <div class=\"form-group\">
+                            <input tyle=\"text\" name=\"address\" placeholder='地址'>
+                        </div>
+                    </th>
+                    <th>
+                        <div class=\"form-group\">
+                            <select name=\"type\">
+                                <option value=\"apt\">apt</option>
+                                <option value=\"house\">house</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th>
+                        <div class=\"form-group\">
+                            <input tyle=\"text\" name=\"lat\" placeholder='纬度'>
+                        </div>
+                    </th>
+                    <th>
+                        <div class=\"form-group\">
+                            <input tyle=\"text\" name=\"lng\" placeholder='经度'>
+                        </div>
+                    </th>
+                    <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"addNewAddress\">添加</button></td>
+                </tr> 
+                </form>";
             echo sprintf(" 
                     </tbody> 
                     </table>
                 </div>");
-			return 1;
 		}else{
-			return 0;
+			echo sprintf(" 
+            <div class=\"table-responsive\">
+                <table class=\"table table-bordered\">
+                    <thead> 
+                        <tr> 
+                            <th>addressID</th>  
+                            <th>地址</th>
+                            <th>类别</th> 
+                            <th>纬度</th> 
+                            <th>经度</th> 
+                            <th>删掉</th>
+                        </tr> 
+                    </thead>  
+                </table>
+            </div>");
 		}
-        $results->free();
     }
 
-    public function user_modify(){
-
+    public function addNewAddress(){
+        $current = new DateTime('today');
+        $current = $current->format('Y-m-d');
         GLOBAL $mysqli;
-
-        $map_query = "SELECT * FROM address WHERE aid = '$this->aid'";
-		$profile_exist = $mysqli->query($map_query);
-		if($profile_exist->num_rows > 0){
-            $profile_retrieve = $profile_exist->fetch_assoc();
-            echo sprintf("<form action=\"./admin_function.php\" method=\"post\">
-
-                        <input type=\"hidden\" name=\"salt\" value=%s>
-                        <div class=\"form-group\">
-                        <label style=\"width:80px;\" for=\"exampleInputEmail\">用户名: </label>
-                        <label>%s</label>
-                        </div>
-                        </div>
-                        <div class=\"form-group\">
-                        <label style=\"width:80px;\" for=\"exampleInputEmail\">地址: </label>
-                        <select name=\"address\">
-                            <option value=\"volvo\">Volvo</option>
-                            <option value=\"saab\">Saab</option>
-                            <option value=\"opel\">Opel</option>
-                            <option value=\"audi\">Audi</option>
-                        </select>
-                        </div>
-                        <div class=\"form-group\">
-                        <label style=\"width:80px;\">剩余出行: </label>
-                        <input tyle=\"text\" name=\"type\" value=%d>
-                        </div>
-                        <div class=\"form-group\">
-                        <label style=\"width:80px;\">出行总数: </label>
-                        <input tyle=\"text\" name=\"lat\" value=%d>
-                        </div>
-                        <div class=\"form-group\">
-                        <label style=\"width:80px;\">剩余医疗: </label>
-                        <input tyle=\"text\" name=\"lng\" value=%d>
-                        </div>
-                        <br/>
-                        <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
-                        <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form>", $profile_retrieve['aid'], $profile_retrieve['address'], $profile_retrieve['type'], $profile_retrieve['lat'], $profile_retrieve['lng']);
-            /*cookies expire in 7 days*/
-			return 1;
-		}else{
-			return 0;
-		}
-        $profile_exist->free();
-    }
-
-    public function update_user(){
-        GLOBAL $mysqli;
-
-        /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', type ='$this->type', lat ='$this->lat', lng='$this->lng', update_at ='$this->update_at', isActive='$this->isActive' WHERE salt = '$this->salt' ";
-        if($mysqli->query($update_query)){
-            echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
+        if ($this->address==null || $this->lat==null || $this->lng==null) {
+            echo "<script type=\"text/javascript\">alert('添加地址的所有选项不能为空! ');window.history.back();</script>"; 
+            return;
+        }
+        $map_query = "INSERT INTO address (address, type, lat, lng, update_at) VALUES ('$this->address', '$this->type', '$this->lat', '$this->lng','$current')";
+        if($mysqli->query($map_query)){
+            echo "<script type=\"text/javascript\">alert('添加地址成功!');window.history.back();</script>";
         }else{
-            printf("Registration failure: %s\n", $mysqli->error);
+            printf("添加地址失败！ %s\n", $mysqli->error);
             exit();
         }
-
     }
 
-    public function delete_user(){
+    public function deleteAddress(){
         GLOBAL $mysqli;
-        
         /* Delete DB if the user change or junk*/
-        $Delete_query = "DELETE FROM users WHERE salt = '$this->salt' ";
+        $Delete_query = "DELETE FROM address WHERE aid = '$this->aid' ";
         if($mysqli->query($Delete_query)){
-            echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
+            echo "<script type=\"text/javascript\">alert('您已成功删除地址！');window.history.back();</script>";
         }else{
-            printf("Registration failure: %s\n", $mysqli->error);
+            printf("删除地址失败: %s\n", $mysqli->error);
             exit();
         }
 
