@@ -3,15 +3,15 @@
     include_once "./component/header.php";
     include_once "./model/common.php";
     include_once "./model/member.func.php";
-    include_once "./model/check.activate.php";
+    include_once "./model/check.flight.php";
     
     //Check if the user is login
     if (!isset($_COOKIE['islogin'])) {
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
 
-    $checked_activate = new Check_Activate;
-    $checked_activate -> check_activate();
+    $checked_activate = new Check_Flight;
+    $checked_activate -> check_flight();
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
@@ -32,7 +32,15 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
-        <h2><b>接机送机服务申请</b></h2>
+        <h2><b>接机送机服务申请
+        <?php
+            include_once "./model/common.php";
+            include_once "./model/check.flight.php";
+
+            $checked_flight = new Check_Flight;
+            $checked_flight -> remainNum();     
+        ?>
+        </b></h2>
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
             <!-- Form Start -->

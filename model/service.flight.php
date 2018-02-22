@@ -28,9 +28,16 @@ class Flight_Service{
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                $flight_service_query = "INSERT INTO flight_service (user, time, numCars, additionalNote) VALUES ('$user_id', '$full_date', '$this->numCars', '$this->additionalNote')";
+                $flight_service_query = "INSERT INTO flight_service (user, serviceToken, time, numCars, additionalNote) VALUES ('$user_id', '$serviceToken','$full_date', '$this->numCars', '$this->additionalNote')";
                 if($mysqli->query($flight_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
+                }else{
+                    printf("Registration failure: %s\n", $mysqli->error);
+                    exit();
+                }
+                
+                $update_flight_query = "UPDATE users SET flight = flight-1 WHERE salt = '$user_id'";
+                if($mysqli->query($update_flight_query)){
                 }else{
                     printf("Registration failure: %s\n", $mysqli->error);
                     exit();
