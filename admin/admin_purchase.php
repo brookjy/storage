@@ -39,6 +39,8 @@
             $purchasePage->nextWeekListing();  
         } elseif ($_GET['pageType'] == "twoWeekLater") {
             $purchasePage->twoWeekLater();  
+        } elseif ($_GET['pageType'] == "summary") {
+            $purchasePage->summary();  
         }?>
         <br/><br/>
     </div>

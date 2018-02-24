@@ -3,11 +3,11 @@
     include_once "../component/adminHeader.php";
     include_once "./model/common.php";
     include_once "./model/admin_paginator.php";
-    include_once "./model/admin.medical.php";
+    include_once "./model/admin.flight.php";
     
     if(!defined('In_System')) exit("Access Denied");
 
-    $pickupPage = new Pickup();
+    $flightPage = new Flight();
     
     //Check if the admin is login
     if (!isset($_COOKIE['isAdminLogin'])) { 
@@ -18,7 +18,7 @@
 ?>
 <body>
     <div class="container-fluid">
-        <h3>--医疗接送后台--</h3>
+        <h3>--接机送机后台--</h3>
         <div class="row">
             
             <div class="col-xs-6 col-sm-4" style="padding-top:10px;">
@@ -55,19 +55,19 @@
             exit();
         }
         if ($_GET['pageType'] == "today") {
-            $pickupPage->todayListing(); 
+            $flightPage->todayListing(); 
         } elseif ($_GET['pageType'] == "tomorrow") {
-            $pickupPage->tomorrowListing();  
+            $flightPage->tomorrowListing();  
         } elseif ($_GET['pageType'] == "twoDaysLater") {
-            $pickupPage->twoDaysLater();  
+            $flightPage->twoDaysLater();  
         }elseif ($_GET['pageType'] == "threeDaysLater") {
-            $pickupPage->threeDaysLater();  
+            $flightPage->threeDaysLater();  
         }elseif ($_GET['pageType'] == "fourDaysLater") {
-            $pickupPage->fourDaysLater();  
+            $flightPage->fourDaysLater();  
         } elseif ($_GET['pageType'] == "fiveDaysLater") {
-            $pickupPage->fiveDaysLater();  
-        }elseif ($_GET['pageType'] == "summary") {
-            $pickupPage->summaryListing();  
+            $flightPage->fiveDaysLater();  
+        } elseif ($_GET['pageType'] == "summary") {
+            $flightPage->summary();  
         }?>
             
     </div>

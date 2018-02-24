@@ -8,12 +8,16 @@ Class Housekeeping{
     public function totalQuery($time) {
         return "select sum(accompany), sum(maid) from ".$this->table. " where ".$this->condition."(".$time.")";
     }
+    public function summary(){
+        $query="SELECT ". $this->stats." from ".$this->table. " ORDER BY housekeeping_service.hid DESC";
+        $this->time = "（所有记录，含过期）";    
+        $this->showResult($query, "select sum(accompany), sum(maid) from ".$this->table);
+    }
     public function thisMonthListing(){
         $query="SELECT ". $this->stats." from ".$this->table. " where ".$this->condition."(CURDATE())";
         $this->time = "本月";    
         $this->showResult($query, $this -> totalQuery("CURDATE()"));
     }
-
     public function nextMonthListing(){
         $query="SELECT ". $this->stats." FROM ".$this->table. " WHERE ".$this->condition."(CURDATE()+ INTERVAL 1 MONTH)";
         $this->time = "下月";

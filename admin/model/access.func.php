@@ -28,7 +28,7 @@ class AccessAd{
                 }
                 if($permission === "2"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./admin_medical.php?pageType=today\">医疗接送</a><br/>  
+                        <a class=\"btn\" href=\"./admin_medical.php?pageType=summary\">医疗接送</a><br/>  
                     ");
                 }
                 if($permission === "3"){
@@ -38,22 +38,27 @@ class AccessAd{
                 }
                 if($permission === "4"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./admin_purchase.php?pageType=thisWeek\">采购服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_purchase.php?pageType=summary\">采购服务</a><br/>   
                     ");
                 }
                 if($permission === "5"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./admin_repair.php?pageType=today\">住房维修</a><br/>   
+                        <a class=\"btn\" href=\"./admin_repair.php?pageType=summary\">住房维修</a><br/>   
                     ");
                 }
                 if($permission === "6"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./admin_pickup.php?pageType=today\">出行服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_pickup.php?pageType=summary\">出行服务</a><br/>   
                     ");
                 }
                 if($permission === "7"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./admin_housekeeping.php?pageType=thisMonth\">孕产服务</a><br/>   
+                        <a class=\"btn\" href=\"./admin_housekeeping.php?pageType=summary\">孕产服务</a><br/>   
+                    ");
+                }
+                if($permission === "7"){
+                    echo sprintf("
+                        <a class=\"btn\" href=\"./admin_flight.php?pageType=summary\">接机送机</a><br/>   
                     ");
                 }
                 if($permission === "8"){

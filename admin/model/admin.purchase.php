@@ -26,13 +26,26 @@ Class Purchase{
         }
         return $totalString . " from ".$this->table. " where ".$condition;
     }
+    public function summary(){
+        $condition = "";
+        $query="SELECT ". $this->completeStates." from ".$this->table. " ORDER BY purchase_service.pid DESC";
+        $this->time = "（所有记录，含过期）";    
+        $size = sizeof($this->itemList);
+        $totalString = "select sum(doujiang)";
+        $i = 1;
+        while ($i<$size){
+            $totalString = $totalString . ",sum(" . $this->itemList[$i] . ")";
+            $i++;
+        }
+        $totalString = $totalString . " from ".$this->table;
+        $this->showResult($query, $totalString);
+    }
     public function thisWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')+2))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-4))";
         $query="SELECT ". $this->completeStates." from ".$this->table. " where ".$condition;
         $this->time = "上周五到这周四";    
         $this->showResult($query, $this -> totalQuery($condition));
     }
-
     public function nextWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-5))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-11))";
         $query="SELECT ". $this->completeStates." FROM ".$this->table. " WHERE ".$condition;

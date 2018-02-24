@@ -5,6 +5,12 @@ Class Pickup{
     public function totalQuery($time) {
         return "select count(*) FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(".$time.")";
     }
+    public function summary(){
+        $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user ORDER BY pickup_service.pid DESC";
+        $this->time = "（所有记录，含过期）";
+        $this->showResult($query,"select count(*) FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user");
+    }
+
     public function todayListing(){
         $query="SELECT users.uid,users.username,users.phone,pickup_service.date,pickup_service.time,pickup_service.departure,pickup_service.destination,pickup_service.additional,pickup_service.num_ppl FROM pickup_service INNER JOIN users ON users.salt=pickup_service.user WHERE DATE(pickup_service.date) = DATE(CURDATE())";
         $this->time = "今天";

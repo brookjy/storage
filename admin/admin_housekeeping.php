@@ -38,6 +38,8 @@
             $housekeepingPage->nextMonthListing();  
         } elseif ($_GET['pageType'] == "twoMonthLater") {
             $housekeepingPage->twoMonthLater();  
+        }elseif ($_GET['pageType'] == "summary") {
+            $housekeepingPage->summary();  
         }?>
         <br/><br/>
     </div>

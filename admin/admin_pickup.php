@@ -66,6 +66,8 @@
             $pickupPage->fourDaysLater();  
         } elseif ($_GET['pageType'] == "fiveDaysLater") {
             $pickupPage->fiveDaysLater();  
+        } elseif ($_GET['pageType'] == "summary") {
+            $pickupPage->summary();  
         }?>
             
     </div>

@@ -5,6 +5,11 @@ Class Pickup{
     public function totalQuery($time) {
         return "select count(*) FROM medical_service INNER JOIN users ON users.salt=medical_service.user WHERE DATE(medical_service.time) = DATE(".$time.")";
     }
+    public function summaryListing(){
+        $query="SELECT users.uid,users.username,users.phone,medical_service.time,medical_service.additional,medical_service.medicalServiceType FROM medical_service INNER JOIN users ON users.salt=medical_service.user ORDER BY medical_service.sid DESC";
+        $this->time = "";
+        $this->showResult($query, "select count(*) FROM medical_service INNER JOIN users ON users.salt=medical_service.user");
+    }
     public function todayListing(){
         $query="SELECT users.uid,users.username,users.phone,medical_service.time,medical_service.additional,medical_service.medicalServiceType FROM medical_service INNER JOIN users ON users.salt=medical_service.user WHERE DATE(medical_service.time) = DATE(CURDATE())";
         $this->time = "今天";

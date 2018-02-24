@@ -10,11 +10,14 @@ Class Food{
         return $totalQuerys;
     }
     public function foodSummaryListing(){
-        $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate)) GROUP BY users.uid";
-        $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user WHERE ( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate))";
-        $this->time = "今天";
-        $totalQuery = $this->totalQuery("( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate))"," and( DATE(food_service.startDate) <= DATE(CURDATE()) AND DATE(CURDATE()) <= DATE(food_service.endDate))");
-        $this->showResult($query1,$query2, $totalQuery);
+        $query1="SELECT users.uid,users.username,users.phone,food_service.serviceType,food_service.num_ppl,food_service.address FROM food_service INNER JOIN users ON users.salt=food_service.user ORDER BY food_service.sid DESC";
+        $query2="SELECT users.uid,food_service.serviceType,food_service.address,food_service.num_ppl FROM food_service INNER JOIN users ON users.salt=food_service.user";
+        $this->time = "（所有记录，含过期）";
+        $type1Pregnant = "select count(*) from food_service WHERE (food_service.serviceType='宝妈月子餐') OR (food_service.serviceType='宝妈月子餐')";
+        $type2Pregnant = "select count(*) from food_service WHERE (food_service.serviceType='宝妈待产餐') OR (food_service.serviceType='宝妈月子餐')";
+        $type2Family = "select sum(num_ppl) from food_service WHERE food_service.serviceType='待产餐'";
+        $totalQuerys = [$type1Pregnant, $type2Pregnant, $type2Family];
+        $this->showResult($query1,$query2, $totalQuerys);
     }
 
     public function thisBreakfastListing(){

@@ -15,6 +15,7 @@ class User_Permission{
     private $pickupTotal;
     private $medicals;
     private $medicalsTotal;
+    private $flight;
     private $isActive;
 
     public function __construct() {
@@ -31,6 +32,7 @@ class User_Permission{
         $this->pickupTotal = isset($_POST['pickupTotal']) ? $_POST['pickupTotal'] : null;
         $this->medicals = isset($_POST['medicals']) ? $_POST['medicals'] : null;
         $this->medicalsTotal = isset($_POST['medicalsTotal']) ? $_POST['medicalsTotal'] : null;
+        $this->flight = isset($_POST['flight']) ? $_POST['flight'] : null;
         $this->isActive = isset($_POST['isActive']) ? $_POST['isActive'] : null;
     }
     
@@ -57,6 +59,7 @@ class User_Permission{
                         <th>出行总数</th>
                         <th>剩余医疗</th> 
                         <th>医疗总数</th>
+                        <th>接送机数</th>
                         <th>激活</th>
                         <th>修改</th>
                     </tr> 
@@ -80,10 +83,11 @@ class User_Permission{
                                 <td>%d</td>
                                 <td>%d</td> 
                                 <td>%d</td> 
+                                <td>%d</td> 
                                 <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"user_modify\">修改</button></td> 
                             </tr> 
                             </form>
-                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'], $result['special_medical'], $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'], $result['isActive']);
+                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'], $result['special_medical'], $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'],$result['flight'], $result['isActive']);
             }
             echo sprintf(" 
                     </tbody> 
@@ -184,6 +188,10 @@ class User_Permission{
                         <input tyle=\"text\" name=\"medicalsTotal\" value=%d>
                         </div>
                         <div class=\"form-group\">
+                        <label style=\"width:80px;\">接送机数: </label>
+                        <input tyle=\"text\" name=\"flight\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
                         <label style=\"width:80px;\">激活: </label>
                         <select name=\"isActive\">
                         <option value = 1>是</option>
@@ -193,7 +201,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
+                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['flight'],$profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{
@@ -206,7 +214,7 @@ class User_Permission{
         GLOBAL $mysqli;
 
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address',special_medical='$this->special_medical', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal', isActive='$this->isActive' WHERE salt = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address',special_medical='$this->special_medical', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal',flight ='$this->flight', isActive='$this->isActive' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
         }else{

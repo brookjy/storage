@@ -72,6 +72,7 @@ class Paginator {
         $class = ( $this->_page == $last ) ? "disabled" : "";
         $html .= '<li class="' . $class . '"><a href="?pageType='.$pageType.'&limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">&raquo;</a></li>';
         $html .= '</ul>';
+        $html .= '<br/><br/>';
         $html .= '<style>                
                     .pagination a {
                         color: black;
@@ -79,12 +80,10 @@ class Paginator {
                         padding: 8px 16px;
                         text-decoration: none;
                     }
-                    
                     .pagination a.active {
                         background-color: #4CAF50;
                         color: white;
                     }
-                    
                     .pagination a:hover:not(.active) {background-color: #ddd;}
                 </style>';
         return $html;

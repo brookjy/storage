@@ -66,6 +66,8 @@
             $repairPage->fourDaysLater();  
         } elseif ($_GET['pageType'] == "fiveDaysLater") {
             $repairPage->fiveDaysLater();  
+        } elseif ($_GET['pageType'] == "summary") {
+            $repairPage->summary();  
         }?>
             
     </div>
