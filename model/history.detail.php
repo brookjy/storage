@@ -239,21 +239,15 @@ class DetailHistory{
             if($detail_retrieve->num_rows > 0) {
                 $detail_result = $detail_retrieve->fetch_assoc();
                 $services="";
-                if ($detail_result['water']  == 1){
-                    $services .= " 水, ";
+                if ($detail_result['finish']  == 1){
+                    $services = "已完成";
                 }
-                if($detail_result['gas']  == 1){
-                    $services .= " 煤气, ";
-                }
-                if($detail_result['electric']  == 1){
-                    $services .= " 电, ";
-                }
-                if($detail_result['other']  == 1){
-                    $services .= " 其他 ";
+                if($detail_result['finish']  == 0){
+                    $services = "进行中";
                 }
                 echo sprintf("<table class=\"table table-hover table-info\">
                         <tr>
-                            <td>时间</td>
+                            <td>提交时间</td>
                             <td>%s</td>
                         </tr>
                         <tr>
@@ -261,11 +255,15 @@ class DetailHistory{
                             <td>%s</td>
                         </tr>
                         <tr>
-                            <td>备注信息</td>
+                            <td>工作人员回复</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>状态</td>
                             <td>%s</td>
                         </tr>
                     </table>
-                ", $detail_result['time'], $services, $detail_result['additionalNote']);
+                ", $detail_result['time'], $detail_result['repairNote'], $detail_result['replyNote'], $services);
             }else{
                 echo "您要的信息不存在！";
             }

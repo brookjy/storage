@@ -29,7 +29,9 @@
     <!-- date-picker styles-->
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
-
+<br/>
+<body>
+<div style="padding-left:8%;padding-right:8%;">
  <h3>--地图管理后台--</h3>
  <br/>
 <?php 
@@ -47,8 +49,10 @@
 	} 
 ?>
 <br/><br/>
+<a href="../admin_access.php"><span style="font-size:20px;"><b><-返回菜单</b></span></a>
 <?php 
     include_once "../../component/adminFooter.php";
 ?>
+</div>
 </body>
 </html>

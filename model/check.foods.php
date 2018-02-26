@@ -6,7 +6,7 @@ class Check_Foods{
     public function check_food(){
         GLOBAL $mysqli;
         $user_id =  $_COOKIE['uid'];
-        $check_query="SELECT * FROM food_service WHERE user = '$user_id' AND (serviceType = '宝妈待产餐' OR serviceType = '宝妈月子餐')";
+        $check_query="SELECT * FROM food_service WHERE user = '$user_id' AND (serviceType = '宝妈待产餐' OR serviceType = '宝妈月子餐') AND display = 1";
         $result = $mysqli->query($check_query);
         if ($result->num_rows > 0){
             $check_retrieve = $result->fetch_assoc();

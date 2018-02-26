@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2018 at 09:15 PM
+-- Generation Time: Feb 27, 2018 at 12:47 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -84,6 +84,14 @@ CREATE TABLE `flight_service` (
   `additionalNote` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `flight_service`
+--
+
+INSERT INTO `flight_service` (`fid`, `serviceToken`, `user`, `time`, `numCars`, `additionalNote`) VALUES
+(1, '14483', 'kqdo4b', '2018-02-28 10:00:00', 2, '带我打无'),
+(2, '31658', 'kqdo4b', '2018-03-07 10:00:00', 1, '打撒奥');
+
 -- --------------------------------------------------------
 
 --
@@ -101,8 +109,19 @@ CREATE TABLE `food_service` (
   `endTime` varchar(5) COLLATE utf8_bin NOT NULL,
   `num_ppl` int(3) DEFAULT NULL,
   `address` varchar(5) COLLATE utf8_bin DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `display` int(10) NOT NULL DEFAULT '1',
   `finish` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `food_service`
+--
+
+INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `startDate`, `startTime`, `endDate`, `endTime`, `num_ppl`, `address`, `createdAt`, `display`, `finish`) VALUES
+(3, '0GtwFX', '88415 ', '宝妈月子餐', '2018-02-23', '早', '2018-02-24', '早', NULL, '医院', '0000-00-00 00:00:00', 1, NULL),
+(4, 'kqdo4b', '82854 ', '宝妈月子餐', '2018-03-01', '早', '2018-03-02', '早', NULL, '家', '2018-02-26 15:19:51', 0, NULL),
+(5, 'kqdo4b', '85187 ', '待产餐', '2018-02-27', '早', '2018-03-01', '早', 1, '家', '2018-02-26 15:35:03', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,9 +134,24 @@ CREATE TABLE `history` (
   `token` varchar(10) COLLATE utf8_bin NOT NULL,
   `serviceType` varchar(10) COLLATE utf8_bin NOT NULL,
   `user_id` varchar(10) COLLATE utf8_bin NOT NULL,
-  `time` date NOT NULL,
+  `time` datetime NOT NULL,
   `activate` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activate`) VALUES
+(1, '2435', '医疗接送', '0GtwFX', '2018-02-22 00:00:00', NULL),
+(2, '22480', '医疗接送', '0GtwFX', '2018-02-22 00:00:00', NULL),
+(3, '27709', '医疗接送', '0GtwFX', '2018-02-22 00:00:00', NULL),
+(4, '23452', '医疗接送', '0GtwFX', '2018-02-22 00:00:00', NULL),
+(8, '88415', '宝妈月子餐', '0GtwFX', '2018-02-22 00:00:00', NULL),
+(9, '14483', '接机送机', 'kqdo4b', '2018-02-26 00:00:00', NULL),
+(10, '31658', '接机送机', 'kqdo4b', '2018-02-26 00:00:00', NULL),
+(11, '720', '医疗接送', 'kqdo4b', '2018-02-26 00:00:00', NULL),
+(13, '4303', '住房维修', 'kqdo4b', '2018-02-26 11:57:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -152,6 +186,17 @@ CREATE TABLE `medical_service` (
   `finish` int(2) DEFAULT NULL,
   `times` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `medical_service`
+--
+
+INSERT INTO `medical_service` (`sid`, `user`, `serviceToken`, `medicalServiceType`, `time`, `additional`, `finish`, `times`) VALUES
+(1, '0GtwFX', '2435 ', '王医生', '2018-02-23 14:00:00', 'xxx', NULL, NULL),
+(2, '0GtwFX', '22480 ', '王医生', '2018-02-24 14:00:00', '24', NULL, NULL),
+(3, '0GtwFX', '27709 ', '王医生', '2018-02-25 14:00:00', '25', NULL, NULL),
+(4, '0GtwFX', '23452 ', '王医生', '2018-02-26 14:00:00', '26', NULL, NULL),
+(5, 'kqdo4b', '720 ', '王医生', '2018-02-27 10:00:00', 'dwadwad', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,14 +282,18 @@ CREATE TABLE `repair_service` (
   `rid` int(10) NOT NULL,
   `user` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `serviceToken` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `time` date NOT NULL,
-  `water` int(2) NOT NULL,
-  `gas` int(2) NOT NULL,
-  `electric` int(2) NOT NULL,
-  `other` int(2) NOT NULL,
-  `additionalNote` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `finish` int(2) NOT NULL
+  `time` datetime NOT NULL,
+  `repairNote` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `replyNote` varchar(100) DEFAULT NULL,
+  `finish` int(2) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `repair_service`
+--
+
+INSERT INTO `repair_service` (`rid`, `user`, `serviceToken`, `time`, `repairNote`, `replyNote`, `finish`) VALUES
+(3, 'kqdo4b', '4303', '2018-02-26 11:57:55', 'hahaha', '1111', 1);
 
 -- --------------------------------------------------------
 
@@ -272,6 +321,14 @@ CREATE TABLE `users` (
   `medicalsTotal` int(20) DEFAULT NULL,
   `isActive` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, `timeDeliver`, `create_time`, `role`, `salt`, `address`, `flight`, `special_medical`, `pickup`, `pickupTotal`, `medicals`, `medicalsTotal`, `isActive`) VALUES
+(1, 'brook', 7789226676, '123@gmail.com', '087f2fe94ae39f97c1e146839e14d0ac2975fc6519528b0c880fd0b9b8a419a4', 'xxx', '2018-02-23', '2018-02-22', '1', '0GtwFX', '9320 Gormond Rd Richmond V7E1N5', 1, 1, 1, 2, 2, 8, 1),
+(2, '12345', 12345, '123@gmail.com', 'a663d49d3d3385cb31bd5d58d06253a56ef4d1da0bea6adaa36dbed210c248af', '12345', '2018-02-17', '2018-02-26', '1', 'kqdo4b', 'Ora 602-6200 River Rd', 0, 1, 2, 2, 1, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -365,19 +422,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `flight_service`
 --
 ALTER TABLE `flight_service`
-  MODIFY `fid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `fid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `housekeeping_service`
@@ -389,13 +446,13 @@ ALTER TABLE `housekeeping_service`
 -- AUTO_INCREMENT for table `medical_service`
 --
 ALTER TABLE `medical_service`
-  MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pickup_service`
 --
 ALTER TABLE `pickup_service`
-  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `purchase_service`
@@ -407,13 +464,13 @@ ALTER TABLE `purchase_service`
 -- AUTO_INCREMENT for table `repair_service`
 --
 ALTER TABLE `repair_service`
-  MODIFY `rid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

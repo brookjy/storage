@@ -96,8 +96,8 @@
                         <div class="form-group"  style="width:250px;">
                             <label>选择地址：</label>
                             <select class="form-control" name="address">
-                                <option value="医院">医院</option>
                                 <option value="家">家</option>
+                                <option value="医院">医院</option>
                             </select>
                         </div>
                         <br/>

@@ -40,7 +40,7 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="repair_service.php">
             <i class="fa fa-fw fa-thumbs-o-up"></i>
-            <span class="nav-link-text">住房维修</span>
+            <span class="nav-link-text">物业管理</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">

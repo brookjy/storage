@@ -31,69 +31,20 @@
             <li class="breadcrumb-item active">服务页面</li>
         </ol>
         <br/>
-        <h2><b>住房维修申请</b></h2>
+        <h2><b>物业管理申请</b></h2>
         <br/>
+        <p><span style="color:red;">如果有紧急情况, 请第一时间拨打911, 其他特殊情况, 请联系Todd。</span></p>
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <form action="./service_function.php" method="post">
-                <fieldset>
-                    <div class="form-group" style="width:250px;">
-                        <label>选择时间：<span style="color:red;">*预约时间请提前一天</span></label>
-                        <div class="col-xs-5 date">
-                            <div class="form-group" >
-                                <label>日期: </label>
-                                <input type="date" name="time">
-                            </div>
-                        </div>
-                    </div>
+            <div style="width:50%;">
+                <form action="./service_function.php" method="post">
                     <div class="form-group">
-                        <label>选择维修服务：</label>
-                        <table class="table table-striped">
-                        <tr>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check uncheck">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="water" type="checkbox" value="1">
-                                        水
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="gas" type="checkbox" value="1">
-                                        煤气
-                                    </label>
-                                </div>
-                            </td> 
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="electric" type="checkbox" value="1">
-                                        电
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="other" type="checkbox" value="1">
-                                        其他
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                        </table>  
+                        <h5><b>维修内容: </b></h5>
+                        <textarea class="form-control" name="repairNote" rows="4"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleTextarea">备注信息：</label>
-                        <textarea class="form-control" name="additionalNote" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="repair_service">提交申请</button>
-                    
-                </fieldset>
-            </form>
+                    <br/>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="repair_service">提交申请</button> 
+                </form>
+            </div>
             <br/>
         </div>
         </div>
@@ -121,21 +72,6 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
-        <script>
-
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementsByName("time")[0].setAttribute('min', today);
-            document.getElementsByName("time")[0].value=today;
-
-            var tomorrow = new Date();
-            tomorrow.setHours(tomorrow.getHours() + 5);
-            $(function() {
-                $( "#datepicker" ).datepicker({
-                    showButtonPanel: true,
-                    minDate: tomorrow
-                });
-            });
-        </script>   
     </div>
 </body>
 </html>

@@ -97,7 +97,7 @@
                                 <span><i class="fa fa-thumbs-o-up"></i></span>
                             </div>
                             <div class="service-content">
-                                <h3 class="title">住房维修</h3>
+                                <h3 class="title">物业管理</h3>
                                 <p class="description">以人为本，服务至上, 品质第一</p>
                                 <a href="repair_service.php" class="read-more fa fa-plus" data-toggle="tooltip" title="点击申请"></a>
                             </div>

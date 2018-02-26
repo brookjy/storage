@@ -4,6 +4,7 @@
     if (!isset($_COOKIE['isAdminLogin'])) {
         echo "<script type=\"text/javascript\">alert('您需要登录才能查看！');window.location.replace(\"./\");</script>";
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -35,38 +36,68 @@
 </head>
 
 <body class="bg-dark">
-  <div class="container">
-        <div class="header">
-            <div id="map"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="../admin_access.php">领婴海外孕产后台</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+        
+            <!-- <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul> -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./edit.php">
+                    <i class="fa fa-fw fa-sign-out"></i>管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin_access.php">
+                    <i class="fa fa-fw fa-sign-out"></i>返回菜单</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br/><br/><br/>
+    <div class="container">
+            <div class="header">
+                <div id="map"></div>
+            </div>
         </div>
     </div>
-  </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="../../vendor/jquery/jquery.min.js"></script>
-  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script>
-      function initMap() {
-        var richmond = {lat: 49.16319, lng: -123.13775};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: richmond
-        });
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script>
+        function initMap() {
+            var richmond = {lat: 49.16319, lng: -123.13775};
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: richmond
+            });
 
-        <?php 
-            include_once "../model/common.php";
-            include_once "../model/access.func.php";
+            <?php 
+                include_once "../model/common.php";
+                include_once "../model/access.func.php";
 
-            $makerfunc = new AccessAd;
-            $makerfunc-> generateMarker();
-        ?>
-        var marker = new google.maps.Marker({
-          position: richmond,
-          map: map
-        });
-        
-      }
+                $makerfunc = new AccessAd;
+                $makerfunc-> generateMarker();
+            ?>
+            var marker = new google.maps.Marker({
+            position: richmond,
+            map: map
+            });
+            
+        }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAX84TTeE_DvhLEAU5A3VwADL5Ryvjz3c&callback=initMap">
