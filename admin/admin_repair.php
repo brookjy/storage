@@ -55,19 +55,19 @@
             exit();
         }
         if ($_GET['pageType'] == "today") {
-            $repairPage->showResult("today");  
+            $repairPage->todayListing();  
         } elseif ($_GET['pageType'] == "tomorrow") {
-            $repairPage->showResult("tomorrow");
+            $repairPage->tomorrowListing();
         } elseif ($_GET['pageType'] == "twoDaysLater") {
-            $repairPage->showResult("twoDaysLater");
+            $repairPage->twoDaysLater();
         }elseif ($_GET['pageType'] == "threeDaysLater") {
-            $repairPage->showResult("threeDaysLater");
+            $repairPage->threeDaysLater();
         }elseif ($_GET['pageType'] == "fourDaysLater") {
-            $repairPage->showResult("fourDaysLater"); 
+            $repairPage->fourDaysLater(); 
         } elseif ($_GET['pageType'] == "fiveDaysLater") {
-            $repairPage->showResult("fiveDaysLater"); 
+            $repairPage->fiveDaysLater(); 
         } elseif ($_GET['pageType'] == "summary") {
-            $repairPage->showResult("summary");  
+            $repairPage->summary();  
         }?>
             
     </div>
