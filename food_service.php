@@ -16,6 +16,44 @@
 <head>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
 </head>
+<style>
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     
@@ -41,70 +79,78 @@
                 ?>
                 <h2><b>孕产订餐申请</b></h2>
                 <br/>
+                <!-- Start form -->
                 <form action="./service_function.php" method="post">
                     <div class="container">
-                        <div class="form-group">
+                        <input type="hidden" name="serviceType" value="宝妈月子餐">
+                        <div class="jumbotron">
+                            <h5><span style="color:orange">宝妈月子餐</span></h5>
+                            <br/>
+                            <div class="form-group"  style="width:250px;">
+                                <label>月子餐预定：</label>
+                                <select name="isBooked">
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                </select>
+                            </div>
+                        </div><!-- End first part -->
+                        <!-- <div class="form-group">
                             <label>选择服务类型：</label>
                             <select name="serviceType">
                                 <option value="宝妈月子餐">月子餐</option>
                                 <option value="宝妈待产餐">待产餐</option>
                             </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group" style="width:250px;">
-                                    <label>选择开始时间：<span style="color:red;">*预约请提前5小时<span></label>
-                                    <div class="col-xs-5 date">
-                                        <div class="form-group" >
-                                            <label>日期: </label>
-                                            <input type="date" name="startDate">
+                        </div> -->
+                        <div class="jumbotron">
+                            <h5><span style="color:orange">宝妈待产餐</span></h5>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" style="width:250px;">
+                                        <label>选择开始时间：<span style="color:red;">*预约请提前5小时<span></label>
+                                        <div class="col-xs-5 date">
+                                            <div class="form-group" >
+                                                <label>日期: </label>
+                                                <input type="date" name="startDate">
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="form-group"  style="width:250px;">
+                                        <label>选择种类: </label>
+                                        <select class="form-control" name="startTime">
+                                            <option value="早">早</option>
+                                            <option value="中">中</option>
+                                            <option value="晚">晚</option>
+                                        </select>
+                                    </div>
+                                    <br/>
                                 </div>
-                                <div class="form-group"  style="width:250px;">
-                                    <label>选择种类: </label>
-                                    <select class="form-control" name="startTime">
-                                        <option value="早">早</option>
-                                        <option value="中">中</option>
-                                        <option value="晚">晚</option>
-                                    </select>
-                                </div>
-                                <br/>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" style="width:250px;">
-                                    <label>选择结束时间: </label>
-                                    <div class="col-xs-5 date">
-                                        <div class="form-group" >
-                                            <label>日期: </label>
-                                            <input type="date" name="endDate">
+                                <div class="col-md-6">
+                                    <div class="form-group" style="width:250px;">
+                                        <label>选择结束时间: </label>
+                                        <div class="col-xs-5 date">
+                                            <div class="form-group" >
+                                                <label>日期: </label>
+                                                <input type="date" name="endDate">
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="form-group"  style="width:250px;">
+                                        <label>选择种类：</label>
+                                        <select class="form-control" name="endTime">
+                                            <option value="早">早</option>
+                                            <option value="中">中</option>
+                                            <option value="晚">晚</option>
+                                        </select>
+                                    </div>
+                                    <br/>
                                 </div>
-                                <div class="form-group"  style="width:250px;">
-                                    <label>选择种类：</label>
-                                    <select class="form-control" name="endTime">
-                                        <option value="早">早</option>
-                                        <option value="中">中</option>
-                                        <option value="晚">晚</option>
-                                    </select>
-                                </div>
-                                <br/>
-                            </div>
-                        </div> <!-- /.row -->
-                        
-                        <div class="form-group"  style="width:250px;">
-                            <label>选择地址：</label>
-                            <select class="form-control" name="address">
-                                <option value="家">家</option>
-                                <option value="医院">医院</option>
-                            </select>
-                        </div>
-                        <br/>
-                        <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">提交申请</button>
+                            </div> <!-- /.row -->
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">提交申请</button>
+                        </div><!-- End of second part -->
                     </div><!-- /.container -->
                 </form>
-
+                
                 <?php }else{?> <!-- second condition start -->
 
                     <br/>
@@ -158,7 +204,7 @@
                     minDate: tomorrow
                 });
             });
-        </script>   
+        </script> 
     </div>
 </body>
 </html>

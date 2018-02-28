@@ -66,6 +66,22 @@ class Profile{
         GLOBAL $mysqli;
         $salt =  $_COOKIE['uid'];
 
+        $this_thursday = date('Y-m-d', strtotime('thursday this week'));
+        $dateNow = date("Y-m-d H:i:s");
+        $thursday = $this_thursday . " 18:00:00";
+        
+        if ($dateNow > $thursday ){
+            $edit_query = "UPDATE purchase_service SET locker = 0";
+            if($mysqli->query($edit_query)){
+            }else{
+                printf("Registration failure: %s\n", $mysqli->error);
+                exit();
+            }
+
+            echo "<script type=\"text/javascript\">alert('您已经超出了本周预定期限!请在周一到周四 6:00pm预定。');window.history.back();</script>";
+            exit();
+        }
+
         $profile_query = "SELECT * FROM users WHERE salt = '$salt'";
         $profile_exist = $mysqli->query($profile_query);
         if($profile_exist->num_rows > 0){
@@ -75,7 +91,7 @@ class Profile{
                 echo "<script type=\"text/javascript\">alert('您需要一个地址.任何问题请联系管理员！');window.history.back();</script>";
                 exit();
             }
-            $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address'";
+            $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address' AND locker = 1";
             $purchase_exist = $mysqli->query($purchase_query);
             if($purchase_exist->num_rows > 0){
                 echo "<script type=\"text/javascript\">alert('您已经预定了本周采购.任何问题请联系管理员！');window.history.back();</script>";

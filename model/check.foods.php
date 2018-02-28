@@ -13,10 +13,10 @@ class Check_Foods{
             if($check_retrieve['serviceType'] == "宝妈月子餐" || $check_retrieve['serviceType'] == "宝妈待产餐" ){
                 echo sprintf(
                     "<div>
-                        <h2><b>您已经预定了 - %s</b></h2>
-                        <p>(如果有错误或者急事，请打电话 XXX-XXXX-XXXX, 微信有时无法及时回复。)</p>
+                        <h2><b>您已经预定了 - 宝妈订餐服务</b></h2>
+                        <p>(如果有错误或者急事, 请打电话 Chuck: 778-895-3579, 微信有时无法及时回复。)</p>
+                        <p>月子餐预定: %s</p>
                         <p>您预订的时间：</p>
-                        <label>地点：%s</label>
                         <p>从 %s %s</p>
                         <p>到 %s %s</p>
                         <form action = \"./service_function.php\" method=\"post\">
@@ -24,7 +24,7 @@ class Check_Foods{
                             <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换地点</button>
                             <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换套餐</button>
                         </form>
-                    </div>", $check_retrieve['serviceType'],  $check_retrieve['address'], $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
+                    </div>", $check_retrieve['isBooked'], $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
                 );
                 return false;
             }

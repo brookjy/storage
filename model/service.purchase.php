@@ -99,11 +99,11 @@ class Purchase_Service{
         $user_id = $_COOKIE['uid'];
         $format_time = date("Y-m-d H:i:s");
         $serviceToken = rand(10, 100000);
-        if($this->check_date()){
+        if(true){
             $purchase_query="INSERT INTO purchase_service (user, serviceToken, date, property, origin_address, doujiang, tiandoujiang, niunai, guozhi, furu, zhacai, laoganma, ganlancai, xianyadan, huashengjiang, caomeijiang, shengjidan, maipian, culiangmianbao, doushabao, xiaomantou, shouzhuabing, jiaozi, miantiao, dami, xiaomi, hongdou, lvdou, pingguo,
-                xiangjiao, chengzi, guoli, juzi, xihongshi, bocai, digua, huanggua, tudou, you, yan, jiang, cu, tang) VALUES ('$user_id', '$serviceToken', '$format_time', '$this->property', '$this->origin_address', '$this->doujiang', '$this->tiandoujiang', '$this->niunai', '$this->guozhi', '$this->furu', '$this->zhacai', '$this->laoganma', '$this->ganlancai',
+                xiangjiao, chengzi, guoli, juzi, xihongshi, bocai, digua, huanggua, tudou, you, yan, jiang, cu, tang, locker) VALUES ('$user_id', '$serviceToken', '$format_time', '$this->property', '$this->origin_address', '$this->doujiang', '$this->tiandoujiang', '$this->niunai', '$this->guozhi', '$this->furu', '$this->zhacai', '$this->laoganma', '$this->ganlancai',
                 '$this->xianyadan', '$this->huashengjiang', '$this->caomeijiang', '$this->shengjidan', '$this->maipian', '$this->culiangmianbao', '$this->doushabao', '$this->xiaomantou', '$this->shouzhuabing', '$this->jiaozi', '$this->miantiao', '$this->dami', '$this->xiaomi', '$this->hongdou', '$this->lvdou', '$this->pingguo', '$this->xiangjiao', '$this->chengzi', 
-                '$this->guoli', '$this->juzi', '$this->xihongshi', '$this->bocai', '$this->digua', '$this->huanggua', '$this->tudou', '$this->you', '$this->yan', '$this->jiang', '$this->cu', '$this->tang')";
+                '$this->guoli', '$this->juzi', '$this->xihongshi', '$this->bocai', '$this->digua', '$this->huanggua', '$this->tudou', '$this->you', '$this->yan', '$this->jiang', '$this->cu', '$this->tang', 1)";
             if($mysqli->query($purchase_query)){
                 echo "<script type=\"text/javascript\">alert('恭喜，您的订单已经下单，查看订单请去历史记录!');window.location.href = 'panel.php' ;</script>";
             }else{
