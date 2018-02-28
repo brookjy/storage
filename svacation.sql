@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2018 at 12:47 AM
+-- Generation Time: Feb 28, 2018 at 02:18 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -103,12 +103,12 @@ CREATE TABLE `food_service` (
   `user` varchar(10) COLLATE utf8_bin NOT NULL,
   `serviceToken` varchar(10) COLLATE utf8_bin NOT NULL,
   `serviceType` varchar(5) COLLATE utf8_bin NOT NULL,
-  `startDate` date NOT NULL,
-  `startTime` varchar(5) COLLATE utf8_bin NOT NULL,
-  `endDate` date NOT NULL,
-  `endTime` varchar(5) COLLATE utf8_bin NOT NULL,
+  `startDate` date DEFAULT NULL,
+  `startTime` varchar(5) COLLATE utf8_bin DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
+  `endTime` varchar(5) COLLATE utf8_bin DEFAULT NULL,
   `num_ppl` int(3) DEFAULT NULL,
-  `address` varchar(5) COLLATE utf8_bin DEFAULT NULL,
+  `isBooked` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `display` int(10) NOT NULL DEFAULT '1',
   `finish` int(2) DEFAULT NULL
@@ -118,10 +118,15 @@ CREATE TABLE `food_service` (
 -- Dumping data for table `food_service`
 --
 
-INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `startDate`, `startTime`, `endDate`, `endTime`, `num_ppl`, `address`, `createdAt`, `display`, `finish`) VALUES
-(3, '0GtwFX', '88415 ', '宝妈月子餐', '2018-02-23', '早', '2018-02-24', '早', NULL, '医院', '0000-00-00 00:00:00', 1, NULL),
-(4, 'kqdo4b', '82854 ', '宝妈月子餐', '2018-03-01', '早', '2018-03-02', '早', NULL, '家', '2018-02-26 15:19:51', 0, NULL),
-(5, 'kqdo4b', '85187 ', '待产餐', '2018-02-27', '早', '2018-03-01', '早', 1, '家', '2018-02-26 15:35:03', 0, NULL);
+INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `startDate`, `startTime`, `endDate`, `endTime`, `num_ppl`, `isBooked`, `createdAt`, `display`, `finish`) VALUES
+(3, '0GtwFX', '88415 ', '宝妈月子餐', '2018-02-23', '早', '2018-02-24', '早', NULL, NULL, '0000-00-00 00:00:00', 1, NULL),
+(4, 'kqdo4b', '82854 ', '宝妈月子餐', '2018-03-01', '早', '2018-03-02', '早', NULL, NULL, '2018-02-26 15:19:51', 0, NULL),
+(5, 'kqdo4b', '85187 ', '待产餐', '2018-02-27', '早', '2018-03-01', '早', 1, NULL, '2018-02-26 15:35:03', 0, NULL),
+(6, 'kqdo4b', '65899 ', '宝妈月子餐', '0000-00-00', '', '0000-00-00', '', NULL, '12', '2018-02-26 16:32:13', 0, NULL),
+(8, 'kqdo4b', '60467 ', '宝妈月子餐', '2018-02-28', '早', '2018-03-01', '早', NULL, '是', '2018-02-27 14:41:05', 0, NULL),
+(9, 'kqdo4b', '70888 ', '宝妈月子餐', '2018-02-28', '早', '2018-03-01', '早', NULL, '是', '2018-02-27 15:03:21', 0, NULL),
+(10, 'kqdo4b', '2067 ', '宝妈月子餐', '2018-02-28', '中', '2018-03-03', '早', NULL, '是', '2018-02-27 15:05:55', 1, NULL),
+(11, 'kqdo4b', '98514 ', '待产餐', '2018-02-28', '早', '2018-03-02', '早', 1, NULL, '2018-02-27 15:16:03', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +156,13 @@ INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activa
 (9, '14483', '接机送机', 'kqdo4b', '2018-02-26 00:00:00', NULL),
 (10, '31658', '接机送机', 'kqdo4b', '2018-02-26 00:00:00', NULL),
 (11, '720', '医疗接送', 'kqdo4b', '2018-02-26 00:00:00', NULL),
-(13, '4303', '住房维修', 'kqdo4b', '2018-02-26 11:57:55', NULL);
+(13, '4303', '住房维修', 'kqdo4b', '2018-02-26 11:57:55', NULL),
+(22, '2067', '宝妈月子餐', 'kqdo4b', '2018-02-27 15:05:55', NULL),
+(23, '98514', '待产餐', 'kqdo4b', '2018-02-27 15:16:03', NULL),
+(24, '55967', '接送服务', 'kqdo4b', '2018-02-27 00:00:00', NULL),
+(25, '48320', '医疗接送', 'kqdo4b', '2018-02-27 00:00:00', NULL),
+(26, '31365', '采购服务', 'kqdo4b', '2018-02-27 15:48:06', NULL),
+(27, '83962', '采购服务', 'kqdo4b', '2018-02-27 17:14:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -196,7 +207,8 @@ INSERT INTO `medical_service` (`sid`, `user`, `serviceToken`, `medicalServiceTyp
 (2, '0GtwFX', '22480 ', '王医生', '2018-02-24 14:00:00', '24', NULL, NULL),
 (3, '0GtwFX', '27709 ', '王医生', '2018-02-25 14:00:00', '25', NULL, NULL),
 (4, '0GtwFX', '23452 ', '王医生', '2018-02-26 14:00:00', '26', NULL, NULL),
-(5, 'kqdo4b', '720 ', '王医生', '2018-02-27 10:00:00', 'dwadwad', NULL, NULL);
+(5, 'kqdo4b', '720 ', '王医生', '2018-02-27 10:00:00', 'dwadwad', NULL, NULL),
+(6, 'kqdo4b', '48320 ', '专科医生', '2018-02-28 15:00:00', 'ccc', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -216,6 +228,13 @@ CREATE TABLE `pickup_service` (
   `additional` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `finish` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pickup_service`
+--
+
+INSERT INTO `pickup_service` (`pid`, `user`, `serviceToken`, `date`, `time`, `departure`, `destination`, `num_ppl`, `additional`, `finish`) VALUES
+(1, 'kqdo4b', '55967 ', '2018-02-28', '10:00AM - 11:30AM', '家', '沃尔玛', 1, 'ddd', NULL);
 
 -- --------------------------------------------------------
 
@@ -271,6 +290,14 @@ CREATE TABLE `purchase_service` (
   `locker` int(2) DEFAULT NULL,
   `finish` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `purchase_service`
+--
+
+INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date`, `origin_address`, `doujiang`, `tiandoujiang`, `niunai`, `guozhi`, `furu`, `zhacai`, `laoganma`, `ganlancai`, `xianyadan`, `huashengjiang`, `caomeijiang`, `shengjidan`, `maipian`, `culiangmianbao`, `doushabao`, `xiaomantou`, `shouzhuabing`, `jiaozi`, `miantiao`, `dami`, `xiaomi`, `hongdou`, `lvdou`, `pingguo`, `xiangjiao`, `chengzi`, `guoli`, `juzi`, `xihongshi`, `bocai`, `digua`, `huanggua`, `tudou`, `you`, `yan`, `jiang`, `cu`, `tang`, `locker`, `finish`) VALUES
+(1, 'kqdo4b', '31365', 'apartment', '2018-02-27 15:48:06', 'Ora 602-6200 River Rd', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, NULL),
+(2, 'kqdo4b', '83962', 'apartment', '2018-02-27 17:14:40', 'Ora 602-6200 River Rd', 2, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -328,7 +355,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, `timeDeliver`, `create_time`, `role`, `salt`, `address`, `flight`, `special_medical`, `pickup`, `pickupTotal`, `medicals`, `medicalsTotal`, `isActive`) VALUES
 (1, 'brook', 7789226676, '123@gmail.com', '087f2fe94ae39f97c1e146839e14d0ac2975fc6519528b0c880fd0b9b8a419a4', 'xxx', '2018-02-23', '2018-02-22', '1', '0GtwFX', '9320 Gormond Rd Richmond V7E1N5', 1, 1, 1, 2, 2, 8, 1),
-(2, '12345', 12345, '123@gmail.com', 'a663d49d3d3385cb31bd5d58d06253a56ef4d1da0bea6adaa36dbed210c248af', '12345', '2018-02-17', '2018-02-26', '1', 'kqdo4b', 'Ora 602-6200 River Rd', 0, 1, 2, 2, 1, 2, 1);
+(2, '12345', 12345, '123@gmail.com', 'a663d49d3d3385cb31bd5d58d06253a56ef4d1da0bea6adaa36dbed210c248af', '12345', '2018-02-17', '2018-02-26', '1', 'kqdo4b', 'Ora 602-6200 River Rd', 0, 0, 1, 2, 1, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -428,13 +455,13 @@ ALTER TABLE `flight_service`
 -- AUTO_INCREMENT for table `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `housekeeping_service`
@@ -446,19 +473,19 @@ ALTER TABLE `housekeeping_service`
 -- AUTO_INCREMENT for table `medical_service`
 --
 ALTER TABLE `medical_service`
-  MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pickup_service`
 --
 ALTER TABLE `pickup_service`
-  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchase_service`
 --
 ALTER TABLE `purchase_service`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `repair_service`

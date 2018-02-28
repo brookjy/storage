@@ -34,5 +34,7 @@
 		$pickup_service->pickup_service();
 	}else if(isset($_POST['flight_service'])){
 		$flight_service->flight_service();
+	}else if(isset($_POST['food_service_special'])){
+		$food_service->food_service_special();
 	}
 ?>

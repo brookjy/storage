@@ -6,7 +6,7 @@ class Food_Service{
     private $endDate;
     private $startTime;
     private $endTime;
-    private $address;
+    private $isBooked;
     private $token;
     private $ppl;
 
@@ -16,7 +16,7 @@ class Food_Service{
 		$this->endDate = isset($_POST['endDate']) ? $_POST['endDate'] : null;
 		$this->startTime = isset($_POST['startTime']) ? $_POST['startTime'] : null;
         $this->endTime = isset($_POST['endTime']) ? $_POST['endTime'] : null;
-		$this->address = isset($_POST['address']) ? $_POST['address'] : null;
+		$this->isBooked = isset($_POST['isBooked']) ? $_POST['isBooked'] : null;
         $this->token = isset($_POST['token']) ? $_POST['token'] : null;
         $this->ppl = isset($_POST['ppl']) ? $_POST['ppl'] : 1;
 	}
@@ -27,13 +27,13 @@ class Food_Service{
         $time_now = time();
         $format_time = date("Y-m-d H:i:s",$time_now);
         $serviceToken = rand(10, 100000);
-
-        if(empty($this->serviceType) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) || empty($this->address) ){
+        
+        if(empty($this->serviceType) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) || empty($this->isBooked) ){
             echo "<script type=\"text/javascript\">alert('您没有填写相应信息! ');window.history.back();</script>"; 
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, address, createdAt) VALUES ('$user_id', '$serviceToken ', '$this->serviceType', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->address', '$format_time')";
+                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, isBooked, createdAt) VALUES ('$user_id', '$serviceToken ', '$this->serviceType', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->isBooked', '$format_time')";
                 if($mysqli->query($food_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
                 }else{
@@ -103,12 +103,12 @@ class Food_Service{
         $format_time = date("Y-m-d H:i:s",$time_now);
         $serviceToken = rand(10, 100000);
 
-        if(empty($this->ppl) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) || empty($this->address) ){
+        if(empty($this->ppl) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime)){
             echo "<script type=\"text/javascript\">alert('您没有填写相应信息! ');window.history.back();</script>"; 
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, address, num_ppl, createdAt, display) VALUES ('$user_id', '$serviceToken ', '待产餐', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->address', '$this->ppl', '$format_time', 1)";
+                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, num_ppl, createdAt, display) VALUES ('$user_id', '$serviceToken ', '待产餐', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->ppl', '$format_time', 1)";
                 if($mysqli->query($food_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
                 }else{

@@ -56,12 +56,12 @@ class AccessAd{
                         <a class=\"btn\" href=\"./admin_housekeeping.php?pageType=summary\">孕产服务</a><br/>   
                     ");
                 }
-                if($permission === "7"){
+                if($permission === "8"){
                     echo sprintf("
                         <a class=\"btn\" href=\"./admin_flight.php?pageType=summary\">接机送机</a><br/>   
                     ");
                 }
-                if($permission === "8"){
+                if($permission === "9"){
                     echo sprintf("
                         <a class=\"btn\" href=\"./map\">地址地图</a><br/>   
                     ");
@@ -82,7 +82,6 @@ class AccessAd{
         foreach ($results as $result){
             $address_format = "{lat: " .$result['lat']. ", lng: ".$result['lng']. "}";
             echo sprintf("
-
                 var contentString%d = '<div id=\"content\">'+
                 '<div id=\"siteNotice\">'+
                 '</div>'+

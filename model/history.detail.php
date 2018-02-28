@@ -182,7 +182,35 @@ class DetailHistory{
                 , $detail_result['xihongshi'], $detail_result['bocai'], $detail_result['digua'], $detail_result['huanggua'], $detail_result['tudou'], $detail_result['you'], $detail_result['yan'], $detail_result['jiang'], $detail_result['cu'], $detail_result['tang']
                     );
             }
-        }elseif($type == "宝妈月子餐" || $type == "宝妈待产餐" || $type == "待产餐"){
+        }elseif($type == "宝妈月子餐"){
+            $detail_query="SELECT * FROM food_service WHERE serviceToken = '$serviceToken'";
+            $detail_retrieve = $mysqli->query($detail_query);
+            if($detail_retrieve->num_rows > 0){
+                $detail_result = $detail_retrieve->fetch_assoc();
+
+                echo sprintf("<table class=\"table table-hover table-info\">
+                        <tr>
+                            <td>服务名称</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>开始时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>结束时间</td>
+                            <td>%s</td>
+                        </tr>
+                        <tr>
+                            <td>是否预定月子餐</td>
+                            <td>%s</td>
+                        </tr>
+                    </table>
+                ", $detail_result['serviceType'], $detail_result['startDate'] . " " .$detail_result['startTime'], $detail_result['endDate'] . " " . $detail_result['endTime'], $detail_result['isBooked'] );
+            }else{
+                echo "您要的信息不存在！";
+            }
+        }elseif($type == "待产餐"){
             $detail_query="SELECT * FROM food_service WHERE serviceToken = '$serviceToken'";
             $detail_retrieve = $mysqli->query($detail_query);
             if($detail_retrieve->num_rows > 0){
@@ -206,7 +234,7 @@ class DetailHistory{
                             <td>%d</td>
                         </tr>
                     </table>
-                ", $detail_result['serviceType'], $detail_result['startDate'] . $detail_result['startTime'], $detail_result['endDate'] . $detail_result['endTime'], $detail_result['num_ppl'] );
+                ", $detail_result['serviceType'], $detail_result['startDate'] . " " .$detail_result['startTime'], $detail_result['endDate'] . " " . $detail_result['endTime'], $detail_result['num_ppl'] );
             }else{
                 echo "您要的信息不存在！";
             }
