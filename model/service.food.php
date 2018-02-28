@@ -27,7 +27,7 @@ class Food_Service{
         $time_now = time();
         $format_time = date("Y-m-d H:i:s",$time_now);
         $serviceToken = rand(10, 100000);
-        echo "<script type=\"text/javascript\">alert('$this->serviceType, $this->isBooked ');</script>"; 
+        
         if(empty($this->serviceType) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) || empty($this->isBooked) ){
             echo "<script type=\"text/javascript\">alert('您没有填写相应信息! ');window.history.back();</script>"; 
             exit();
