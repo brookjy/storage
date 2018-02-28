@@ -6,7 +6,7 @@ Class Purchase{
     //
     public $itemChineseList = ["豆浆","甜豆浆","牛奶","果汁","腐乳","榨菜","老干妈","橄榄菜","咸鸭蛋","花生酱","草莓酱","生鸡蛋","麦片","粗粮面包","豆沙包","小馒头","手抓饼","饺子","面条","大米","小米","红豆","绿豆","苹果","香蕉","橙子","果梨","橘子","西红柿","菠菜","地瓜","黄瓜","土豆","油","盐","酱","醋","糖"];
     public $table = "purchase_service INNER JOIN users ON users.salt=purchase_service.user";
-    public $rawStates = "users.uid,users.username,users.phone,users.address,purchase_service.date,purchase_service.property,purchase_service.origin_address";
+    public $rawStates = "users.uid,users.username,users.phone,users.address,purchase_service.date,purchase_service.property,purchase_service.origin_address,purchase_service.locker";
     public $completeStates = "";
     public function generateState() {
         $size = sizeof($this->itemList);
@@ -28,8 +28,8 @@ Class Purchase{
     }
     public function summary(){
         $condition = "";
-        $query="SELECT ". $this->completeStates." from ".$this->table. " ORDER BY purchase_service.pid DESC";
-        $this->time = "（所有记录，含过期）";    
+        $query="SELECT ". $this->completeStates." from ".$this->table. " where purchase_service.locker = 1 ORDER BY purchase_service.pid DESC";
+        $this->time = "";    
         $size = sizeof($this->itemList);
         $totalString = "select sum(doujiang)";
         $i = 1;
@@ -42,20 +42,20 @@ Class Purchase{
     }
     public function thisWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')+2))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-4))";
-        $query="SELECT ". $this->completeStates." from ".$this->table. " where ".$condition;
+        $query="SELECT ". $this->completeStates." from ".$this->table. " where purchase_service.locker = 1 and ".$condition;
         $this->time = "上周五到这周四";    
         $this->showResult($query, $this -> totalQuery($condition));
     }
     public function nextWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-5))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-11))";
-        $query="SELECT ". $this->completeStates." FROM ".$this->table. " WHERE ".$condition;
+        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where purchase_service.locker = 1 and ".$condition;
         $this->time = "这周五到下周四";
         $this->showResult($query, $this -> totalQuery($condition));
     }
 
     public function twoWeekLater(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-12))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-18))";
-        $query="SELECT ". $this->completeStates." FROM ".$this->table. " WHERE ".$condition;
+        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where purchase_service.locker = 1 and ".$condition;
         $this->time = "下周五到下下周四";
         $this->showResult($query, $this -> totalQuery($condition));
     }
