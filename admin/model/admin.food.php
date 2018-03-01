@@ -81,7 +81,7 @@ Class Food{
             <th>电话</th>
             <th>地址</th>
             <th>月子餐</th>
-            <th>待产餐</th>
+            <th>(家属)待产餐</th>
         </tr>
         </thead> 
         <tbody> 
