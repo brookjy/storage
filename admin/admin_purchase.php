@@ -20,15 +20,15 @@
         <h3>--采购服务后台--</h3>
 
         <div class="row">
-            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+            <div class="col-xs-6 col-md-6" style="padding-top:10px;">
                 <button type="button" class="btn btn-info" onclick="location.href='?pageType=thisWeek'" >本周</button>
             </div>
-            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+            <div class="col-xs-6 col-md-6" style="padding-top:10px;">
                 <button type="button" class="btn btn-info" onclick="location.href='?pageType=nextWeek'">下周</button>
             </div>
-            <div class="col-xs-6 col-md-4" style="padding-top:10px;">
+            <!-- <div class="col-xs-6 col-md-4" style="padding-top:10px;">
                 <button type="button" class="btn btn-info" onclick="location.href='?pageType=twoWeekLater'">下下周</button>
-            </div>
+            </div> -->
         </div>
         <br/>
         <?php 
@@ -37,7 +37,7 @@
             $purchasePage->thisWeekListing(); 
         } elseif ($_GET['pageType'] == "nextWeek") {
             $purchasePage->nextWeekListing();  
-        } elseif ($_GET['pageType'] == "twoWeekLater") {
+        } elseif ($_GET['pageType'] == "twoWeekLater") { //下下周的服务暂时取消，留着code万一加回去可以用
             $purchasePage->twoWeekLater();  
         } elseif ($_GET['pageType'] == "summary") {
             $purchasePage->summary();  

@@ -26,6 +26,11 @@ class AccessAd{
                         <a class=\"btn\" href=\"./user_permission.php\">用户管理</a><br/>   
                     ");
                 }
+                if($permission === "10"){
+                    echo sprintf("
+                        <a class=\"btn\" href=\"./user_pickup_info.php\">用户出行管理</a><br/>   
+                    ");
+                }
                 if($permission === "2"){
                     echo sprintf("
                         <a class=\"btn\" href=\"./admin_medical.php?pageType=summary\">医疗接送</a><br/>  
@@ -63,7 +68,7 @@ class AccessAd{
                 }
                 if($permission === "9"){
                     echo sprintf("
-                        <a class=\"btn\" href=\"./map\">地址地图</a><br/>   
+                        <a class=\"btn\" href=\"./map\">用户地址</a><br/>   
                     ");
                 }
             }

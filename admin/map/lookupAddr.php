@@ -77,26 +77,52 @@
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
     <script>
         function initMap() {
-            var richmond = {lat: 49.16319, lng: -123.13775};
-            var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: richmond
-            });
-
             <?php 
-                include_once "../model/common.php";
-                include_once "../model/access.func.php";
+                if (!isset($_GET['address'])) {
+                    printf("undefined address");
+                    exit();
+                }
+                $address = $_GET['address'];
 
-                $makerfunc = new AccessAd;
-                $makerfunc-> generateMarker();
+                //     // Get lat and long by address         
+                // $address = $dlocation; // Google HQ
+                $prepAddr = str_replace(' ','+',$address);
+                $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
+                $output= json_decode($geocode);
+                $latitude = $output->results[0]->geometry->location->lat;
+                $longitude = $output->results[0]->geometry->location->lng;
+
+                $address_format = "{lat: " .$latitude. ", lng: ".$longitude. "}";
+                $markerString =  "
+                    var contentString1 = '<div id=\"content\">'+
+                    '<div id=\"siteNotice\">'+
+                    '</div>'+
+                    '<h5 id=\"firstHeading\" class=\"firstHeading\">$address</h5>'+
+                    '</div></div></div>';
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 13,
+                        center: $address_format
+                        });
+
+                    var infowindow1 = new google.maps.InfoWindow({
+                        content: contentString1
+                    });
+                    var marker1 = new google.maps.Marker({
+                        position: $address_format,
+                        map: map,
+                        title: \"dadd\"
+                    }); 
+                    
+                    marker1.addListener('click', function() {
+                        infowindow1.open(map, marker1);
+                    });
+                ";
+                echo $markerString;
             ?>
-            var marker = new google.maps.Marker({
-            position: richmond,
-            map: map
-            });
-            
         }
     </script>
     <script async defer
