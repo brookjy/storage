@@ -28,7 +28,7 @@ Class Purchase{
     }
     public function summary(){
         $condition = "";
-        $query="SELECT ". $this->completeStates." from ".$this->table. " where purchase_service.locker = 1 ORDER BY purchase_service.pid DESC";
+        $query="SELECT ". $this->completeStates." from ".$this->table. " ORDER BY purchase_service.pid DESC";
         $this->time = "";    
         $size = sizeof($this->itemList);
         $totalString = "select sum(doujiang)";
@@ -42,20 +42,20 @@ Class Purchase{
     }
     public function thisWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')+2))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-4))";
-        $query="SELECT ". $this->completeStates." from ".$this->table. " where purchase_service.locker = 1 and ".$condition;
+        $query="SELECT ". $this->completeStates." from ".$this->table. " where ".$condition;
         $this->time = "上周五到这周四";    
         $this->showResult($query, $this -> totalQuery($condition));
     }
     public function nextWeekListing(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-5))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-11))";
-        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where purchase_service.locker = 1 and ".$condition;
+        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where ".$condition;
         $this->time = "这周五到下周四";
         $this->showResult($query, $this -> totalQuery($condition));
     }
 
     public function twoWeekLater(){
         $condition = "(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-12))<=DATE(purchase_service.date) and DATE(purchase_service.date)<=(SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%w')-18))";
-        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where purchase_service.locker = 1 and ".$condition;
+        $query="SELECT ". $this->completeStates." FROM ".$this->table. " where ".$condition;
         $this->time = "下周五到下下周四";
         $this->showResult($query, $this -> totalQuery($condition));
     }
