@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 02, 2018 at 03:49 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Host: 127.0.0.1
+-- Generation Time: 2018-03-02 23:02:21
+-- 服务器版本： 10.1.29-MariaDB
+-- PHP Version: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `address`
+-- 表的结构 `address`
 --
 
 CREATE TABLE `address` (
@@ -38,17 +38,38 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `address`
+-- 转存表中的数据 `address`
 --
 
 INSERT INTO `address` (`aid`, `address`, `type`, `lat`, `lng`, `update_at`) VALUES
 (1, 'RIVA 517-7008 River Rd', 'apt', 49.1705, -123.157, '2018-01-30'),
-(2, 'Mandarin 767-6288 No.3 Rd', 'apt', 49.22, -123.222, '2018-01-30');
+(2, 'Mandarin 767-6288 No.3 Rd', 'apt', 49.22, -123.222, '2018-01-30'),
+(3, '9320 Gormond Rd Richmond V7E1N5', 'apt', 49.1446, -123.187, '2018-03-02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- 表的结构 `addresscoordinate`
+--
+
+CREATE TABLE `addresscoordinate` (
+  `aid` int(5) NOT NULL,
+  `address` varchar(64) NOT NULL,
+  `coordinate` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `addresscoordinate`
+--
+
+INSERT INTO `addresscoordinate` (`aid`, `address`, `coordinate`) VALUES
+(1, '9320 Gormond Rd Richmond V7E1N5', '{lat: 49.1446514, lng: -123.1871603}'),
+(11, 'Ora 602-6200 River Rd', '{lat: 40.2749927, lng: -111.6709053}');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin`
 --
 
 CREATE TABLE `admin` (
@@ -59,11 +80,11 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `admin`
+-- 转存表中的数据 `admin`
 --
 
 INSERT INTO `admin` (`aid`, `username`, `password`, `permission`) VALUES
-(2, 'brook', 'b79624284645b7cba19d76a417e493fe9e767745d4313fdfc35107c92a5db909', '1/2/3/4/5/6/7/8/9'),
+(2, 'brook', 'b79624284645b7cba19d76a417e493fe9e767745d4313fdfc35107c92a5db909', '1/2/3/4/5/6/7/8/9/10'),
 (3, 'Chuck', 'cff3e7ca36573093f97c89acc9d314c96450fb7c35c0bd0d5226ed513c7b5b9e', '1/2/3/4/5/6/7'),
 (4, 'Todd', 'cff3e7ca36573093f97c89acc9d314c96450fb7c35c0bd0d5226ed513c7b5b9e', '1/2/3/4/5/6/7/8/9'),
 (5, 'Carmond', 'cff3e7ca36573093f97c89acc9d314c96450fb7c35c0bd0d5226ed513c7b5b9e', '1/2/3/4/5/6/7'),
@@ -72,7 +93,7 @@ INSERT INTO `admin` (`aid`, `username`, `password`, `permission`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `flight_service`
+-- 表的结构 `flight_service`
 --
 
 CREATE TABLE `flight_service` (
@@ -87,7 +108,7 @@ CREATE TABLE `flight_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `flight_service`
+-- 转存表中的数据 `flight_service`
 --
 
 INSERT INTO `flight_service` (`fid`, `serviceToken`, `user`, `time`, `numCars`, `num_ppl`, `packages`, `additionalNote`) VALUES
@@ -98,7 +119,7 @@ INSERT INTO `flight_service` (`fid`, `serviceToken`, `user`, `time`, `numCars`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `food_service`
+-- 表的结构 `food_service`
 --
 
 CREATE TABLE `food_service` (
@@ -117,7 +138,7 @@ CREATE TABLE `food_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `food_service`
+-- 转存表中的数据 `food_service`
 --
 
 INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `startDate`, `startTime`, `endDate`, `endTime`, `num_ppl`, `createdAt`, `display`, `finish`) VALUES
@@ -135,14 +156,16 @@ INSERT INTO `food_service` (`sid`, `user`, `serviceToken`, `serviceType`, `start
 (15, 'sKm8LU', '80371 ', '孕妈待产餐', '2018-03-10', '早', '2018-04-25', '早', NULL, '2018-03-01 16:51:19', 0, NULL),
 (16, 'sKm8LU', '41553 ', '孕妈月子餐', '2018-03-09', '早', '2018-03-21', '早', NULL, '2018-03-01 16:53:54', 0, NULL),
 (17, 'sKm8LU', '73783 ', '孕妈月子餐', '2018-03-03', '早', '2018-03-13', '早', NULL, '2018-03-01 16:54:58', 0, NULL),
-(18, 'sKm8LU', '32137 ', '孕妈待产餐', '2018-03-23', '早', '2018-03-30', '早', NULL, '2018-03-01 16:55:33', 0, NULL),
 (19, 'sKm8LU', '55274 ', '待产餐', '2018-03-03', '早', '2018-03-21', '早', 1, '2018-03-01 17:03:24', 0, NULL),
-(20, 'sKm8LU', '83431 ', '孕妈待产餐', '2018-03-16', '早', '2018-03-27', '早', NULL, '2018-03-01 18:07:44', 1, NULL);
+(20, 'sKm8LU', '83431 ', '孕妈待产餐', '2018-03-16', '早', '2018-03-27', '早', NULL, '2018-03-01 18:07:44', 1, NULL),
+(21, '7ddxd0', '24449 ', '孕妈月子餐', '2018-03-02', '中', '2018-03-07', '早', NULL, '2018-03-01 19:08:41', 1, NULL),
+(22, '7ddxd0', '50243 ', '孕妈待产餐', '2018-03-02', '晚', '2018-03-12', '早', NULL, '2018-03-01 19:09:08', 1, NULL),
+(23, '7ddxd0', '66748 ', '待产餐', '2018-03-02', '早', '2018-03-06', '早', 3, '2018-03-01 19:09:24', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- 表的结构 `history`
 --
 
 CREATE TABLE `history` (
@@ -155,7 +178,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `history`
+-- 转存表中的数据 `history`
 --
 
 INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activate`) VALUES
@@ -182,12 +205,15 @@ INSERT INTO `history` (`hid`, `token`, `serviceType`, `user_id`, `time`, `activa
 (41, '49782', '接机送机', 'sKm8LU', '2018-03-01 00:00:00', NULL),
 (42, '10206', '住房维修', 'sKm8LU', '2018-03-01 17:39:38', NULL),
 (43, '62829', '住房维修', 'sKm8LU', '2018-03-01 18:06:49', NULL),
-(44, '83431', '孕妈待产餐', 'sKm8LU', '2018-03-01 18:07:44', NULL);
+(44, '83431', '孕妈待产餐', 'sKm8LU', '2018-03-01 18:07:44', NULL),
+(45, '24449', '孕妈月子餐', '7ddxd0', '2018-03-01 19:08:41', NULL),
+(46, '50243', '孕妈待产餐', '7ddxd0', '2018-03-01 19:09:08', NULL),
+(47, '66748', '待产餐', '7ddxd0', '2018-03-01 19:09:24', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `housekeeping_service`
+-- 表的结构 `housekeeping_service`
 --
 
 CREATE TABLE `housekeeping_service` (
@@ -204,7 +230,7 @@ CREATE TABLE `housekeeping_service` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medical_service`
+-- 表的结构 `medical_service`
 --
 
 CREATE TABLE `medical_service` (
@@ -219,7 +245,7 @@ CREATE TABLE `medical_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `medical_service`
+-- 转存表中的数据 `medical_service`
 --
 
 INSERT INTO `medical_service` (`sid`, `user`, `serviceToken`, `medicalServiceType`, `time`, `additional`, `finish`, `times`) VALUES
@@ -235,7 +261,7 @@ INSERT INTO `medical_service` (`sid`, `user`, `serviceToken`, `medicalServiceTyp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pickup_service`
+-- 表的结构 `pickup_service`
 --
 
 CREATE TABLE `pickup_service` (
@@ -252,7 +278,7 @@ CREATE TABLE `pickup_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pickup_service`
+-- 转存表中的数据 `pickup_service`
 --
 
 INSERT INTO `pickup_service` (`pid`, `user`, `serviceToken`, `date`, `time`, `departure`, `destination`, `num_ppl`, `additional`, `finish`) VALUES
@@ -262,7 +288,7 @@ INSERT INTO `pickup_service` (`pid`, `user`, `serviceToken`, `date`, `time`, `de
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchase_service`
+-- 表的结构 `purchase_service`
 --
 
 CREATE TABLE `purchase_service` (
@@ -315,7 +341,7 @@ CREATE TABLE `purchase_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `purchase_service`
+-- 转存表中的数据 `purchase_service`
 --
 
 INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date`, `origin_address`, `doujiang`, `tiandoujiang`, `niunai`, `guozhi`, `furu`, `zhacai`, `laoganma`, `ganlancai`, `xianyadan`, `huashengjiang`, `caomeijiang`, `shengjidan`, `maipian`, `culiangmianbao`, `doushabao`, `xiaomantou`, `shouzhuabing`, `jiaozi`, `miantiao`, `dami`, `xiaomi`, `hongdou`, `lvdou`, `pingguo`, `xiangjiao`, `chengzi`, `guoli`, `juzi`, `xihongshi`, `bocai`, `digua`, `huanggua`, `tudou`, `you`, `yan`, `jiang`, `cu`, `tang`, `locker`, `finish`) VALUES
@@ -324,7 +350,7 @@ INSERT INTO `purchase_service` (`pid`, `user`, `serviceToken`, `property`, `date
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repair_service`
+-- 表的结构 `repair_service`
 --
 
 CREATE TABLE `repair_service` (
@@ -338,7 +364,7 @@ CREATE TABLE `repair_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `repair_service`
+-- 转存表中的数据 `repair_service`
 --
 
 INSERT INTO `repair_service` (`rid`, `user`, `serviceToken`, `time`, `repairNote`, `replyNote`, `finish`) VALUES
@@ -350,7 +376,7 @@ INSERT INTO `repair_service` (`rid`, `user`, `serviceToken`, `time`, `repairNote
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- 表的结构 `users`
 --
 
 CREATE TABLE `users` (
@@ -377,13 +403,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `users`
+-- 转存表中的数据 `users`
 --
 
 INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, `timeDeliver`, `create_time`, `role`, `salt`, `address`, `flight`, `flightTotal`, `special_medical`, `special_medicalTotal`, `pickup`, `pickupTotal`, `medicals`, `medicalsTotal`, `isActive`) VALUES
 (1, 'brook', 7789226676, '123@gmail.com', '087f2fe94ae39f97c1e146839e14d0ac2975fc6519528b0c880fd0b9b8a419a4', 'xxx', '2018-02-23', '2018-02-22', '1', '0GtwFX', '9320 Gormond Rd Richmond V7E1N5', 3, 2, 9, 6, 3, 2, 4, 2, 1),
 (2, '12345', 12345, '123@gmail.com', 'a663d49d3d3385cb31bd5d58d06253a56ef4d1da0bea6adaa36dbed210c248af', '12345', '2018-02-17', '2018-02-26', '1', 'kqdo4b', 'Ora 602-6200 River Rd', 0, 0, 0, NULL, 1, 2, 1, 2, 1),
-(3, 'www', 7787888848, '123@gmail.com', 'ebaaa9a9dcad68f5cf4550ebd1ddfed70b987801db72a2fde1387198c2750f02', 'www', '2018-03-30', '2018-03-01', '1', 'sKm8LU', 'Ora 1202-6951 Hollybridge Way', 1, 1, 0, 0, 7, 9, 6, 8, 1);
+(3, 'www', 7787888848, '123@gmail.com', 'ebaaa9a9dcad68f5cf4550ebd1ddfed70b987801db72a2fde1387198c2750f02', 'www', '2018-03-30', '2018-03-01', '1', 'sKm8LU', 'Ora 1202-6951 Hollybridge Way', 1, 1, 0, 0, 7, 9, 6, 8, 1),
+(4, '123', 123, '123@12.com', '13b3c54a329d7ffee6032185979912928acda40f5af9c36bc9fb4cd87e01447f', '123', '2018-03-14', '2018-03-01', '1', '7ddxd0', 'Ora 702-6951 Hollybridge Way', 8, 7, 8, 8, 8, 8, 8, 8, 1);
 
 --
 -- Indexes for dumped tables
@@ -394,6 +421,13 @@ INSERT INTO `users` (`uid`, `username`, `phone`, `email`, `password`, `weChat`, 
 --
 ALTER TABLE `address`
   ADD PRIMARY KEY (`aid`);
+
+--
+-- Indexes for table `addresscoordinate`
+--
+ALTER TABLE `addresscoordinate`
+  ADD PRIMARY KEY (`aid`),
+  ADD UNIQUE KEY `address` (`address`);
 
 --
 -- Indexes for table `admin`
@@ -458,74 +492,80 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `address`
+-- 使用表AUTO_INCREMENT `address`
 --
 ALTER TABLE `address`
-  MODIFY `aid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `aid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `admin`
+-- 使用表AUTO_INCREMENT `addresscoordinate`
+--
+ALTER TABLE `addresscoordinate`
+  MODIFY `aid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- 使用表AUTO_INCREMENT `admin`
 --
 ALTER TABLE `admin`
   MODIFY `aid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `flight_service`
+-- 使用表AUTO_INCREMENT `flight_service`
 --
 ALTER TABLE `flight_service`
   MODIFY `fid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `food_service`
+-- 使用表AUTO_INCREMENT `food_service`
 --
 ALTER TABLE `food_service`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `history`
+-- 使用表AUTO_INCREMENT `history`
 --
 ALTER TABLE `history`
-  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `hid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `housekeeping_service`
+-- 使用表AUTO_INCREMENT `housekeeping_service`
 --
 ALTER TABLE `housekeeping_service`
   MODIFY `hid` int(100) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `medical_service`
+-- 使用表AUTO_INCREMENT `medical_service`
 --
 ALTER TABLE `medical_service`
   MODIFY `sid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `pickup_service`
+-- 使用表AUTO_INCREMENT `pickup_service`
 --
 ALTER TABLE `pickup_service`
   MODIFY `pid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `purchase_service`
+-- 使用表AUTO_INCREMENT `purchase_service`
 --
 ALTER TABLE `purchase_service`
   MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `repair_service`
+-- 使用表AUTO_INCREMENT `repair_service`
 --
 ALTER TABLE `repair_service`
   MODIFY `rid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `users`
+-- 使用表AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

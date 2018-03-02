@@ -81,22 +81,39 @@
     <script>
         function initMap() {
             <?php 
+            include_once "../model/common.php";
                 if (!isset($_GET['address'])) {
                     printf("undefined address");
                     exit();
                 }
                 $address = $_GET['address'];
-
-                //     // Get lat and long by address         
-                // $address = $dlocation; // Google HQ
-                $prepAddr = str_replace(' ','+',$address);
-                $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
-                $output= json_decode($geocode);
-                $latitude = $output->results[0]->geometry->location->lat;
-                $longitude = $output->results[0]->geometry->location->lng;
-
-                $address_format = "{lat: " .$latitude. ", lng: ".$longitude. "}";
-                $markerString =  "
+                $coordinate = "";
+                // sql first, if no result, use google api geocode
+                global $mysqli;
+                $address_query = "SELECT coordinate FROM addresscoordinate where address = '$address'";
+                $address_result = $mysqli->query($address_query);
+                if ($address_result->num_rows == 0) {
+                    $prepAddr = str_replace(' ','+',$address);
+                    $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
+                    $output= json_decode($geocode);
+                    if ($output->status == "ZERO_RESULTS"){
+                        echo "alert('地址不合格，google找不到坐标');";
+                    } else if (isset($output->error_message)){
+                        echo "alert('达到google查询次数上限，请等一会儿再查');";
+                    } else {
+                        $latitude = $output->results[0]->geometry->location->lat;
+                        $longitude = $output->results[0]->geometry->location->lng;
+        
+                        $coordinate = "{lat: " .$latitude. ", lng: ".$longitude. "}";
+                        $insert_coordinate = "INSERT INTO addresscoordinate (address, coordinate) VALUES ('$address', '$coordinate')";
+                        $mysqli->query($insert_coordinate);
+                    }
+                } else {
+                    $results = mysqli_fetch_all ($address_result, MYSQLI_ASSOC);
+                    $coordinate = $results[0]["coordinate"];
+                }
+                if ($coordinate != "") {
+                    $markerString =  "
                     var contentString1 = '<div id=\"content\">'+
                     '<div id=\"siteNotice\">'+
                     '</div>'+
@@ -105,14 +122,14 @@
 
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 13,
-                        center: $address_format
+                        center: $coordinate
                         });
 
                     var infowindow1 = new google.maps.InfoWindow({
                         content: contentString1
                     });
                     var marker1 = new google.maps.Marker({
-                        position: $address_format,
+                        position: $coordinate,
                         map: map,
                         title: \"dadd\"
                     }); 
@@ -122,6 +139,7 @@
                     });
                 ";
                 echo $markerString;
+                }
             ?>
         }
     </script>
