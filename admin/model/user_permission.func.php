@@ -180,6 +180,14 @@ class User_Permission{
                         <label>%d</label>
                         </div>
                         <div class=\"form-group\">
+                        <label style=\"width:80px;\">接送机数: </label>
+                        <input tyle=\"text\" name=\"flight\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
+                        <label style=\"width:100px;\">接送机总数: </label>
+                        <label>%d</label>
+                        </div>
+                        <div class=\"form-group\">
                         <label style=\"width:80px;\">剩余出行: </label>
                         <input tyle=\"text\" name=\"pickup\" value=%d>
                         </div>
@@ -196,14 +204,6 @@ class User_Permission{
                         <label>%d</label>
                         </div>
                         <div class=\"form-group\">
-                        <label style=\"width:80px;\">接送机数: </label>
-                        <input tyle=\"text\" name=\"flight\" value=%d>
-                        </div>
-                        <div class=\"form-group\">
-                        <label style=\"width:100px;\">接送机总数: </label>
-                        <label>%d</label>
-                        </div>
-                        <div class=\"form-group\">
                         <label style=\"width:80px;\">激活: </label>
                         <select name=\"isActive\">
                         <option value = 1>是</option>
@@ -213,7 +213,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['special_medicalTotal'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['flight'], $profile_retrieve['flightTotal'], $profile_retrieve['isActive']);
+                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['special_medicalTotal'], $profile_retrieve['flight'], $profile_retrieve['flightTotal'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{
