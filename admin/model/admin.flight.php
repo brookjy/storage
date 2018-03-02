@@ -6,46 +6,46 @@ Class Flight{
         return "select count(*) FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(".$time.")";
     }
     public function summary(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time,flight_service.numCars,flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user ORDER BY flight_service.fid DESC";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time,flight_service.numCars,flight_service.num_ppl,flight_service.packages,flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user ORDER BY flight_service.fid DESC";
         $this->time = "（所有记录，含过期）";
         $this->showResult($query,"select count(*) FROM flight_service INNER JOIN users ON users.salt=flight_service.user");
     }
 
     public function todayListing(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE())";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE())";
         $this->time = "今天";
         $this->showResult($query, $this -> totalQuery("CURDATE()"));
     }
 
     public function tomorrowListing(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 1 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 1 DAY)";
         $this->time = "明天";
         $this->showResult($query, $this -> totalQuery("CURDATE()+ INTERVAL 1 DAY"));
     }
 
     public function twoDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 2 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 2 DAY)";
         $this->date = new DateTime('today');
         $this->time = $this->date->modify('+2 day')->format('m-d');
         $this->showResult($query, $this -> totalQuery("CURDATE()+ INTERVAL 2 DAY"));
     }
 
     public function threeDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 3 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 3 DAY)";
         $this->date = new DateTime('today');
         $this->time = $this->date->modify('+3 day')->format('m-d');
         $this->showResult($query, $this -> totalQuery("CURDATE()+ INTERVAL 3 DAY"));
     }
 
     public function fourDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 4 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 4 DAY)";
         $this->date = new DateTime('today');
         $this->time = $this->date->modify('+4 day')->format('m-d');
         $this->showResult($query, $this -> totalQuery("CURDATE()+ INTERVAL 4 DAY"));
     }
 
     public function fiveDaysLater(){
-        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 5 DAY)";
+        $query="SELECT users.uid,users.username,users.phone,flight_service.time, flight_service.numCars,flight_service.num_ppl,flight_service.packages, flight_service.additionalNote FROM flight_service INNER JOIN users ON users.salt=flight_service.user WHERE DATE(flight_service.time) = DATE(CURDATE()+ INTERVAL 5 DAY)";
         $this->date = new DateTime('today');
         $this->time = $this->date->modify('+5 day')->format('m-d');
         $this->showResult($query, $this -> totalQuery("CURDATE()+ INTERVAL 5 DAY"));
@@ -63,6 +63,8 @@ Class Flight{
             <th>电话</th>
             <th>时间</th>
             <th>车数</th>
+            <th>人数</th>
+            <th>行李数</th>
             <th>备注</th>
         </tr>
         </thead> 
@@ -88,6 +90,8 @@ Class Flight{
                         <td><a href=\"tel:".$Summary['phone']."\">".$Summary['phone']."</a></td> 
                         <td>".$Summary['time']."</td> 
                         <td>".$Summary['numCars']."</td> 
+                        <td>".$Summary['num_ppl']."</td> 
+                        <td>".$Summary['packages']."</td> 
                         <td>".$Summary['additionalNote']."</td> 
                     </tr>
             ";
