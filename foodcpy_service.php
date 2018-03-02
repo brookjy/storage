@@ -52,6 +52,11 @@
                                 <option value=3>3</option>
                                 <option value=4>4</option>
                                 <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
+                                <option value=10>10</option>
                             </select>
                         </div>
                         <div class="row">
@@ -96,15 +101,6 @@
                                 <br/>
                             </div>
                         </div> <!-- /.row -->
-                        
-                        <div class="form-group"  style="width:250px;">
-                            <label>选择地址：</label>
-                            <select class="form-control" name="address">
-                                <option value="家">家</option>
-                                <option value="医院">医院</option>
-                            </select>
-                        </div>
-                        <br/>
                         <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="foodcpy_service">提交申请</button>
                     </div><!-- /.container -->
                 </form>

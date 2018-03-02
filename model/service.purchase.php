@@ -3,6 +3,7 @@
 class Purchase_Service{
     private $origin_address;
     private $serviceType;
+    private $serviceToken;
     private $property;
     private $doujiang;
     private $tiandoujiang;
@@ -46,6 +47,7 @@ class Purchase_Service{
 
 	public function __construct() {
         $this->origin_address = isset($_POST['origin_address']) ? $_POST['origin_address'] : null;
+        $this->serviceToken = isset($_POST['serviceToken']) ? $_POST['serviceToken'] : null;
         $this->serviceType = isset($_POST['serviceType']) ? $_POST['serviceType'] : null;
         $this->property = isset($_POST['property']) ? $_POST['property'] : null;
 		$this->doujiang = isset($_POST['doujiang']) ? $_POST['doujiang'] : null;
@@ -139,6 +141,26 @@ class Purchase_Service{
             return false;
         }
         return false;
+    }
+
+    public function purchase_delete(){
+        global $mysqli;
+
+        $delete_query = "DELETE FROM purchase_service WHERE serviceToken = '$this->serviceToken'";
+        if($mysqli->query($delete_query)){
+            echo "<script type=\"text/javascript\">alert('订单已经成功清除!');window.location.href = 'panel.php' ;</script>";
+        }else{
+            printf("Registration failure: %s\n", $mysqli->error);
+            exit();
+        }
+
+        $delete_query = "DELETE FROM history WHERE token = '$this->serviceToken'";
+        if($mysqli->query($delete_query)){
+        
+        }else{
+            printf("Registration failure: %s\n", $mysqli->error);
+            exit();
+        }
     }
     
 }

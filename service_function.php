@@ -36,5 +36,7 @@
 		$flight_service->flight_service();
 	}else if(isset($_POST['food_service_special'])){
 		$food_service->food_service_special();
+	}else if(isset($_POST['purchase_delete'])){
+		$purchase_service->purchase_delete();
 	}
 ?>

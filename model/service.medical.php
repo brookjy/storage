@@ -31,7 +31,7 @@ class Medical_Service{
                 $result = $mysqli->query($special_medical_query);
                 $result_retrieve = $result->fetch_assoc();
                 if(!$result_retrieve['special_medical'] > 0){
-                    echo "<script type=\"text/javascript\">alert('您已经没有专科医生服务!请联系管理员。');window.history.back();</script>"; 
+                    echo "<script type=\"text/javascript\">alert('您已经没有专科医生服务!请联系公司：604-285-9225。');window.history.back();</script>"; 
                     exit();
                 }else{
                     $update_special_med_query = "UPDATE users SET special_medical = special_medical-1 WHERE salt = '$user_id'";

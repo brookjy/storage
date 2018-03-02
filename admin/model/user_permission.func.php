@@ -55,11 +55,13 @@ class User_Permission{
                         <th>Email</th> 
                         <th>微信</th> 
                         <th>专科医生</th>
+                        <th>专科医生总数</th>
+                        <th>接送机数</th>
+                        <th>接送机总数</th>
                         <th>剩余出行</th> 
                         <th>出行总数</th>
                         <th>剩余医疗</th> 
                         <th>医疗总数</th>
-                        <th>接送机数</th>
                         <th>激活</th>
                         <th>修改</th>
                     </tr> 
@@ -84,10 +86,12 @@ class User_Permission{
                                 <td>%d</td> 
                                 <td>%d</td> 
                                 <td>%d</td> 
+                                <td>%d</td> 
+                                <td>%d</td> 
                                 <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"user_modify\">修改</button></td> 
                             </tr> 
                             </form>
-                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'], $result['special_medical'], $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'],$result['flight'], $result['isActive']);
+                ", $result['salt'], $result['uid'], $result['username'], $result['phone'], $result['phone'], $result['address'], $result['timeDeliver'], $result['email'], $result['weChat'], $result['special_medical'], $result['special_medicalTotal'], $result['flight'], $result['flightTotal'], $result['pickup'], $result['pickupTotal'], $result['medicals'], $result['medicalsTotal'], $result['isActive']);
             }
             echo sprintf(" 
                     </tbody> 
@@ -172,24 +176,32 @@ class User_Permission{
                         <input tyle=\"text\" name=\"special_medical\" value=%d>
                         </div>
                         <div class=\"form-group\">
+                        <label style=\"width:80px;\">专科总数: </label>
+                        <label>%d</label>
+                        </div>
+                        <div class=\"form-group\">
                         <label style=\"width:80px;\">剩余出行: </label>
                         <input tyle=\"text\" name=\"pickup\" value=%d>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">出行总数: </label>
-                        <input tyle=\"text\" name=\"pickupTotal\" value=%d>
+                        <label>%d</label>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">剩余医疗: </label>
                         <input tyle=\"text\" name=\"medicals\" value=%d>
                         </div>
                         <div class=\"form-group\">
-                        <label style=\"width:80px;\">出行总数: </label>
-                        <input tyle=\"text\" name=\"medicalsTotal\" value=%d>
+                        <label style=\"width:80px;\">医疗总数: </label>
+                        <label>%d</label>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">接送机数: </label>
                         <input tyle=\"text\" name=\"flight\" value=%d>
+                        </div>
+                        <div class=\"form-group\">
+                        <label style=\"width:100px;\">接送机总数: </label>
+                        <label>%d</label>
                         </div>
                         <div class=\"form-group\">
                         <label style=\"width:80px;\">激活: </label>
@@ -201,7 +213,7 @@ class User_Permission{
                         <br/>
                         <button type=\"submit\" class=\"btn btn-primary\" name=\"update_user\">确认修改</button>
                         <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_user\">删除用户</button>
-                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['flight'],$profile_retrieve['isActive']);
+                </form><br/>", $profile_retrieve['salt'], $profile_retrieve['username'], $profile_retrieve['phone'], $profile_retrieve['email'], $profile_retrieve['weChat'], $profile_retrieve['timeDeliver'], $profile_retrieve['address'], $profile_retrieve['address'], $profile_retrieve['special_medical'], $profile_retrieve['special_medicalTotal'], $profile_retrieve['pickup'], $profile_retrieve['pickupTotal'], $profile_retrieve['medicals'], $profile_retrieve['medicalsTotal'], $profile_retrieve['flight'], $profile_retrieve['flightTotal'], $profile_retrieve['isActive']);
             /*cookies expire in 7 days*/
 			return 1;
 		}else{
@@ -213,8 +225,27 @@ class User_Permission{
     public function update_user(){
         GLOBAL $mysqli;
 
+        $origin_query = "SELECT * FROM users WHERE salt = '$this->salt' ";
+        $origin_query_exist = $mysqli->query($origin_query);
+		if($origin_query_exist->num_rows > 0){
+            $origin_value = $origin_query_exist->fetch_assoc();
+            $specialMedicalDiff = $this->special_medical - $origin_value['special_medical'];
+            $FlightDiff = $this->flight - $origin_value['flight'];
+            $PickupDiff = $this->pickup - $origin_value['pickup'];
+            $MedicalDiff = $this->medicals - $origin_value['medicals'];
+
+            // Pre calculated value before insert into the database. 
+            $total_special_medical = $origin_value['special_medicalTotal'] + $specialMedicalDiff;
+            $total_flight = $origin_value['flightTotal'] + $FlightDiff;
+            $total_pickup = $origin_value['pickupTotal'] + $PickupDiff;
+            $total_medical = $origin_value['medicalsTotal'] + $MedicalDiff;
+        }else{
+            printf("Registration failure: %s\n", $mysqli->error);
+            exit();
+        }
+
         /* UPdate DB if the user change the user info data */
-        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address',special_medical='$this->special_medical', pickup ='$this->pickup', pickupTotal ='$this->pickupTotal', medicals='$this->medicals', medicalsTotal ='$this->medicalsTotal',flight ='$this->flight', isActive='$this->isActive' WHERE salt = '$this->salt' ";
+        $update_query = "UPDATE users SET phone='$this->phone', email='$this->email', weChat='$this->weChat', timeDeliver='$this->timeDeliver', address='$this->address', special_medical='$this->special_medical', special_medicalTotal='$total_special_medical', flight ='$this->flight', flightTotal='$total_flight', pickup ='$this->pickup', pickupTotal ='$total_pickup', medicals='$this->medicals', medicalsTotal ='$total_medical', isActive='$this->isActive' WHERE salt = '$this->salt' ";
         if($mysqli->query($update_query)){
             echo "<script type=\"text/javascript\">alert('您已成功修改信息！');window.location.replace('/admin/user_permission.php');</script>";
         }else{

@@ -27,17 +27,17 @@ class Food_Service{
         $time_now = time();
         $format_time = date("Y-m-d H:i:s",$time_now);
         $serviceToken = rand(10, 100000);
-        
-        if(empty($this->serviceType) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) || empty($this->isBooked) ){
+
+        if(empty($this->serviceType) || empty($this->startDate) || empty($this->endDate) || empty($this->startTime) || empty($this->endTime) ){
             echo "<script type=\"text/javascript\">alert('您没有填写相应信息! ');window.history.back();</script>"; 
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, isBooked, createdAt) VALUES ('$user_id', '$serviceToken ', '$this->serviceType', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$this->isBooked', '$format_time')";
+                $food_service_query = "INSERT INTO food_service (user, serviceToken, serviceType, startDate, startTime, endDate, endTime, createdAt) VALUES ('$user_id', '$serviceToken ', '$this->serviceType', '$this->startDate', '$this->startTime', '$this->endDate', '$this->endTime', '$format_time')";
                 if($mysqli->query($food_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
                 }else{
-                    printf("Registration failure: %s!!!\n", $mysqli->error);
+                    printf("Registration failure: %s\n", $mysqli->error);
                     exit();
                 }
 

@@ -6,25 +6,55 @@ class Check_Foods{
     public function check_food(){
         GLOBAL $mysqli;
         $user_id =  $_COOKIE['uid'];
-        $check_query="SELECT * FROM food_service WHERE user = '$user_id' AND (serviceType = '宝妈待产餐' OR serviceType = '宝妈月子餐') AND display = 1";
+        $check_query="SELECT * FROM food_service WHERE user = '$user_id' AND serviceType = '孕妈待产餐' AND display = 1";
         $result = $mysqli->query($check_query);
         if ($result->num_rows > 0){
             $check_retrieve = $result->fetch_assoc();
-            if($check_retrieve['serviceType'] == "宝妈月子餐" || $check_retrieve['serviceType'] == "宝妈待产餐" ){
+            if($check_retrieve['serviceType'] == "孕妈待产餐" ){
                 echo sprintf(
                     "<div>
-                        <h2><b>您已经预定了 - 宝妈订餐服务</b></h2>
+                        <h2><b>您已经预定了 - 孕妈待产餐服务</b></h2>
                         <p>(如果有错误或者急事, 请打电话 Chuck: 778-895-3579, 微信有时无法及时回复。)</p>
-                        <p>月子餐预定: %s</p>
                         <p>您预订的时间：</p>
                         <p>从 %s %s</p>
                         <p>到 %s %s</p>
                         <form action = \"./service_function.php\" method=\"post\">
                             <input type=\"hidden\" value=\"%d\" name=\"token\">
-                            <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换地点</button>
                             <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换套餐</button>
                         </form>
-                    </div>", $check_retrieve['isBooked'], $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
+                        <br/>
+                    </div>", $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
+                );
+                return false;
+            }
+            return true;
+        }else{
+            return true;
+        }
+    
+    }
+
+    public function check_food_special(){
+        GLOBAL $mysqli;
+        $user_id =  $_COOKIE['uid'];
+        $check_query="SELECT * FROM food_service WHERE user = '$user_id' AND serviceType = '孕妈月子餐' AND display = 1";
+        $result = $mysqli->query($check_query);
+        if ($result->num_rows > 0){
+            $check_retrieve = $result->fetch_assoc();
+            if($check_retrieve['serviceType'] == "孕妈月子餐"){
+                echo sprintf(
+                    "<div>
+                        <h2><b>您已经预定了 - 孕妈月子餐服务</b></h2>
+                        <p>(如果有错误或者急事, 请打电话 Chuck: 778-895-3579, 微信有时无法及时回复。)</p>
+                        <p>您预订的时间：</p>
+                        <p>从 %s %s</p>
+                        <p>到 %s %s</p>
+                        <form action = \"./service_function.php\" method=\"post\">
+                            <input type=\"hidden\" value=\"%d\" name=\"token\">
+                            <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换套餐</button>
+                        </form>
+                        <br/>
+                    </div>", $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
                 );
                 return false;
             }

@@ -62,13 +62,39 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="form-group"  style="width:250px;">
+                        <label>人数: </label>
+                        <select class="form-control" name="num_ppl">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                        </select>
+                    </div>
+                    <div class="form-group"  style="width:250px;">
+                        <label>行李数量: </label>
+                        <select class="form-control" name="packages">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                        </select>
+                    </div>
                     <div class="form-group"  style="width:250px;">
                         <label>预定出车数量: </label>
                         <select class="form-control" name="numCars">
                             <option value=1>1</option>
                             <option value=2>2</option>
                             <option value=3>3</option>
+                            <option value=4>4</option>
                         </select>
                     </div>
                     <div class="form-group">

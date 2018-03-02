@@ -70,53 +70,35 @@
             </ol>
             <br/>
             <div style="padding-left:20px;padding-right:20px;">
-                <?php 
-                    include_once "./model/common.php";
-                    include_once "./model/check.foods.php";
-
-                    $check_foods = new Check_Foods();
-                    if($check_foods->check_food()){
-                ?>
-                <h2><b>孕产订餐申请</b></h2>
+                <h2><b>孕妈订餐申请</b></h2>
                 <br/>
                 <!-- Start form -->
                 <form action="./service_function.php" method="post">
                     <div class="container">
-                        <input type="hidden" name="serviceType" value="宝妈月子餐">
+                        <input type="hidden" name="serviceType" value="孕妈月子餐">
                         <div class="jumbotron">
-                            <h5><span style="color:orange">宝妈月子餐</span></h5>
-                            <br/>
-                            <div class="form-group"  style="width:250px;">
-                                <label>月子餐预定：</label>
-                                <select name="isBooked">
-                                    <option value="是">是</option>
-                                    <option value="否">否</option>
-                                </select>
-                            </div>
-                        </div><!-- End first part -->
-                        <!-- <div class="form-group">
-                            <label>选择服务类型：</label>
-                            <select name="serviceType">
-                                <option value="宝妈月子餐">月子餐</option>
-                                <option value="宝妈待产餐">待产餐</option>
-                            </select>
-                        </div> -->
-                        <div class="jumbotron">
-                            <h5><span style="color:orange">宝妈待产餐</span></h5>
+                            <?php 
+                                include_once "./model/common.php";
+                                include_once "./model/check.foods.php";
+
+                                $check_foods = new Check_Foods();
+                                if($check_foods->check_food_special()){
+                            ?>
+                            <h5><span style="color:orange">孕妈月子餐</span></h5>
                             <br/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" style="width:250px;">
-                                        <label>选择开始时间：<span style="color:red;">*预约请提前5小时<span></label>
+                                        <label>开始日期: <span style="color:red;">*预约请提前5小时<span></label>
                                         <div class="col-xs-5 date">
                                             <div class="form-group" >
                                                 <label>日期: </label>
-                                                <input type="date" name="startDate">
+                                                <input type="date" id="startDate1" name="startDate">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group"  style="width:250px;">
-                                        <label>选择种类: </label>
+                                        <label>开始时间: </label>
                                         <select class="form-control" name="startTime">
                                             <option value="早">早</option>
                                             <option value="中">中</option>
@@ -127,16 +109,87 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" style="width:250px;">
-                                        <label>选择结束时间: </label>
+                                        <label>结束日期: </label>
                                         <div class="col-xs-5 date">
                                             <div class="form-group" >
                                                 <label>日期: </label>
-                                                <input type="date" name="endDate">
+                                                <input type="date" id="endDate1" name="endDate">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group"  style="width:250px;">
-                                        <label>选择种类：</label>
+                                        <label>结束时间: </label>
+                                        <select class="form-control" name="endTime">
+                                            <option value="早">早</option>
+                                            <option value="中">中</option>
+                                            <option value="晚">晚</option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div> <!-- /.row -->
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:20px;" name="food_service">提交申请</button>
+                        </div><!-- End first part -->
+                        <?php }else{?> <!-- else condition start -->
+                            </div>
+                            <br/>
+                        
+                        <?php }?>
+                        <!-- <div class="form-group">
+                            <label>选择服务类型：</label>
+                            <select name="serviceType">
+                                <option value="宝妈月子餐">月子餐</option>
+                                <option value="宝妈待产餐">待产餐</option>
+                            </select>
+                        </div> -->
+                </form>
+
+                <!-- Second form start -->
+                <form action="./service_function.php" method="post">
+                        <div class="jumbotron">
+                            <?php 
+                                include_once "./model/common.php";
+                                include_once "./model/check.foods.php";
+
+                                $check_foods = new Check_Foods();
+                                if($check_foods->check_food()){
+                            ?>
+                            <input type="hidden" name="serviceType" value="孕妈待产餐">
+                            <h5><span style="color:orange">孕妈待产餐</span></h5>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" style="width:250px;">
+                                        <label>开始日期: <span style="color:red;">*预约请提前5小时<span></label>
+                                        <div class="col-xs-5 date">
+                                            <div class="form-group" >
+                                                <label>日期: </label>
+                                                <input type="date" id="startDate2" name="startDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"  style="width:250px;">
+                                        <label>开始时间: </label>
+                                        <select class="form-control" name="startTime">
+                                            <option value="早">早</option>
+                                            <option value="中">中</option>
+                                            <option value="晚">晚</option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="width:250px;">
+                                        <label>结束日期: </label>
+                                        <div class="col-xs-5 date">
+                                            <div class="form-group" >
+                                                <label>日期: </label>
+                                                <input type="date" id="endDate2" name="endDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"  style="width:250px;">
+                                        <label>结束时间: </label>
                                         <select class="form-control" name="endTime">
                                             <option value="早">早</option>
                                             <option value="中">中</option>
@@ -151,8 +204,8 @@
                     </div><!-- /.container -->
                 </form>
                 
-                <?php }else{?> <!-- second condition start -->
-
+                <?php }else{?> <!-- else condition start -->
+                    </div>
                     <br/>
                 
                 <?php }?>
@@ -186,25 +239,21 @@
         <script>
 
             var today = new Date().toISOString().split('T')[0];
-            document.getElementsByName("startDate")[0].setAttribute('min', today);
-            document.getElementsByName("endDate")[0].setAttribute('min', today);
+            document.getElementById("startDate1").setAttribute('min', today);
+            document.getElementById("endDate1").setAttribute('min', today);
             
-            document.getElementsByName("startDate")[0].value=today;
-            document.getElementsByName("endDate")[0].value=today;
+            document.getElementById("startDate1").value=today;
+            document.getElementById("endDate1").value=today;
 
-            var tomorrow = new Date();
-            tomorrow.setHours(tomorrow.getHours() + 5);
-            $(function() {
-                $( "#datepicker" ).datepicker({
-                    showButtonPanel: true,
-                    minDate: tomorrow
-                });
-                $( "#datepicker1" ).datepicker({
-                    showButtonPanel: true,
-                    minDate: tomorrow
-                });
-            });
         </script> 
+        <script>
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById("startDate2").setAttribute('min', today);
+            document.getElementById("endDate2").setAttribute('min', today);
+            
+            document.getElementById("startDate2").value=today;
+            document.getElementById("endDate2").value=today;
+        </script>
     </div>
 </body>
 </html>

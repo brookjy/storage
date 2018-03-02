@@ -5,6 +5,8 @@ class Flight_Service{
     private $time;
     private $timepicker;
     private $numCars;
+    private $num_ppl;
+    private $packages;
     private $additionalNote;
 
     public function __construct() {
@@ -12,6 +14,8 @@ class Flight_Service{
         $this->time = isset($_POST['time']) ? $_POST['time'] : null;
         $this->timepicker = isset($_POST['timepicker']) ? $_POST['timepicker'] : null;
         $this->numCars = isset($_POST['numCars']) ? $_POST['numCars'] : null;
+        $this->num_ppl = isset($_POST['num_ppl']) ? $_POST['num_ppl'] : null;
+        $this->packages = isset($_POST['packages']) ? $_POST['packages'] : null;
         $this->additionalNote = isset($_POST['additionalNote']) ? $_POST['additionalNote'] : null;
     }
 
@@ -23,12 +27,12 @@ class Flight_Service{
         $user_id = $_COOKIE['uid'];
         $full_date = $this->time . " " . $this->timepicker;
 
-        if(empty($this->serviceType) || empty($this->time) || empty($this->timepicker) || empty($this->numCars) || empty($this->additionalNote)){
+        if(empty($this->serviceType) || empty($this->time) || empty($this->timepicker) || empty($this->numCars) || empty($this->num_ppl) || empty($this->packages) || empty($this->additionalNote)){
             echo "<script type=\"text/javascript\">alert('您没有填写相应信息! ');window.history.back();</script>"; 
             exit();
         }else{
             if($this->check_dateToDelivery()){
-                $flight_service_query = "INSERT INTO flight_service (user, serviceToken, time, numCars, additionalNote) VALUES ('$user_id', '$serviceToken','$full_date', '$this->numCars', '$this->additionalNote')";
+                $flight_service_query = "INSERT INTO flight_service (user, serviceToken, time, numCars, num_ppl, packages, additionalNote) VALUES ('$user_id', '$serviceToken','$full_date', '$this->numCars', '$this->num_ppl', '$this->packages', '$this->additionalNote')";
                 if($mysqli->query($flight_service_query)){
                     echo "<script type=\"text/javascript\">alert('您已成功预定了套餐, 谢谢.');window.location.replace(\"./panel.php\");</script>";
                 }else{

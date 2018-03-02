@@ -57,7 +57,7 @@
 
                     </div>
                     <div class="form-group"  style="width:250px;">
-                        <label>选择时间：</label>
+                        <label>出发时间：</label>
                         <select class="form-control" name="time">
                             <option value="10:00AM - 11:30AM">10:00AM - 11:30AM</option>
                             <option value="1:00PM - 1:30PM">1:00PM - 2:30PM</option>
@@ -81,7 +81,6 @@
                             <option value="Landsdown">Landsdown</option>
                             <option value="Richmond Centre">Richmond Centre</option>
                             <option value="Aberdeen Centre">Aberdeen Centre</option>
-                            <option value="丰泰超市">丰泰超市</option>
                         </select>
                     </div>
                     <div class="form-group"  style="width:250px;">
@@ -91,6 +90,12 @@
                             <option value=2>2</option>
                             <option value=3>3</option>
                             <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
                         </select>
                     </div>
 

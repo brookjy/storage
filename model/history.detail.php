@@ -9,6 +9,7 @@ class DetailHistory{
         if($serviceToken == ""){
             echo "<script type=\"text/javascript\">alert('您选择的详细信息不存在! ');window.history.back();</script>"; 
         }
+
         if($type == "采购服务"){
             $detail_query="SELECT * FROM purchase_service WHERE serviceToken = '$serviceToken'";
             $detail_retrieve = $mysqli->query($detail_query);
@@ -16,7 +17,12 @@ class DetailHistory{
                 $detail_result = $detail_retrieve->fetch_assoc();
                 $address = $detail_result['origin_address'];
                 
-                echo sprintf("<table class=\"table table-hover table-info\">
+                echo sprintf("
+                        <form action=\"./service_function.php\" method=\"post\">
+                        <input type=\"hidden\" name=\"serviceToken\" value=\"%d\">
+                        <button type=\"submit\" class=\"btn btn-primary\" name=\"purchase_delete\">删除采购订单</button>
+                        </form>
+                        <table class=\"table table-hover table-info\">
                         <tr>
                             <td>公寓类型</td>
                             <td>%s</td>
@@ -178,11 +184,11 @@ class DetailHistory{
                             <td>%d</td>
                         </tr>
                     </table>
-                ", $detail_result['property'], $address, $detail_result['doujiang'], $detail_result['tiandoujiang'], $detail_result['niunai'], $detail_result['guozhi'], $detail_result['furu'], $detail_result['zhacai'], $detail_result['laoganma'], $detail_result['ganlancai'], $detail_result['xianyadan'], $detail_result['huashengjiang'], $detail_result['caomeijiang'], $detail_result['shengjidan'], $detail_result['maipian'], $detail_result['culiangmianbao'], $detail_result['doushabao'], $detail_result['xiaomantou'], $detail_result['shouzhuabing'], $detail_result['jiaozi'], $detail_result['miantiao'], $detail_result['dami'], $detail_result['xiaomi'], $detail_result['hongdou'], $detail_result['lvdou'], $detail_result['pingguo'], $detail_result['xiangjiao'], $detail_result['chengzi'], $detail_result['guoli'], $detail_result['juzi'] 
+                ", $detail_result['serviceToken'], $detail_result['property'], $address, $detail_result['doujiang'], $detail_result['tiandoujiang'], $detail_result['niunai'], $detail_result['guozhi'], $detail_result['furu'], $detail_result['zhacai'], $detail_result['laoganma'], $detail_result['ganlancai'], $detail_result['xianyadan'], $detail_result['huashengjiang'], $detail_result['caomeijiang'], $detail_result['shengjidan'], $detail_result['maipian'], $detail_result['culiangmianbao'], $detail_result['doushabao'], $detail_result['xiaomantou'], $detail_result['shouzhuabing'], $detail_result['jiaozi'], $detail_result['miantiao'], $detail_result['dami'], $detail_result['xiaomi'], $detail_result['hongdou'], $detail_result['lvdou'], $detail_result['pingguo'], $detail_result['xiangjiao'], $detail_result['chengzi'], $detail_result['guoli'], $detail_result['juzi'] 
                 , $detail_result['xihongshi'], $detail_result['bocai'], $detail_result['digua'], $detail_result['huanggua'], $detail_result['tudou'], $detail_result['you'], $detail_result['yan'], $detail_result['jiang'], $detail_result['cu'], $detail_result['tang']
                     );
             }
-        }elseif($type == "宝妈月子餐"){
+        }elseif($type == "孕妈月子餐" || $type == "孕妈待产餐"){
             $detail_query="SELECT * FROM food_service WHERE serviceToken = '$serviceToken'";
             $detail_retrieve = $mysqli->query($detail_query);
             if($detail_retrieve->num_rows > 0){
@@ -201,12 +207,8 @@ class DetailHistory{
                             <td>结束时间</td>
                             <td>%s</td>
                         </tr>
-                        <tr>
-                            <td>是否预定月子餐</td>
-                            <td>%s</td>
-                        </tr>
                     </table>
-                ", $detail_result['serviceType'], $detail_result['startDate'] . " " .$detail_result['startTime'], $detail_result['endDate'] . " " . $detail_result['endTime'], $detail_result['isBooked'] );
+                ", $detail_result['serviceType'], $detail_result['startDate'] . " " .$detail_result['startTime'], $detail_result['endDate'] . " " . $detail_result['endTime']);
             }else{
                 echo "您要的信息不存在！";
             }

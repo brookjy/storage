@@ -20,7 +20,6 @@ class Check_Foodcpy{
                         <p>到 %s %s</p>
                         <form action = \"./service_function.php\" method=\"post\">
                             <input type=\"hidden\" value=\"%d\" name=\"token\">
-                            <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换地点</button>
                             <button type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:20px;\" name=\"food_delete\">更换套餐</button>
                         </form>
                     </div>", $check_retrieve['serviceType'], $check_retrieve['startDate'], $check_retrieve['startTime'], $check_retrieve['endDate'], $check_retrieve['endTime'], $check_retrieve['serviceToken']
