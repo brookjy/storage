@@ -87,6 +87,11 @@
                     exit();
                 }
                 $address = $_GET['address'];
+                // 拆分地址 XXX-XXXXXX 的情况只要dash后面的部分
+                $addressArray = explode('-', $address);
+                if (isset($addressArray[1])) {
+                    $address = $addressArray[1];
+                }
                 $coordinate = "";
                 // sql first, if no result, use google api geocode
                 global $mysqli;
