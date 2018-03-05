@@ -55,10 +55,6 @@
             </ul> -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./edit.php">
-                    <i class="fa fa-fw fa-sign-out"></i>管理</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="../admin_access.php">
                     <i class="fa fa-fw fa-sign-out"></i>返回菜单</a>
                 </li>

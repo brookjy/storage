@@ -373,11 +373,19 @@ class DetailHistory{
                             <td>%d</td>
                         </tr>
                         <tr>
+                            <td>人数</td>
+                            <td>%d</td>
+                        </tr>
+                        <tr>
+                            <td>行李数</td>
+                            <td>%d</td>
+                        </tr>
+                        <tr>
                             <td>备注信息</td>
                             <td>%s</td>
                         </tr>
                     </table>
-                ", $detail_result['time'], $detail_result['numCars'], $detail_result['additionalNote']);
+                ", $detail_result['time'], $detail_result['numCars'], $detail_result['num_ppl'], $detail_result['packages'], $detail_result['additionalNote']);
             }else{
                 echo "您要的信息不存在！";
             }
