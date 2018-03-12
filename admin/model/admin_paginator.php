@@ -19,7 +19,9 @@ class Paginator {
     public function getData( $limit = 10, $page = 1 ) {
         $this->_limit   = $limit;
         $last = ceil( $this->_total / $this->_limit );
-        if ($page == "0") $page = "1";
+        if ($page == "0"||$page == 0) {
+            $page = 1;
+        }
         if ($page == $last+1) $page = $last;
         $this->_page = $page;
         if ( $this->_limit == 'all' ) {
