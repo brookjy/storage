@@ -78,7 +78,7 @@ class Profile{
                 exit();
             }
 
-            echo "<script type=\"text/javascript\">alert('您已经超出了本周预定期限!请在周一到周四 6:00pm预定。');window.history.back();</script>";
+            echo "<script type=\"text/javascript\">alert('您已经超出了本周预定期限!请在周一到周四 6:00pm前预定。');window.history.back();</script>";
             exit();
         }
 

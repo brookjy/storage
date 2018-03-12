@@ -28,7 +28,7 @@ class Pickup_Service{
             echo "<script type=\"text/javascript\">alert('请选择您想要的服务时间和人数! ');window.history.back();</script>"; 
         } else{
             if (!$this->checkWeekday()) {
-                echo "<script type=\"text/javascript\">alert('预定失败！目前仅周一和周三提供一次出行接送服务。您选择的日期".$this->date."暂不提供服务。');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('预定失败！目前仅周一和周三各提供一次出行接送服务。您选择的日期".$this->date."暂不提供服务。');window.history.back();</script>";
             } else if(!$this->check_dateToDelivery()) {
                 echo "<script type=\"text/javascript\">alert('预定失败！请提前一天预定接送服务! ');window.history.back();</script>";
             } else if(!$this->checkNum()) {
