@@ -323,7 +323,7 @@ Class Repair{
                         <td>".$Summary['address']."</td> 
                         <td>".$Summary['repairNote']."</td> 
                         <td>".$Summary['replyNote']."</td> 
-                        <td>".$finish."</td> 
+                        <td><b>".$finish."</b></td> 
                         <td><button tyle=\"submit\" class=\"btn btn-info\" name=\"repair_edit\">添加/修改</button></td>
                     </tr>
                 </form>

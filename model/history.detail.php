@@ -290,7 +290,7 @@ class DetailHistory{
                         </tr>
                         <tr>
                             <td>状态</td>
-                            <td>%s</td>
+                            <td><b>%s</b></td>
                         </tr>
                     </table>
                 ", $detail_result['time'], $detail_result['repairNote'], $detail_result['replyNote'], $services);
