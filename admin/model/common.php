@@ -5,9 +5,15 @@
     date_default_timezone_set('America/Los_Angeles');
 
     $sys_config['db_location'] = 'localhost';
-    $sys_config['db_username'] = 'root';
-    $sys_config['db_password'] = '';
-    $sys_config['db_base'] = 'svacation';
+    $sys_config['db_username'] = 'rd1';
+    $sys_config['db_password'] = 'casimon';
+	$sys_config['db_base'] = 'rd1_ser_leaderbb';
+	
+	//localconfig
+	// $sys_config['db_location'] = 'localhost';
+    // $sys_config['db_username'] = 'root';
+    // $sys_config['db_password'] = '';
+    // $sys_config['db_base'] = 'svacation';
 
     $path = $_SERVER['DOCUMENT_ROOT'];
 
@@ -20,5 +26,6 @@
     	printf("Error loading character set utf8: %s\n", $mysqli->error);
     	exit();
 	}
-    //print_r($settings);
+	$tz = (new DateTime('now', new DateTimeZone('America/Los_Angeles')))->format('P');
+	$mysqli->query("SET time_zone='$tz';");
 ?>

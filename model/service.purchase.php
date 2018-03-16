@@ -120,7 +120,7 @@ class Purchase_Service{
                 exit();
             }
         }else{
-            echo "<script type=\"text/javascript\">alert('您已超出预定时间!请在星期6-下星期4申请. ');window.history.back();</script>";
+            echo "<script type=\"text/javascript\">alert('您已超出预定时间!请在星期1-星期4申请. ');window.history.back();</script>";
         }
     }
 
