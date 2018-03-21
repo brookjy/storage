@@ -44,7 +44,7 @@
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
             <!-- Form Start -->
-            <form action="./service_function.php" method="post">
+            <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                 <input type="hidden" name="serviceType" value="接机送机">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
@@ -158,6 +158,14 @@
                 timeSeparator: ':',
             }
             $('.timepicker').wickedpicker(options);
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            } 
         </script>   
     </div>
 </body>

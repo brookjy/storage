@@ -35,7 +35,7 @@
         <br/>
         <div class="row" style="padding-left:20px;padding-right:20px;">
             <!-- Form Start -->
-            <form action="./service_function.php" method="post">
+            <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                 <fieldset>
                     <div class="form-group" style="width:250px;">
                         <label>选择时间：<span style="color:red;">*预约请提前一个月</span></label>
@@ -123,6 +123,14 @@
                     minDate: tomorrow
                 });
             });
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            } 
         </script>   
     </div>
 </body>

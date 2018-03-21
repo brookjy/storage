@@ -78,7 +78,7 @@ class Profile{
                 exit();
             }
 
-            echo "<script type=\"text/javascript\">alert('您已经超出了本周预定期限!请在周一到周四 6:00pm前预定。');window.history.back();</script>";
+            echo "<script type=\"text/javascript\">alert('抱歉，今天不提供采购服务。请在周一到周四 6:00pm 前预定。');window.history.back();</script>";
             exit();
         }
 
@@ -88,17 +88,17 @@ class Profile{
             $profile_retrieve = $profile_exist->fetch_assoc();
             $address = $profile_retrieve['address'];
             if (empty($address)){
-                echo "<script type=\"text/javascript\">alert('您需要一个地址.任何问题请联系管理员！');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('您需要一个地址.请联系管理员为您添加地址！');window.history.back();</script>";
                 exit();
             }
             $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address' AND locker = 1";
             $purchase_exist = $mysqli->query($purchase_query);
             if($purchase_exist->num_rows > 0){
-                echo "<script type=\"text/javascript\">alert('您已经预定了本周采购.任何问题请联系管理员！');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('您已经预定了本周的采购服务.如果想删除或修改，请到主页->服务记录');window.history.back();</script>";
                 exit();
             }
         }else{
-            echo "<script type=\"text/javascript\">alert('您需要一个地址以便下单.');window.history.back();</script>";
+            echo "<script type=\"text/javascript\">alert('您需要一个地址才可以下单，请联系管理员为您添加地址！');window.history.back();</script>";
             exit();
         }
     }

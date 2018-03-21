@@ -36,7 +36,7 @@
         <p><span style="color:red;">如果有紧急情况, 请第一时间拨打911, 其他特殊情况, 请联系Todd。</span></p>
         <div class="row" style="padding-left:20px;padding-right:20px;">
             <div style="width:50%;">
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                     <div class="form-group">
                         <h5><b>维修内容: </b></h5>
                         <textarea class="form-control" name="repairNote" rows="4"></textarea>
@@ -72,6 +72,16 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery-ui-i18n.min.js"></script>
+        <script>
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            }  
+        </script> 
     </div>
 </body>
 </html>

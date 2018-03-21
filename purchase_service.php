@@ -74,7 +74,8 @@
         <div style="padding-left:20px;padding-right:20px;">
             <h2><b>采购服务申请</b></h2>
             <br/>
-            <p><b>备注： 公司每周5将进行一次采购，会将您这周申请的购买的食材在送餐的同时送至您的府上。</b></p>
+            <p><b><span style="color:red;">*请在周一到周四 6:00pm 前预定。<span></b></p>
+            <p><b><span style="color:red;">*公司每周5将进行一次采购，会将您这周申请的购买的食材在送餐的同时送至您的府上。<span></b></p>
             <br/>
             <p>请选择您的住宿类型：</p>
                 <button class="tablinks btn btn-info" onclick="openType(event, 'house')">别墅</button>
@@ -82,7 +83,7 @@
             
 
             <div id="house" class="tabcontent" style="width:100%;border-top:1px solid #ccc;">
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                     <input type="hidden" name="property" value="house">
                     <input type="hidden" name="serviceType" value="采购服务">
                     <?php 
@@ -796,7 +797,7 @@
             </div>
 
             <div id="apt" class="tabcontent" style="width:100%;border-top:1px solid #ccc;">
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                     <input type="hidden" name="property" value="apartment">
                     <input type="hidden" name="serviceType" value="采购服务">
                     <?php 
@@ -1524,7 +1525,14 @@
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-
+        function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            } 
         </script>
         <!-- /.container-fluid-->
         <?php include_once "./component/footer.php"; ?>

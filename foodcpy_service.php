@@ -41,7 +41,7 @@
                 ?>
                 <h2><b>家属订餐申请</b></h2>
                 <br/>
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                     <div class="container">
                         <input type="hidden" name="serviceType" value="待产餐">
                         <div class="form-group">
@@ -157,6 +157,14 @@
                     minDate: tomorrow
                 });
             });
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            }  
         </script>   
     </div>
 </body>

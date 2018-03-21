@@ -73,7 +73,7 @@
                 <h2><b>孕妈订餐申请</b></h2>
                 <br/>
                 <!-- Start form -->
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                     <div class="container">
                         <input type="hidden" name="serviceType" value="孕妈月子餐">
                         <div class="jumbotron">
@@ -145,7 +145,7 @@
                 </form>
 
                 <!-- Second form start -->
-                <form action="./service_function.php" method="post">
+                <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                         <div class="jumbotron">
                             <?php 
                                 include_once "./model/common.php";
@@ -253,6 +253,14 @@
             
             document.getElementById("startDate2").value=today;
             document.getElementById("endDate2").value=today;
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            } 
         </script>
     </div>
 </body>

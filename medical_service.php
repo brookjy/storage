@@ -43,7 +43,7 @@
         <br/>
         <!-- Form start -->
         <div class="row" style="padding-left:20px;padding-right:20px;">
-            <form action="./service_function.php" method="post">
+            <form action="./service_function.php" method="post" onsubmit="return sumbit_sure()">
                 <fieldset>
                 <p>(<span style="color:red;">*除婴儿以外最多可以接3个人</span>)</p>
                     <div class="form-group" style="width:250px;">
@@ -137,6 +137,14 @@
                 timeSeparator: ':',
             }
             $('.timepicker').wickedpicker(options);
+            function sumbit_sure(){  
+                var gnl=confirm("确定要提交?");  
+                if (gnl==true){
+                    return true;  
+                }else{  
+                    return false;  
+                }  
+            }  
         </script>   
     </div>
 </body>
