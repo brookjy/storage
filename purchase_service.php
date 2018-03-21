@@ -577,6 +577,22 @@
                                     </div>
                                 </div>    
                             </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">枣子（袋）</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="zaozi" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
                             <div class="col-md-4">
                                 
                             </div>
@@ -694,7 +710,7 @@
                             <div class="col-md-4" style="padding-top:20px;">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">盐</h5>
+                                        <h5 class="card-title">盐（袋）</h5>
                                         <div style="display:inline">
                                             <p style="display:inline">数量：</p>
                                             <select class="form-control" name="yan" style="display:inline;width:60%;">
@@ -740,12 +756,28 @@
                             <div class="col-md-4" style="padding-top:20px;">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">糖</h5>
+                                        <h5 class="card-title">糖（袋）</h5>
                                         <div style="display:inline">
                                             <p style="display:inline">数量：</p>
                                             <select class="form-control" name="tang" style="display:inline;width:60%;">
                                                 <option value= 0 >0</option>
                                                 <option value= 1 >1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">小黄姜（块）</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="ginger" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1259,6 +1291,22 @@
                                     </div>
                                 </div>    
                             </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">枣子（袋）</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="zaozi" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 2 >2</option>
+                                                <option value= 3 >3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
                             <div class="col-md-4">
                                 
                             </div>
@@ -1422,12 +1470,28 @@
                             <div class="col-md-4" style="padding-top:20px;">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">糖</h5>
+                                        <h5 class="card-title">糖（袋）</h5>
                                         <div style="display:inline">
                                             <p style="display:inline">数量：</p>
                                             <select class="form-control" name="tang" style="display:inline;width:60%;">
                                                 <option value= 0 >0</option>
                                                 <option value= 1 >1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-md-4" style="padding-top:20px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">小黄姜（块）</h5>
+                                        <div style="display:inline">
+                                            <p style="display:inline">数量：</p>
+                                            <select class="form-control" name="ginger" style="display:inline;width:60%;">
+                                                <option value= 0 >0</option>
+                                                <option value= 1 >1</option>
+                                                <option value= 1 >2</option>
+                                                <option value= 1 >3</option>
                                             </select>
                                         </div>
                                     </div>

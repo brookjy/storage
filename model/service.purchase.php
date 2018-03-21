@@ -33,6 +33,7 @@ class Purchase_Service{
     private $chengzi;
     private $guoli;
     private $juzi;
+    private $zaozi;
     private $xihongshi;
     private $bocai;
     private $digua;
@@ -43,6 +44,7 @@ class Purchase_Service{
     private $jiang;
     private $cu;
     private $tang;
+    private $ginger;
 
 
 	public function __construct() {
@@ -78,6 +80,7 @@ class Purchase_Service{
         $this->chengzi = isset($_POST['chengzi']) ? $_POST['chengzi'] : null;
         $this->guoli = isset($_POST['guoli']) ? $_POST['guoli'] : null;
         $this->juzi = isset($_POST['juzi']) ? $_POST['juzi'] : null;
+        $this->zaozi = isset($_POST['zaozi']) ? $_POST['zaozi'] : null;
         $this->xihongshi = isset($_POST['xihongshi']) ? $_POST['xihongshi'] : null;
         $this->bocai = isset($_POST['bocai']) ? $_POST['bocai'] : null;
         $this->digua = isset($_POST['digua']) ? $_POST['digua'] : null;
@@ -88,6 +91,7 @@ class Purchase_Service{
         $this->jiang = isset($_POST['jiang']) ? $_POST['jiang'] : null;
         $this->cu = isset($_POST['cu']) ? $_POST['cu'] : null;
         $this->tang = isset($_POST['tang']) ? $_POST['tang'] : null;
+        $this->ginger = isset($_POST['ginger']) ? $_POST['ginger'] : null;
 	}
 
 	public function Purchase_Service(){
@@ -103,9 +107,9 @@ class Purchase_Service{
         $serviceToken = rand(10, 100000);
         if(true){
             $purchase_query="INSERT INTO purchase_service (user, serviceToken, date, property, origin_address, doujiang, tiandoujiang, niunai, guozhi, furu, zhacai, laoganma, ganlancai, xianyadan, huashengjiang, caomeijiang, shengjidan, maipian, culiangmianbao, doushabao, xiaomantou, shouzhuabing, jiaozi, miantiao, dami, xiaomi, hongdou, lvdou, pingguo,
-                xiangjiao, chengzi, guoli, juzi, xihongshi, bocai, digua, huanggua, tudou, you, yan, jiang, cu, tang, locker) VALUES ('$user_id', '$serviceToken', '$format_time', '$this->property', '$this->origin_address', '$this->doujiang', '$this->tiandoujiang', '$this->niunai', '$this->guozhi', '$this->furu', '$this->zhacai', '$this->laoganma', '$this->ganlancai',
+                xiangjiao, chengzi, guoli, juzi, zaozi, xihongshi, bocai, digua, huanggua, tudou, you, yan, jiang, cu, tang, ginger, locker) VALUES ('$user_id', '$serviceToken', '$format_time', '$this->property', '$this->origin_address', '$this->doujiang', '$this->tiandoujiang', '$this->niunai', '$this->guozhi', '$this->furu', '$this->zhacai', '$this->laoganma', '$this->ganlancai',
                 '$this->xianyadan', '$this->huashengjiang', '$this->caomeijiang', '$this->shengjidan', '$this->maipian', '$this->culiangmianbao', '$this->doushabao', '$this->xiaomantou', '$this->shouzhuabing', '$this->jiaozi', '$this->miantiao', '$this->dami', '$this->xiaomi', '$this->hongdou', '$this->lvdou', '$this->pingguo', '$this->xiangjiao', '$this->chengzi', 
-                '$this->guoli', '$this->juzi', '$this->xihongshi', '$this->bocai', '$this->digua', '$this->huanggua', '$this->tudou', '$this->you', '$this->yan', '$this->jiang', '$this->cu', '$this->tang', 1)";
+                '$this->guoli', '$this->juzi', '$this->zaozi', '$this->xihongshi', '$this->bocai', '$this->digua', '$this->huanggua', '$this->tudou', '$this->you', '$this->yan', '$this->jiang', '$this->cu', '$this->tang', '$this->ginger', 1)";
             if($mysqli->query($purchase_query)){
                 echo "<script type=\"text/javascript\">alert('恭喜，您的订单已经下单，查看订单请去历史记录!');window.location.href = 'panel.php' ;</script>";
             }else{

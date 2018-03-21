@@ -144,6 +144,10 @@ class DetailHistory{
                             <td>%d</td>
                         </tr>
                         <tr>
+                            <td>枣子</td>
+                            <td>%d</td>
+                        </tr>
+                        <tr>
                             <td>西红柿</td>
                             <td>%d</td>
                         </tr>
@@ -183,9 +187,13 @@ class DetailHistory{
                             <td>糖</td>
                             <td>%d</td>
                         </tr>
+                        <tr>
+                            <td>小黄姜</td>
+                            <td>%d</td>
+                        </tr>
                     </table>
-                ", $detail_result['serviceToken'], $detail_result['property'], $address, $detail_result['doujiang'], $detail_result['tiandoujiang'], $detail_result['niunai'], $detail_result['guozhi'], $detail_result['furu'], $detail_result['zhacai'], $detail_result['laoganma'], $detail_result['ganlancai'], $detail_result['xianyadan'], $detail_result['huashengjiang'], $detail_result['caomeijiang'], $detail_result['shengjidan'], $detail_result['maipian'], $detail_result['culiangmianbao'], $detail_result['doushabao'], $detail_result['xiaomantou'], $detail_result['shouzhuabing'], $detail_result['jiaozi'], $detail_result['miantiao'], $detail_result['dami'], $detail_result['xiaomi'], $detail_result['hongdou'], $detail_result['lvdou'], $detail_result['pingguo'], $detail_result['xiangjiao'], $detail_result['chengzi'], $detail_result['guoli'], $detail_result['juzi'] 
-                , $detail_result['xihongshi'], $detail_result['bocai'], $detail_result['digua'], $detail_result['huanggua'], $detail_result['tudou'], $detail_result['you'], $detail_result['yan'], $detail_result['jiang'], $detail_result['cu'], $detail_result['tang']
+                ", $detail_result['serviceToken'], $detail_result['property'], $address, $detail_result['doujiang'], $detail_result['tiandoujiang'], $detail_result['niunai'], $detail_result['guozhi'], $detail_result['furu'], $detail_result['zhacai'], $detail_result['laoganma'], $detail_result['ganlancai'], $detail_result['xianyadan'], $detail_result['huashengjiang'], $detail_result['caomeijiang'], $detail_result['shengjidan'], $detail_result['maipian'], $detail_result['culiangmianbao'], $detail_result['doushabao'], $detail_result['xiaomantou'], $detail_result['shouzhuabing'], $detail_result['jiaozi'], $detail_result['miantiao'], $detail_result['dami'], $detail_result['xiaomi'], $detail_result['hongdou'], $detail_result['lvdou'], $detail_result['pingguo'], $detail_result['xiangjiao'], $detail_result['chengzi'], $detail_result['guoli'], $detail_result['juzi'], $detail_result['zaozi'] 
+                , $detail_result['xihongshi'], $detail_result['bocai'], $detail_result['digua'], $detail_result['huanggua'], $detail_result['tudou'], $detail_result['you'], $detail_result['yan'], $detail_result['jiang'], $detail_result['cu'], $detail_result['tang'], $detail_result['ginger']
                     );
             }
         }elseif($type == "孕妈月子餐" || $type == "孕妈待产餐"){

@@ -4,16 +4,16 @@
 
     date_default_timezone_set('America/Los_Angeles');
 
-    $sys_config['db_location'] = 'localhost';
-    $sys_config['db_username'] = 'rd1';
-    $sys_config['db_password'] = 'casimon';
-	$sys_config['db_base'] = 'rd1_ser_leaderbb';
+    // $sys_config['db_location'] = 'localhost';
+    // $sys_config['db_username'] = 'rd1';
+    // $sys_config['db_password'] = 'casimon';
+	// $sys_config['db_base'] = 'rd1_ser_leaderbb';
 	
 	// local config
-	// $sys_config['db_location'] = 'localhost';
-    // $sys_config['db_username'] = 'root';
-    // $sys_config['db_password'] = '';
-    // $sys_config['db_base'] = 'svacation';
+	$sys_config['db_location'] = 'localhost';
+    $sys_config['db_username'] = 'root';
+    $sys_config['db_password'] = '';
+    $sys_config['db_base'] = 'svacation';
 
     $path = $_SERVER['DOCUMENT_ROOT'];
 
