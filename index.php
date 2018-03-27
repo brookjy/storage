@@ -178,10 +178,51 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
                 <button type="submit" class="btn btn-primary" name="login">登录账号</button>
             </div>
+            <a style="color:#007bff;cursor: pointer;position: absolute;right: 20px;bottom:5px" data-toggle="modal" data-target="#resetPwModal">忘记密码？</a>
         </form>
         </div>
       </div>
     </div>
+
+    <!--reset password Modal-->
+    <div class="modal fade" id="resetPwModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">使用用户名和手机号重设密码</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <form action="./form_function.php" method="post">
+            <input type="hidden" name="currentpage" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+            <div class="form-group">
+                <label for="exampleInputEmail">用户名</label>
+                <input type="text" class="form-control" name="username" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">电话</label>
+                <input type="text" class="form-control" name="phone" placeholder="电话">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">新密码</label>
+                <input type="password" class="form-control" name="password" placeholder="密码">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">确认新密码</label>
+                <input type="password" class="form-control" name="passwordCopy" placeholder="密码">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" name="resetPw">重设密码</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    
 
     <script>
         function show_hide_pw() {

@@ -6,6 +6,7 @@ class Member{
     private $phone;
     private $email;
     private $password;
+    private $passwordCopy;
     private $weChat;
     private $timeDeliver;
     private $currentpage;
@@ -17,6 +18,7 @@ class Member{
 		$this->phone = isset($_POST['phone']) ? $_POST['phone'] : null;
 		$this->email = isset($_POST['email']) ? $_POST['email'] : null;
 		$this->password = isset($_POST['password']) ? $_POST['password'] : null;
+		$this->passwordCopy = isset($_POST['passwordCopy']) ? $_POST['passwordCopy'] : null;
 		$this->weChat = isset($_POST['weChat']) ? $_POST['weChat'] : null;
 		$this->timeDeliver = isset($_POST['timeDeliver']) ? $_POST['timeDeliver'] : null;
         $this->currentpage = isset($_POST['currentpage']) ? $_POST['currentpage'] : null;
@@ -50,10 +52,10 @@ class Member{
         //Check whethre the user is inside th system. 
 		$valid = $this->validation();
 		if($valid){
-			/*cookies expire in 7 days*/
-			echo "<script type=\"text/javascript\">window.location.replace(\"$this->currentpage\");</script>";
+            /*cookies expire in 7 days*/
+            echo "<script type=\"text/javascript\">alert('登录成功！');window.location.replace(\"$this->currentpage\");</script>";
 		}else{
-			echo "<script type=\"text/javascript\">alert('您的账户不在系统内。\\n 请先注册我们的会员账户！');window.history.back();</script>";
+			echo "<script type=\"text/javascript\">alert('账号或密码错误！如果忘记密码，请在登录页面重设密码。');window.history.back();</script>";
 		}
     }
     
@@ -115,7 +117,33 @@ class Member{
             exit();
         }
     }
-
+    
+    public function resetPw(){
+        global $mysqli;
+        // check phone number
+        if ($this->passwordCopy != $this->password) {
+            echo "<script type=\"text/javascript\">alert('两次输入的密码不一样!');window.history.back();</script>";
+            exit();
+        }
+        $salt_query = "SELECT salt FROM users WHERE username = '$this->username' and phone = '$this->phone'";
+        $salt_retrieve = $mysqli->query($salt_query);
+		if($salt_retrieve->num_rows > 0){				
+			$salt_result = $salt_retrieve->fetch_assoc();
+			$salt = $salt_result['salt'];
+		}else{
+            echo "<script type=\"text/javascript\">alert('用户名或电话错误!');window.history.back();</script>";
+            exit();        
+        }
+        // 加密新密码
+		$newPw = $this->password_encrypt($salt, $this->password);
+        $update_query = "UPDATE users SET password='$newPw' where salt = '$salt'";
+        if($mysqli->query($update_query)){
+            echo "<script type=\"text/javascript\">alert('您已成功修改密码！请重新登录');window.history.back();</script>";
+        }else{
+            printf("Registration failure: %s\n", $mysqli->error);
+            exit();
+        }
+    }
     /* Check the salt in DB */
 	public function retrieve_salt(){
 		global $mysqli;

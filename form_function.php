@@ -20,5 +20,7 @@
         $member->getUser();
     }elseif(isset($_POST['update_user'])){
         $member->update_user();
-    }
+	}elseif(isset($_POST['resetPw'])){
+        $member->resetPw();
+	}
 ?>
