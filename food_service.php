@@ -57,7 +57,10 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     
-    <?php include_once "./component/sideNav.php"; ?>
+    <?php include_once "./component/sideNav.php"; 
+        include_once "./model/user.info.php";
+        $profiles = new Profile();
+        $profiles->checkTime(); ?>
 
     <div class="content-wrapper">
         <div class="container">

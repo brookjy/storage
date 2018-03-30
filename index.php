@@ -26,68 +26,60 @@
         <!-- Columns are always 50% wide, on mobile and desktop-->
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-primary o-hidden h-100">
+                <a class="card text-white bg-primary o-hidden h-100" href="./profile.php">
                     <div class="card-body">
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-address-card"></i>
                     </div>
                     <div class="mr-5">个人信息</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="./profile.php">
-                    <span class="float-left">点击查看</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
                     </a>
-                </div>
+                </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-success o-hidden h-100">
+                <a class="card text-white bg-success o-hidden h-100" href="./panel.php">
                     <div class="card-body">
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-shopping-cart"></i>
                     </div>
                     <div class="mr-5">申请服务</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="./panel.php">
-                    <span class="float-left">点击查看</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
                     </a>
-                </div>
+                </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-warning o-hidden h-100">
+                <a class="card text-white bg-warning o-hidden h-100" href="./history.php">
                     <div class="card-body">
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-list"></i>
                     </div>
                     <div class="mr-5">服务记录</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="./history.php">
-                    <span class="float-left">点击查看</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
                     </a>
-                </div>
+                </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-danger o-hidden h-100">
+                <a class="card text-white bg-danger o-hidden h-100" href="./contact.php">
                     <div class="card-body">
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-book"></i>
                     </div>
                     <div class="mr-5">注意事项</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="./contact.php">
-                    <span class="float-left">点击查看</span>
                     <span class="float-right">
                         <i class="fa fa-angle-right"></i>
                     </span>
                     </a>
-                </div>
+                </a>
             </div>
         </div>
         <!-- /.content-wrapper-->

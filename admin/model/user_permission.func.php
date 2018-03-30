@@ -169,6 +169,7 @@ class User_Permission{
                             <option value=\"3400 Raymond Ave Richmond V7E1A9\">3400 Raymond Ave Richmond V7E1A9</option>
                             <option value=\"3331 Bourmond Ave Richmond V7E1A1\">3331 Bourmond Ave Richmond V7E1A1</option>
                             <option value=\"5620 Lancing Rd Richmond V7C3A6\">5620 Lancing Rd Richmond V7C3A6</option>
+                            <option value=\"公司内部测试地址\">公司内部测试地址</option>
                         </select>
                         </div>
                         <div class=\"form-group\">

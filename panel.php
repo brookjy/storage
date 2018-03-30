@@ -25,7 +25,8 @@
             </ol>
             <br/>
             <h1>以人为本，服务至上, 品质第一</h1>
-            <p>我们会在第一时间办理您申请的服务，如果有急事，请打电话 778-895-3579 微信有时无法及时回复。</p>
+            <p><b><span style="color:red;">*请在5点前预约，因为5点后大家都下班啦<span></b></p>
+            <p>我们会在第一时间办理您申请的服务，如果有急事，请打电话 778-895-3579</p>
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xsx-6">
                     <a href="medical_service.php">

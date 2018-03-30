@@ -62,43 +62,38 @@ class Profile{
         }
     }
 
-    public function checkLocker(){
+    public function checkPurchaseTime(){
+        $this->checkTime();
+        $this_thursday = date('Y-m-d', strtotime('thursday this week'));
+        $dateNow = date("Y-m-d");
+        if ($dateNow > $this_thursday ){
+            echo "<script type=\"text/javascript\">alert('抱歉, 每周只有周一至周四可以申请采购。下次早点预定吧！如果实在紧急，请致电 778-895-3579');window.history.back();</script>";
+            exit();
+        }
+    }
+
+    public function checkTime(){
         GLOBAL $mysqli;
         $salt =  $_COOKIE['uid'];
 
-        $this_thursday = date('Y-m-d', strtotime('thursday this week'));
-        $dateNow = date("Y-m-d H:i:s");
-        $thursday = $this_thursday . " 18:00:00";
+        $today_fivePM = date('Y-m-d', strtotime('today')). " 17:00:00";
+        $timeNow = date("Y-m-d H:i:s");
         
-        if ($dateNow > $thursday ){
-            $edit_query = "UPDATE purchase_service SET locker = 0";
-            if($mysqli->query($edit_query)){
-            }else{
-                printf("Registration failure: %s\n", $mysqli->error);
-                exit();
-            }
-
-            echo "<script type=\"text/javascript\">alert('抱歉，今天不提供采购服务。请在周一到周四 6:00pm 前预定。');window.history.back();</script>";
+        if ($timeNow > $today_fivePM ){
+            echo "<script type=\"text/javascript\">alert('抱歉, 5点后大家都下班了，不能预定了。下次早点预定吧！如果实在紧急，请致电 778-895-3579');window.history.back();</script>";
             exit();
         }
-
         $profile_query = "SELECT * FROM users WHERE salt = '$salt'";
         $profile_exist = $mysqli->query($profile_query);
         if($profile_exist->num_rows > 0){
             $profile_retrieve = $profile_exist->fetch_assoc();
             $address = $profile_retrieve['address'];
             if (empty($address)){
-                echo "<script type=\"text/javascript\">alert('您需要一个地址.请联系管理员为您添加地址！');window.history.back();</script>";
-                exit();
-            }
-            $purchase_query = "SELECT * FROM purchase_service WHERE origin_address = '$address' AND locker = 1";
-            $purchase_exist = $mysqli->query($purchase_query);
-            if($purchase_exist->num_rows > 0){
-                echo "<script type=\"text/javascript\">alert('您已经预定了本周的采购服务.如果想删除或修改，请到主页->服务记录');window.history.back();</script>";
+                echo "<script type=\"text/javascript\">alert('您需要一个地址.请致电 778-895-3579 联系管理员为您添加地址！');window.history.back();</script>";
                 exit();
             }
         }else{
-            echo "<script type=\"text/javascript\">alert('您需要一个地址才可以下单，请联系管理员为您添加地址！');window.history.back();</script>";
+            echo "<script type=\"text/javascript\">alert('您需要一个地址才可以下单，请致电 778-895-3579 联系管理员为您添加地址！');window.history.back();</script>";
             exit();
         }
     }

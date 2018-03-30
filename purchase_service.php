@@ -58,7 +58,7 @@
         include_once "./model/user.info.php";
 
         $profiles = new Profile();
-        $profiles->checkLocker(); 
+        $profiles->checkPurchaseTime(); 
     ?>
 
     <div class="content-wrapper">
@@ -74,7 +74,7 @@
         <div style="padding-left:20px;padding-right:20px;">
             <h2><b>采购服务申请</b></h2>
             <br/>
-            <p><b><span style="color:red;">*请在周一到周四 6:00pm 前预定。<span></b></p>
+            <p><b><span style="color:red;">*请在周一到周四 5:00pm 前预定。<span></b></p>
             <p><b><span style="color:red;">*公司每周5将进行一次采购，会将您这周申请的购买的食材在送餐的同时送至您的府上。<span></b></p>
             <br/>
             <p>请选择您的住宿类型：</p>
