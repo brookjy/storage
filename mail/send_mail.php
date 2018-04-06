@@ -1,15 +1,4 @@
-<form id="frmEmail" name="frmEmail" action="/mail/sendemailPHPMail.php" method="post">
-                        <div class="col-md-6 text-box">
-                            <input name="name" type="text" value="test" />
-                            <input name="address" type="text" value="479428597@qq.com" />
-                            <input name="kind" type="text" value="manager" />
-                        </div>
-                        <div class="col-md-6 textarea">
-                            <textarea name="content" >内容</textarea>
-                        </div>
-                        <div class="clearfix"> </div><br />
-                        <input class="btn btn-primary btn-red-lg" type="submit" onClick="myFunc()" value="提交" />
-                    </form>
+
 
 <?php
 include_once "../model/common.php";

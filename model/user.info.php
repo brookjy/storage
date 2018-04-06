@@ -66,10 +66,10 @@ class Profile{
         $this->checkTime();
         $this_thursday = date('Y-m-d', strtotime('thursday this week'));
         $dateNow = date("Y-m-d");
-        if ($dateNow > $this_thursday ){
-            echo "<script type=\"text/javascript\">alert('抱歉, 每周只有周一至周四可以申请采购。下次早点预定吧！如果实在紧急，请致电 778-895-3579');window.history.back();</script>";
-            exit();
-        }
+        // if ($dateNow > $this_thursday ){
+        //     echo "<script type=\"text/javascript\">alert('抱歉, 每周只有周一至周四可以申请采购。下次早点预定吧！如果实在紧急，请致电 778-895-3579');window.history.back();</script>";
+        //     exit();
+        // }
     }
 
     public function checkTime(){

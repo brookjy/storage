@@ -2,9 +2,9 @@
 Class Purchase{
     public $time = "";
     public $date;
-    public $itemList = ["doujiang","tiandoujiang","niunai","guozhi","furu","zhacai","laoganma","ganlancai","xianyadan","huashengjiang","caomeijiang","shengjidan","maipian","culiangmianbao","doushabao","xiaomantou","shouzhuabing","jiaozi","miantiao","dami","xiaomi","hongdou","lvdou","pingguo","xiangjiao","chengzi","guoli","juzi","zaozi","xihongshi","bocai","digua","huanggua","tudou","you","yan","jiang","cu","tang","ginger"];
+    public $itemList = ["doujiang","tiandoujiang","niunai","guozhi","furu","zhacai","laoganma","ganlancai","xianyadan","huashengjiang","caomeijiang","shengjidan","maipian","culiangmianbao","doushabao","xiaomantou","shouzhuabing","jiaozi","miantiao","dami","xiaomi","hongdou","lvdou","pingguo","xiangjiao","chengzi","guoli","juzi","xihongshi","bocai","digua","huanggua","tudou","you","yan","jiang","cu","tang"];
     //
-    public $itemChineseList = ["豆浆","甜豆浆","牛奶","果汁","腐乳","榨菜","老干妈","橄榄菜","咸鸭蛋","花生酱","草莓酱","生鸡蛋","麦片","粗粮面包","豆沙包","小馒头","手抓饼","饺子","面条","大米","小米","红豆","绿豆","苹果","香蕉","橙子","果梨","橘子","小枣","西红柿","菠菜","地瓜","黄瓜","土豆","油","盐","酱","醋","糖","小黄姜"];
+    public $itemChineseList = ["豆浆","甜豆浆","牛奶","果汁","腐乳","榨菜","老干妈","橄榄菜","咸鸭蛋","花生酱","草莓酱","生鸡蛋","麦片","粗粮面包","豆沙包","小馒头","手抓饼","饺子","面条","大米","小米","红豆","绿豆","苹果","香蕉","橙子","果梨","橘子","西红柿","菠菜","地瓜","黄瓜","土豆","油","盐","酱","醋","糖"];
     public $table = "purchase_service INNER JOIN users ON users.salt=purchase_service.user";
     public $rawStates = "users.uid,users.username,users.phone,users.address,purchase_service.date,purchase_service.property,purchase_service.origin_address,purchase_service.locker";
     public $completeStates = "";
